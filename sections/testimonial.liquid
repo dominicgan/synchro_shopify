@@ -41,7 +41,7 @@
             {{ testimonial }}
           </div>
 
-          <img class="testimonial-block__stars" src="https://cdn.shopify.com/s/files/1/0509/9703/5163/t/12/assets/5-stars.svg?v=1610134073" alt="5-stars">
+          <img class="testimonial-block__stars" src="{{ "5-stars.svg" | asset_url }}" alt="5-stars">
 
 
           {% if block.settings.name != blank %}
