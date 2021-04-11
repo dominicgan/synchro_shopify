@@ -400,17 +400,43 @@
                   <a href="{{ routes.search_url }}" title="{{ 'general.search.title' | t }}" id="search-toggle"><span class="icon-search"></span></a>
                 </li>
               {% endif %}
-              {% if settings.header-show-cart %}
-              <li>
-                <a class="cart-link right" href="#cart"><img src="https://cdn.shopify.com/s/files/1/0155/0195/t/23/assets/icon-cart.svg?v=1612941210" class="icon-cart" alt="Cart"><span class="cart-count">{{ cart.item_count }}</span></a>
+
+              <li class="cart">
+                <a href="#cart" class="icon-cart cart-button"><span>{{ cart.item_count }}</span></a>
+                <a href="{{ routes.cart_url }}" class="icon-cart cart-button no-js-only"><span>{{ cart.item_count }}</span></a>
               </li>
+              <!-- @dominic: Start – Old Cart -->
+              {% if settings.header-show-cart %}
+              <!-- <li>
+                <a class="cart-link right" href="#cart"><img src="https://cdn.shopify.com/s/files/1/0155/0195/t/23/assets/icon-cart.svg?v=1612941210" class="icon-cart" alt="Cart"><span class="cart-count">{{ cart.item_count }}</span></a>
+              </li> -->
               {% endif %}
+              <!-- @dominic: End – Old Cart -->
+              {% comment %}
               {% if settings.header-navigation-location == 'header' or settings.header-navigation-location == 'below-header' %}
               {% if shop.customer_accounts_enabled %}
               <li>
                 <a href="/account" class="account-link">&#57348;</a>
               </li>
               {% endif %}
+              {% endif %}
+              {% endcomment %}
+              
+              {% if currency_selector == true or locale_selector == true %}
+                <li class="currencies">
+                  {% render 'localization-switcher',
+                          additional_classes: 'header-menu__disclosure',
+                          id: 'header__selector-form',
+                          currency_selector: currency_selector,
+                          locale_selector: locale_selector
+                  %}
+                </li>
+              {% endif %}
+
+              {% if shop.customer_accounts_enabled %}
+                <li class="header-account">
+                  <a href="{{ routes.account_url }}" title="{{ 'layout.customer.my_account' | t }} {% if customer %}({{ customer.email }}){% endif %}">{% if customer %}{{ 'layout.customer.my_account' | t }}{% else %}<span class="icon-user-icon"></span>{% endif %}</a>
+                </li>
               {% endif %}
             </ul>
           </div>
@@ -573,6 +599,7 @@
           {% endfor %}
         </ul>
 
+        {% comment %}
         <ul class="header__secondary-navigation menu right" data-header-secondary-navigation>
           {% if currency_selector == true or locale_selector == true %}
             <li class="currencies">
@@ -591,17 +618,12 @@
             </li>
           {% endif %}
 
-          {% if section.settings.search_enabled %}
-            <li class="search">
-              <a href="{{ routes.search_url }}" title="{{ 'general.search.title' | t }}" id="search-toggle"><span class="icon-search"></span></a>
-            </li>
-          {% endif %}
-
           <li class="cart">
             <a href="#cart" class="icon-cart cart-button"><span>{{ cart.item_count }}</span></a>
             <a href="{{ routes.cart_url }}" class="icon-cart cart-button no-js-only"><span>{{ cart.item_count }}</span></a>
           </li>
         </ul>
+        {% endcomment %}
       </div>
     </div>
   </section>
