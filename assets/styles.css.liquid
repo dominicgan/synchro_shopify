@@ -37,6 +37,7 @@ Description: Shopify Theme (http://www.shopify.com/?ref=out-of-the-sandbox)
   #Home page - Newsletter
   #Home page - Image with text
   #Home page - Quote
+  #Home page - Mailing list
   #Contact form
   #Blog
   #Blog posts
@@ -4356,6 +4357,127 @@ div#disqus_thread li {
 
 .quote__text p {
   margin: 0;
+}
+
+/* #Home page - Mailing list
+================================================== */
+.mailing-list-signup {
+  display: table;
+  font-size: 20px;
+  max-width: $maxWidth;
+  margin: 0 auto;
+  text-align: center;
+  @include transition(transform 0.2s $easeOutQuad);
+  padding: 60px 30px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .mailing-list-signup {
+    padding-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 798px) {
+  .mailing-list-signup {
+    padding: 40px 0 0;
+  }
+}
+
+.mailing-list-signup form {
+  max-width: 540px;
+  margin: $gutter auto 0;
+  font-size: 0;
+}
+
+.mailing-list-signup .mailing-list-image {
+  width: 50%;
+  display: table-cell;
+  background: url({{ "opt-in-image.jpg" | asset_url }});
+  background-size: cover;
+  background-position: center center;
+  padding: 60px;
+  vertical-align: middle;
+}
+
+@media only screen and (max-width: 798px) {
+  .mailing-list-signup .mailing-list-image {
+    padding: 30px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .mailing-list-signup .mailing-list-image {
+    display: block;
+    width: 100%;
+    padding: 40px 50px;
+  }
+}
+
+.mailing-list-signup .mailing-list-image .mailing-list-title {
+  font-size: 60px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: normal;
+  margin: 0;
+}
+
+@media only screen and (max-width: 798px) {
+  .mailing-list-signup .mailing-list-image .mailing-list-title {
+    font-size: 50px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .mailing-list-signup .mailing-list-image .mailing-list-title {
+    font-size: 42px;
+  }
+}
+
+.mailing-list-signup .mailing-list-form {
+  width: 50%;
+  display: table-cell;
+  padding: 40px 60px;
+  vertical-align: middle;
+  background: #F9F6F2;
+
+  @include breakpoint(m) {
+    padding: 30px;
+  }
+
+  @include breakpoint(s) {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 798px) {
+  .mailing-list-signup .mailing-list-form {
+    padding: 30px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .mailing-list-signup .mailing-list-form {
+    display: block;
+    width: 100%;
+  }
+}
+
+.mailing-list-signup .mailing-list-form .mailing-list-blurb {
+  margin: 0 0 30px;
+  font-weight: 600;
+  color: #4D4D4D;
+}
+
+.mailing-list-signup .mailing-list-form button {
+  width: 170px;
+}
+
+.mailing-list-signup .mailing-list-form .mailing-list-footnote {
+  font-weight: 500;
+  font-size: 16px;
+  color: #4D4D4D;
+  margin: 30px 0 0;
 }
 
 /* #Contact form
