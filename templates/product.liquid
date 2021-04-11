@@ -1,173 +1,53 @@
-<!-- <img
-    id="sale-banner-desktop"
-  src="https://cdn.shopify.com/s/files/1/0155/0195/t/23/assets/collection-page-octsale-desktop_png.png?1317"
-    class="collection-banner-desktop" />
-<img
-    id="sale-banner-mobile"
-    src="https://cdn.shopify.com/s/files/1/0155/0195/t/23/assets/collection-page-octsale-mobile.png?1317"
-    class="collection-banner-mobile" /> -->
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
 
-{% assign selectedVariant = product.selected_or_first_available_variant | default: product %}
-<div itemscope itemtype="http://schema.org/Product">
- <!-- <h1 class="page-title test" itemprop="name">{{ product.title }}</h1> -->
-  <!-- <div class="product-details mobile">
-    {% if settings.product-display-vendor %}
-      <p class="meta vendor">{{ product.vendor }}</p>
-    {% endif %}
-    <div style="display:none;">{{ product.type }} </div>
-    <h1 class="product-title">{{ product.type }}</h1>
-    <div class="product-vendor">{{ product.vendor }}</div>
-    <div class="yotpo bottomLine"
-      data-appkey="CalfzAOupm1BkNXNVPt3HJmsQsP3fMA7RkQhtwQD"
-      data-domain="{{ shop.permanent_domain | escape }}"
-      data-product-id="{{ product.id }}"
-      data-product-models="{{ product.id }}"
-      data-name="{{ product.title | escape }}"
-      data-url="{{ shop.url }}{{ product.url }}"
-      data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
-      data-description="{{ product.description | escape }}"
-      data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+<section class="section">
+  <div class="container content main-wrapper">
+    {% render 'product-structured-data' %}
 
-{%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
-  {%- assign time_now = 'now' | date: '%s' %}
-  {%- assign yotpo_live_time = shop.metafields.yotpo.yotpo_live | date: '%s' %}
-  {%- assign diff_seconds_from_live = time_now | minus: yotpo_live_time %}
-  {%- assign yotpo_bottomline_last_updated = product.metafields.yotpo.bottomline_update_time | date: '%s' %}
-  {%- assign diff_seconds_from_last_bottomline_update = time_now | minus: yotpo_bottomline_last_updated %}
-  {%- if yotpo_live_time and diff_seconds_from_live < 86400 or yotpo_bottomline_last_updated and diff_seconds_from_last_bottomline_update < 86400 -%}
-    {%- assign yotpo_bottomline_obsolete = false %}
-  {%- else %}
-    {%- assign yotpo_bottomline_obsolete = true %}
-  {%- endif %}
-  {%- if yotpo_offload_content == 'yes' and yotpo_bottomline_obsolete != true -%}
-    {{ product.metafields.yotpo.bottomline }}
-  {%- endif %}
-    </div>
-    <p class="product-price">
-      <span class="price {{product.id}}">
-        <span class="money">{{ selectedVariant.price | money }}</span>
-          <span class="original money">
-            {% if selectedVariant.compare_at_price > selectedVariant.price %}
-              {{ selectedVariant.compare_at_price | money }}
-            {% endif %}
-          </span>
-      </span>
-    </p>
-  </div> -->
-  {% assign featured_image = selectedVariant.featured_image | default: product.featured_image %}
-  <div class="product-slideshow clearfix">
-    <div class="product-big-image" data-no-image-svg="{{ 'no-image.svg' | asset_url }}" data-no-image-png="{{ 'no-image.png' | asset_url }}">
-      <span class="product-slideshow-loader"></span>
-      {% if product.images.size > 0 %}
-        <img itemprop="image" alt="{{ featured_image.alt }}" src="{{ featured_image | img_url: 'master' }}" />
-      {% else %}
-        <img class="product-no-images" src="{{ 'no-image.svg' | asset_url }}" alt="No Image Available" onerror="this.src='{{'no-image.png' | asset_url}}';this.onerror=null;" />
-      {% endif %}
-      {% if settings.product-enable-zoom %}<div class="product-image-zoom"></div>{% endif %}
-    </div>
-    {% if product.images.size > 0 %}
-    <div class="product-thumbnails mobile" {% if product.images.size < 2 %}style="display: none;"{% endif %}>
-      {% for image in product.images %}
-        <img alt="{{ image.alt }}" data-high-res="{{ image | product_img_url: 'master' }}" src="{{ image | product_img_url: 'thumb' }}" class="{% if image == featured_image %}active{% endif %}">
-      {% endfor %}
-    </div>
-    {% endif %}
-  </div>
-  {% include 'product-wrapper' %}
-  <!-- {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}
-  <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
-    <span itemprop="itemReviewed">{{ product.title }}</span>
-    has a rating of <span itemprop="ratingValue">{{ product.metafields.yotpo.reviews_average }}</span> stars
-    based on <span itemprop="ratingCount">{{ product.metafields.yotpo.reviews_count }}</span> reviews.
-  </div>
-  {% endif %} -->
-</div><!-- close itemscope -->
-{% if settings.product-show-related %}
-  {% assign number_of_related_products_to_show = 4 %}
-  {% capture number_of_related_products_to_fetch %}
-    {{ number_of_related_products_to_show | plus: 1 }}
-  {% endcapture %}
-  {% if collection == null or collection.handle == 'frontpage' or collection.handle == 'all' %}
-      {% assign found_a_collection = false %}
-      {% for c in product.collections %}
-          {% if found_a_collection == false and c.handle != 'frontpage' and c.handle != 'all' %}
-              {% assign found_a_collection = true %}
-              {% assign collection = c %}
+    <div class="breadcrumb__wrapper one-whole column">
+      {% if collection.previous_product or collection.next_product %}
+        <div class="page-navigation-arrows">
+          {% if collection.previous_product %}
+            <a href="{{ collection.previous_product }}" title="{{ 'products.general.previous_product_html' | t }}" class="page-navigation__next">{{ 'products.general.previous_product_html' | t }}</a>
           {% endif %}
-      {% endfor %}
-  {% endif %}
-<div class="yotpo yotpo-main-widget"
-     data-product-id="{{ product.id }}"
-     data-name="{{ product.title | escape }}"
-     data-url="{{ shop.url }}{{ product.url }}"
-     data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
-     data-description="{{ product.description | escape }}">
 
-{%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
-  {%- assign time_now = 'now' | date: '%s' %}
-  {%- assign yotpo_live_time = shop.metafields.yotpo.yotpo_live | date: '%s' %}
-  {%- assign diff_seconds_from_live = time_now | minus: yotpo_live_time %}
-  {%- assign yotpo_main_widget_last_updated = product.metafields.yotpo.main_widget_update_time | date: '%s' %}
-  {%- assign diff_seconds_from_last_main_widget_update = time_now | minus: yotpo_main_widget_last_updated %}
-  {%- if yotpo_live_time and diff_seconds_from_live < 86400 or yotpo_main_widget_last_updated and diff_seconds_from_last_main_widget_update < 86400 -%}
-    {%- assign yotpo_main_widget_obsolete = false %}
-  {%- else %}
-    {%- assign yotpo_main_widget_obsolete = true %}
-  {%- endif %}
-  {%- if yotpo_offload_content == 'yes' and yotpo_main_widget_obsolete != true -%}
-    {%- for field in product.metafields.yotpo_reviews -%}
-      {{ field | last }}
-    {%- endfor -%}
-  {%- endif %}
-</div>
-  {% if collection.products.size > 1 %}
-    <div class="related-products">
-      <h3 class="section-title">
-        {{ 'products.related_products.header' | t }}
-      </h3>
-      <div class="collection-products">
-      {% assign current_product_found = false %}
-      {% for prod in collection.products limit: number_of_related_products_to_fetch %}
-        {% if prod.title == product.title %}
-          {% assign current_product_found = true %}
+          {% if collection.previous_product and collection.next_product %}
+            <span class="page-navigation__divider"> | </span>
+          {% endif %}
+
+          {% if collection.next_product %}
+            <a href="{{ collection.next_product }}" title="{{ 'products.general.next_product_html' | t }}" class="page-navigation__next">{{ 'products.general.next_product_html' | t }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="breadcrumb breadcrumb--text">
+        <a href="{{ shop.url }}" title="{{ shop.name | escape }}">{{ 'general.breadcrumbs.home' | t }}</a>
+
+        <span class="icon-arrow-right"></span>
+
+        {% if collection %}
+          <a href="{{ collection.url }}" title="{{ collection.title | escape }}">{{ collection.title }}</a>
         {% else %}
-          {% unless current_product_found == false and forloop.last %}
-              {% include 'product-list-item' %}
-          {% endunless %}
+          <a href="{{ routes.all_products_collection_url }}" title="{{ collections.all.title }}">{{ collections.all.title }}</a>
         {% endif %}
-      {% endfor %}
+
+        <span class="icon-arrow-right"></span>
+
+        {{ product.title }}
       </div>
     </div>
-  {% endif %}
-{% endif %}
-<script>
-  // required for splitting variants
-  // see ProductView
-  window.productJSON = {{ product | json }};
-</script>
-<script text="text/javascript">
-  var _learnq = _learnq || [];
-  var item = {
-    Name: {{ product.title|json }},
-    ProductID: {{ product.id|json }},
-    Categories: {{ product.collections|map:'title'|json }},
-    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
-    URL: "{{ shop.secure_url }}{{ product.url }}",
-    Brand: {{ product.vendor|json }},
-    Price: {{ product.price|money|json }},
-    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
-  };
-  _learnq.push(['track', 'Viewed Product', item]);
-  _learnq.push(['trackViewedItem', {
-    Title: item.Name,
-    ItemId: item.ProductID,
-    Categories: item.Categories,
-    ImageUrl: item.ImageURL,
-    Url: item.URL,
-    Metadata: {
-      Brand: item.Brand,
-      Price: item.Price,
-      CompareAtPrice: item.CompareAtPrice
-    }
-  }]);
-</script>
+  </div>
+</section>
+
+<section class="section section--has-sidebar-option">
+  <div class="container">
+    {% section 'product__sidebar' %}
+
+    {% section 'product-template' %}
+
+    {% section 'product-recommendations' %}
+  </div>
+</section>

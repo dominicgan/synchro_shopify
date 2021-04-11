@@ -1,10 +1,19 @@
-<h1 class="page-title">
-  {{ 'general.404.title' | t }}
-</h1>
+<section class="section">
+  <div class="container content main-wrapper text-align-center">
+    <div class="one-whole column collection_nav">
+      <h1 class="collection_title">{{ 'general.404.title' | t }}</h1>
+    </div>
 
-<div class="rte">
-  {% capture link %}
-    <a href="/collections/all">{{ 'general.404.link' | t }}</a>
-  {% endcapture %}
-  <p>{{ 'general.404.subtext_html' | t: link: link }}</p>
-</div>
+    <div class="one-whole column">
+      <p class="quote">{{ 'general.404.subtext' | t }}</p>
+      <p class="extra_padding">{{ 'general.404.continue_shopping_html' | t }}</p>
+    </div>
+
+    <div class="three-eighths columns medium-down--one-whole offset-by-five is-hidden-offset-mobile-only" data-autocomplete-{{ settings.enable_autocomplete }}>
+      <form action="{{ routes.search_url }}">
+        <input type="hidden" name="type" value="{{ settings.search_option }}" />
+        <input type="text" name="q" class="search_box" placeholder="{{ 'general.search.placeholder' | t }}"  value="{{ search.terms }}" />
+      </form>
+    </div>
+  </div>
+</section>

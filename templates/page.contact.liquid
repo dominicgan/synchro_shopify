@@ -1,46 +1,5 @@
-<h1 class="page-title">{{ page.title }}</h1>
+{% comment %}
+  The contents of the page.contact.liquid template can be found in /sections/contact-template.liquid
+{% endcomment %}
 
-<div class="rte">
-  {{ page.content }}
-</div>
-
-<div class="contact-form-wrapper">
-  <h3>{{ 'contact.general.header' | t }}</h3>
-
-  {% form 'contact' %}
-
-    {% if form.posted_successfully? %}
-      <p class="success-message">{{ 'contact.general.success' | t }}</p>
-    {% endif %}
-
-    {% if form.errors %}
-      <p class="error-message">{{ 'contact.general.error' | t }}</p>
-    {% endif %}
-
-    {% unless form.posted_successfully? %}
-      <div class="input-wrapper">
-        <label>{{ 'general.general.name' | t }}
-        <input type="text" placeholder="{{ 'general.general.name_placeholder' | t }}" value="" name="contact[name]" class="{% if form.errors contains "author" %}error{% endif %}">
-        </label>
-      </div>
-
-      <div class="input-wrapper">
-        <label>{{ 'general.general.email' | t }}
-        <input type="text" placeholder="{{ 'general.general.email_placeholder' | t }}" value="" name="contact[email]" class="{% if form.errors contains "email" %}error{% endif %}">
-        </label>
-      </div>
-
-      <div class="input-wrapper">
-        <label>{{ 'general.general.message' | t }}
-        <textarea name="contact[body]" rows="6" class="{% if form.errors contains "body" %}error{% endif %}"></textarea>
-        </label>
-      </div>
-
-      <div class="input-wrapper">
-        <input type="hidden" class="spam-check" value="">
-        <input type="submit" value="{{ 'general.general.submit' | t }}">
-      </div>
-    {% endunless %}
-
-  {% endform %}
-</div>
+{% section 'contact-template' %}

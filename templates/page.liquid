@@ -1,18 +1,12 @@
-{% if page.title == "The World's Most Powerful Turmeric Elixir" %}
-	{% layout none %}
-<link rel="shortcut icon" href="https://cdn.shopify.com/s/files/1/0155/0195/t/23/assets/fav-icon.png?v=1605894369">
-<title>The World's Most Powerful Turmeric Elixir</title>
-
-<div class="rte">
-  	{{ page.content }}
-</div>
-
-{% else %}
-
-<h1 class="page-title">{{ page.title }}</h1>
-
-<div class="rte">
-  {{ page.content }}
-</div>
-
-{% endif %}
+<section class="section">
+  <div class="container content main-wrapper">
+    <div class="one-whole column page">
+      <h1 class="center">
+        {{ page.title }}
+      </h1>
+      <div class="feature_divider"></div>
+    </div>
+    
+    {% render 'page-multi-column', content: page.content %}
+  </div>
+</section>

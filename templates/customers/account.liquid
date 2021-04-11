@@ -1,78 +1,85 @@
+{% paginate customer.orders by 20 %}
+  <section class="section">
+    <div class="container content main-wrapper">
+      <div class="one-whole column collection_nav">
+        <h1 class="center">{{ 'customer.account.details' | t }}</h1>
+        <div class="feature_divider"></div>
+      </div>
 
-<!--BeginRechargeCode-->
-<p id="rc_link_container" ><a href="/tools/recurring/login/">Manage Subscriptions</a></p>
-<!--EndRechargeCode-->
-<h1 class="page-title">{{ 'general.general.account' | t }}</h1>
+      <div class="one-whole column breadcrumb">
+        <div class="breadcrumb--text">
+          <div class="center">
+            <a href="{{ routes.account_url }}" title="{{ 'layout.customer.my_account' | t }}">{{ customer.name }}</a>
+            &nbsp; / &nbsp;
+            <a href="{{ routes.account_logout_url }}">{{ 'layout.customer.log_out' | t }}</a>
+          </div>
+        </div>
+      </div>
 
-<div class="logged-in-as">
-  {% capture user_email %}
-    <a href="/account">{{ customer.email }}</a>
-  {% endcapture %}
-  {{ 'customer.account.logged_in_as_html' | t: user_email: user_email }} (<a href="/account/logout">{{ 'general.general.logout' | t }}</a>)
-</div>
+      <div class="one-fourth column medium-down--one-whole">
+        <div id="customer_detail" class="group">
+          <h4 class="name">{{ customer.name }}</h4>
 
-<div class="account-info">
+          <p class="email note">{{ customer.email }}</p>
 
-  {% if customer.default_address != nil %}
-    <p class="customer-address">
-      {% assign address = customer.default_address %}
-      <span><strong>{{ address.first_name }} {{ address.last_name }}</strong></span><br>
-      {% if address.company.size > 0 %}
-        <span>{{ address.company }}</span><br>
-      {% endif %}
-      {% if address.street.size > 0 %}
-        <span>{{ address.street }}</span><br>
-      {% endif %}
-      {% if address.city.size > 0 or address.province_code.size > 0 %}
-        <span>{{ address.city }}{% if address.province_code %}, {{ address.province_code }}{% endif %}</span><br>
-      {% endif %}
-      {% if address.country.size > 0 or address.zip.size > 0 %}
-        <span>{{ address.country }} {{ address.zip }}</span><br>
-      {% endif %}
-      {% if address.phone.size > 0 %}
-        <span>{{ address.phone }}</span><br>
-      {% endif %}
-    </p>
-  {% endif %}
+          <div class="address note">
+            {% if customer.default_address != nil %}
+              <p>{{ customer.default_address.address1 }}</p>
 
-  {% if customer.addresses_count == 0 %}
-    {% capture new_address %}
-      <a href="/account/addresses">{{ 'customer.addresses.new_address_link' | t }}</a>
-    {% endcapture %}
-    <p>{{ 'customer.addresses.no_address_html' | t: new_address: new_address }}</p>
-  {% else %}
-    <p class="view-addresses-link"><a href="/account/addresses">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a></p>
-  {% endif %}
+              {% if customer.default_address.address2 != "" %}
+                <p>{{ customer.default_address.address2 }}</p>
+              {% endif %}
 
-</div>
+              <p>{{ customer.default_address.city }}, {% if address.province_code %}{{ customer.default_address.province_code }}, {% endif %}{{ customer.default_address.country }}</p>
 
-<div class="order-history">
+              <p>{{ customer.default_address.zip }}</p>
 
-  <table class="orders">
-    <thead>
-      <tr>
-        <th class="first">{{ 'customer.orders.order' | t }}</th>
-        <th>{{ 'customer.orders.payment_status' | t }}</th>
-        <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
-        <th class="last">{{ 'general.general.total' | t }}</th>
-      </tr>
-    </thead>
+              <p>{{ customer.default_address.phone }}</p>
+            {% endif %}
 
-    <tbody>
-    {% if customer.orders.size == 0 %}
-      <tr class="first last">
-        <td colspan="4">{{ 'customer.orders.no_orders' | t }}</td>
-      </tr>
-    {% endif %}
-    {% for order in customer.orders %}
-      <tr class="{% include 'for-looper' %} {% if order.cancelled %}cancelled_order{% endif %}">
-        <td class="order-number first">{{ order.name | link_to: order.customer_url }} <span class="date">- {{ order.created_at | date: format: 'short_month' }}</span></td>
-        <td class="payment-status {{ order.financial_status }}">{{ order.financial_status_label | capitalize }}</td>
-        <td class="fulfillment-status {{ order.fulfillment_status }}">{{ order.fulfillment_status_label | capitalize }}</td>
-        <td class="total last"><span class="money">{{ order.total_price | money }}</span></td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+            <p>
+              <a href="{{ routes.account_addresses_url }}">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+            </p>
+          </div>
+        </div>
+      </div>
 
-</div>
+      <div class="three-fourths columns medium-down--one-whole">
+        <h4>{{ 'customer.orders.title' | t }}</h4>
+
+        {% if customer.orders.size != 0 %}
+          <table id="customer-orders" class="collapsible-table">
+            <thead>
+              <tr>
+                <th>{{ 'customer.orders.order_number' | t }}</th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.payment_status' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                <th>{{ 'customer.orders.total' | t }}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {% for order in customer.orders %}
+                <tr class="{% cycle 'odd', 'even' %} {% if order.cancelled %}cancelled_order{% endif %}">
+                  <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+                  <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: "month_day_year" }}</td>
+                  <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                  <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                  <td data-label="{{ 'customer.orders.total' | t }}"><span class="money">{% render 'price-element', price: order.total_price %}</span></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <p>{{ 'customer.orders.none' | t }}</p>
+        {% endif %}
+
+        {% render 'pagination',
+                context: 'account',
+                paginate: paginate
+        %}
+      </div>
+    </div>
+  </section>
+{% endpaginate %}

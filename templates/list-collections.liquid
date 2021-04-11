@@ -1,26 +1,5 @@
-<h1 class="page-title">
-  {{ 'collections.listing.header' | t }}
-</h1>
+{% comment %}
+  The contents of the list-collections.liquid template can be found in /sections/list-collections-template.liquid
+{% endcomment %}
 
-{% assign using-linklist = false %}
-{% if linklists[settings.collection-listing-linklist] and linklists[settings.collection-listing-linklist].links.size > 0 %}
-  {% assign using-linklist = true %}
-{% endif %}
-
-{% paginate collections by {{settings.collections-per-page}} %}
-  <div class="collections-list">
-    {% if using-linklist %}
-      {% for link in linklists[settings.collection-listing-linklist].links %}
-        {% include 'collection-list-item' with 'linklist' %}
-      {% endfor %}
-    {% else %}
-      {% for collection in collections %}
-        {% include 'collection-list-item' %}
-      {% endfor %}
-    {% endif %}
-  </div>
-
-  {% if paginate.previous or paginate.next and using-linklist == false %}
-    {% include 'pagination' %}
-  {% endif %}
-{% endpaginate %}
+{% section 'list-collections-template' %}

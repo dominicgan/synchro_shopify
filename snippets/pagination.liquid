@@ -1,21 +1,22 @@
-<div class="pagination">
+{% comment %}
 
-  <div class="pagination-previous">
-    {% if paginate.previous %}
-      <a class="button" href="{{ paginate.previous.url }}"><span class="text">{{ 'general.pagination.previous' | t }}</span></a>
-    {% else %}
-      <span class="button disabled"><span class="text">{{ 'general.pagination.previous' | t }}</span></span>
-    {% endif %}
+  This snippet renders a custom widget based on the current 'paginate' context,
+  defined in { % paginate XXXX by 5 % } tags wrapping the content.
+
+  Replace Text Example:
+    <div class="pagination">
+      {{ paginate | default_pagination | replace: 'Previous', 'Newer articles' | replace: 'Next', 'Older articles' }}
+    </div>
+
+  More information:
+   - http://docs.shopify.com/themes/liquid-variables/paginate
+
+{% endcomment %}
+
+{% if paginate.pages > 1 %}
+  <div class="one-whole column">
+    <div class="paginate">
+      {{ paginate | default_pagination }}
+    </div>
   </div>
-
-  <div class="pagination-position">{{ 'general.pagination.summary' | t: current_page: paginate.current_page, pages: paginate.pages }}</div>
-
-  <div class="pagination-next">
-    {% if paginate.next %}
-      <a class="button" href="{{ paginate.next.url }}"><span class="text">{{ 'general.pagination.next' | t }}</span></a>
-    {% else %}
-      <span class="button disabled"><span class="text">{{ 'general.pagination.next' | t }}</span></span>
-    {% endif %}
-  </div>
-
-</div><!-- .pagination -->
+{% endif %}

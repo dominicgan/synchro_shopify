@@ -1,306 +1,250 @@
-<!doctype html>
-<!--[if lt IE 7]><html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie10 lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie10 lt-ie9" lang="en"> <![endif]-->
-<!--[if IE 9 ]><html class="ie9 lt-ie10 no-js"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
-<head>
-  <link rel="icon" type="image/png" href="https://cdn.shopify.com/s/files/1/0155/0195/t/23/assets/fav-icon.png?v=1605894369" />
-  <!--BEGIN GOOGLE VERIFICATION TAG -->
-  <meta name="google-site-verification" content="D7Oo0rb1h34EQQ0OHTEpRf_hEevYjVnnPzRPXnEOQio" />
-  <!--END GOOGLE VERIFICATION TAG -->
-  <!--BEGIN FB VERIFICATION TAG -->
-  <meta name="facebook-domain-verification" content="kvx1fv2y1ijqqi8aw5wfb4f5zwastw" />
-<!--END FB VERIFICATION TAG -->
-  <script type="text/javascript">
-  (function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/syWV3O0DUgkkpDvutwXXSyHW0ZHmfejdusotXyXD/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
-  </script>
-  <meta name="p:domain_verify" content="2a10cf1c20da4a279dca28d54ebcc6b8"/>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  {% if template == 'index' %}
-    <title>{{ shop.name }} | {{ page_title }}</title>
-  {% elsif template == '404' %}
-    <title>Page Not Found | {{ shop.name }}</title>
-  {% else %}
-    <title>{{ page_title }} | {{ shop.name }}</title>
-  {% endif %}
-  {% if handle contains 'checkout' %}
-<meta name="robots" content="noindex">
-{% endif %}
-{% if handle contains 'tagged' %}
-<meta name="robots" content="noindex">
-{% endif %}
-{% if handle contains 'thank-you' %}
-<meta name="robots" content="noindex">
-{% endif %}
-{% if page_description %}
-  <meta name="description" content="{{ page_description | escape }}" />
-{% endif %}
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="{{ shop.locale }}"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="{{ shop.locale }}"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="{{ shop.locale }}"> <![endif]-->
+<!--[if IE 9 ]><html class="ie ie9" lang="{{ shop.locale }}"> <![endif]-->
+<!--[if (gte IE 10)|!(IE)]><!--><html lang="{{ shop.locale }}"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="robots" content="index,follow">
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KTLMZWH');</script>
-<!-- End Google Tag Manager -->
+    {% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %}{% endif %}
+    <title>{% if template contains "index" %}{{ page_title }}{% else %}{{ page_title }}{% if current_tags %} {{ 'general.meta.tagged_html' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} {{ 'general.meta.page' | t: page_number: current_page }}{% endif %}{% unless page_title contains shop.name %} - {{ shop.name }}{% endunless %}{% endif %}</title>
 
-  <!-- On product pages, we check the product metafields to see
-    if there is a 'unique_url' key in the seo namespace. If so, set the
-    value of this key as the canonical url, otherwise, use the standard
-    canonical url for the page. Use the "MetaFieldsEditor" shopify app
-    to set metafields for products. -->
-  {% if template contains 'product' %}
-    <div class="find-me" style="display:none;">{{ product.metafields.seo.unique_url }}</div>
-    {% if product.metafields.seo.unique_url == blank %}
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}{% if current_tags %} {{ 'general.meta.tagged_html' | t: tags: meta_tags | escape }}.{% endif %}{% if current_page != 1 %} {{ 'general.meta.page' | t: page_number: current_page }}.{% endif %}"/>
+    {% endif %}
 
-<!--MB_OPC-->
-<script>
-              if(window.location.pathname=='/securecheckout'){
-              document.title = 'Secure checkout';
-              var css = 'body > :not(#cartLoader) {display:none !important}',head = document.head || document.getElementsByTagName('head')[0],style = document.createElement('style');
-              head.appendChild(style);style.appendChild(document.createTextNode(css));
-              var svg = "<svg style='position:fixed;top:100px;left:50%;margin-left:-100px;' width='200px'  height='200px'  xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='xMidYMid' class='lds-rolling' style='background: none;'><circle cx='50' cy='50' fill='none' ng-attr-stroke='{{config.color}}' ng-attr-stroke-width='{{config.width}}' ng-attr-r='{{config.radius}}' ng-attr-stroke-dasharray='{{config.dasharray}}' stroke='#197bbd' stroke-width='2' r='15' stroke-dasharray='70.68583470577033 25.561944901923447' transform='rotate(243.197 50 50)'><animateTransform attributeName='transform' type='rotate' calcMode='linear' values='0 50 50;360 50 50' keyTimes='0;1' dur='1s' begin='0s' repeatCount='indefinite'></animateTransform></circle></svg>";
-              document.open();document.write("<!doctype ht"+"ml><ht"+"ml><bo"+"dy><div id='cartLoader' style='min-height:600px;width:100%;text-align:center;background-color: rgba(255, 255, 255, .5);position:absolute;z-index:9999999999'>"+svg+"</div></b"+"ody></ht"+"ml>");document.close();
-              }
-              var opcSettings = {checkoutUrl : 'securecheckout', enabled : false, design : 1, skipCart : false, oneClickBuy : false, customJsFile : 'https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0082%2F6690%2F7727%2Ffiles%2Fcustombtn4.js%3Fv%3D1590591354', customCssFile : '', btnSelector : '', enablePopup: false, popupHtml : "",popupBkg : '#ffffff',upsells : [],boosters : {"booster1":"0","booster1_text":"","booster1_text2":"","booster1_min":"0","booster2":"0","booster3":"0","booster3_heading":"","booster3_title1":"","booster3_text1":"","booster3_img1":"","booster3_title2":"","booster3_text2":"","booster3_img2":"","booster3_title3":"","booster3_text3":"","booster3_img3":"","booster3_title4":"","booster3_text4":"","booster3_img4":"","booster4":"0","booster4_img":"","booster5":"1"}};
-              var opcLang = {completeOrder : "Complete order", payment : "Payment", shippingMethod : "Shipping method", secureCheckout : "Secure Checkout", paymentNotice : "Please submit information in previous step to show payment methods",shippingNotice : "Please submit shipping information in previous step to show shipping methods",upsellTitle : "Would you like also this? (optional)",upsellAdded : "Product has been successfully added to checkout",addToCheckout : "Add to checkout"};
-              </script>
-<!--MB_OPC-->
+    {% render 'social-meta-info' %}
 
-                <link rel="canonical" href="{{ canonical_url }}" />
+    {% if collection.previous_product %}
+      <link rel="prev" href="{{ collection.previous_product }}">
+    {% endif %}
+
+    {% if collection.next_product %}
+      <link rel="next" href="{{ collection.next_product }}">
+    {% endif %}
+
+    <!-- Mobile Specific Metas -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.shop_bg_color }}">
+
+    <!-- Preconnect Domains -->
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://monorail-edge.shopifysvc.com">
+
+    <!-- Preload Assets -->
+    <link rel="preload" href="{{ 'mmenu-styles.scss' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'fancybox.css' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'styles.css' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'app.js' | asset_url }}" as="script">
+
+    <!-- Stylesheet for mmenu plugin -->
+    {{ 'mmenu-styles.scss' | asset_url | stylesheet_tag }}
+
+    <!-- Stylesheet for Fancybox library -->
+    {{ 'fancybox.css' | asset_url | stylesheet_tag }}
+
+    <!-- Stylesheets for Parallax 4.1.1 -->
+    {{ 'styles.css' | asset_url | stylesheet_tag }}
+
+    {% if settings.favicon != nil %}
+      <link rel="shortcut icon" type="image/x-icon" href="{{ settings.favicon | img_url: '180x180' }}">
+      <link rel="apple-touch-icon" href="{{ settings.favicon | img_url: '180x180' }}"/>
+      <link rel="apple-touch-icon" sizes="72x72" href="{{ settings.favicon | img_url: '72x72' }}"/>
+      <link rel="apple-touch-icon" sizes="114x114" href="{{ settings.favicon | img_url: '114x114' }}"/>
+      <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.favicon | img_url: '180x180' }}"/>
+      <link rel="apple-touch-icon" sizes="228x228" href="{{ settings.favicon | img_url: '228x228' }}"/>
     {% else %}
-      <link rel="canonical" href="{{ product.metafields.seo.unique_url }}" />
+      <link rel="shortcut icon" type="image/x-icon" href="{{ 'favicon.png' | asset_url }}">
     {% endif %}
+
+    <link rel="canonical" href="{{ canonical_url }}"/>
+
+    {% if template contains 'customer' %}
+      <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer></script>
+      <script src="{{ 'customer_area.js' | shopify_asset_url }}" defer></script>
+    {% endif %}
+
+    {% if settings.show_shipping_calculator and shop.enabled_currencies.size > 1 %}
+      <script type="text/javascript" src="/services/javascripts/currencies.js" defer></script>
+      <script src="{{ 'currencies.js' | asset_url }}" defer></script>
+    {% endif %}
+
+    <script>
+      {% render 'js-variables' %}
+    </script>
+
+    <script src="{{ 'app.js' | asset_url }}" defer></script>
+
+    {{ content_for_header }}
+
+    <noscript>
+      <style>
+
+        .slides > li:first-child { display: block; }
+        .image__fallback {
+          width: 100vw;
+          display: block !important;
+          max-width: 100vw !important;
+          margin-bottom: 0;
+        }
+
+        .no-js-only {
+          display: inherit !important;
+        }
+
+        .icon-cart.cart-button {
+          display: none;
+        }
+
+        .lazyload,
+        .cart_page_image img {
+          opacity: 1;
+          -webkit-filter: blur(0);
+          filter: blur(0);
+        }
+
+        .banner__text .container {
+          background-color: transparent;
+        }
+
+        .animate_right,
+        .animate_left,
+        .animate_up,
+        .animate_down {
+          opacity: 1;
+        }
+
+        .flexslider .slides>li {
+          display: block;
+        }
+
+        .product_section .product_form {
+          opacity: 1;
+        }
+
+        .multi_select,
+        form .select {
+          display: block !important;
+        }
+
+        .swatch-options {
+          display: none;
+        }
+
+        .parallax__wrap .banner__text {
+          position: absolute;
+          margin-left: auto;
+          margin-right: auto;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          top: 0;
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          -webkit-box-pack: center;
+          -ms-flex-pack: center;
+          justify-content: center;
+        }
+
+        .parallax__wrap .image__fallback {
+          max-height: 1000px;
+          -o-object-fit: cover;
+          object-fit: cover;
+        }
+
+      </style>
+    </noscript>
+
+  </head>
+
+  {% if template contains "index" %}
+    {% assign feature_image = true %}
+  {% elsif template contains "collection" %}
+    {% assign feature_image = true %}
+  {% elsif template contains "blog" %}
+    {% assign feature_image = true %}
+  {% elsif template contains "article" %}
+    {% assign feature_image = true %}
+  {% elsif template contains "contact" %}
+    {% assign feature_image = true %}
+  {% elsif template contains "banner" %}
+    {% assign feature_image = true %}
   {% else %}
-    <link rel="canonical" href="{{ canonical_url }}" />
-  {% endif %}
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  {{ content_for_header }}
-  {% include 'social-meta' %}
-  <!-- Theme CSS -->
-  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
-
-  <!-- Blog CSS -->
-  {% if template contains "blog" or page.template_suffix contains "popular-articles" %}
-    {{ 'blog.scss.css' | asset_url | stylesheet_tag }}
-    <link rel="stylesheet" href="https://use.typekit.net/rjy2euv.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    {% assign feature_image = false %}
   {% endif %}
 
-  <!-- webpack files -->
-  {{ 'main.css' | asset_url | stylesheet_tag }}
+  <body class="{{ template | replace: '.', '-' | handle }} {% if feature_image %}feature_image{% endif %}"
+    data-money-format="{% if settings.currency_format == 'money_with_currency_format' %}{{ shop.money_with_currency_format | strip_html }}{% else %}{{ shop.money_format | strip_html }}{% endif %}"
+    data-shop-url="{{ shop.url }}"
+    data-current-lang="{{ request.locale.iso_code }}">
 
-  {%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
-  {%- assign time_now = 'now' | date: '%s' %}
-  {%- assign yotpo_live_time = shop.metafields.yotpo.yotpo_live | date: '%s' %}
-  {%- assign diffSeconds = time_now | minus: yotpo_live_time %}
-  {%- if yotpo_offload_content == 'yes' and diffSeconds < 86400 -%}
-    {{ 'yotpo-full-css.css' | asset_url | stylesheet_tag }}
-  {%- endif -%}
-  {{ 'mmenu.scss.css' | asset_url | stylesheet_tag }}
-  <!-- Third Party JS Libraries -->
-  {{ 'modernizr-2.7.1.min.js' | asset_url | script_tag }}
-  {% include 'fonts' %}
-  <script src="https://kit.fontawesome.com/aeb70e78d0.js" crossorigin="anonymous"></script>
-  <!-- Store object -->
-  {% include 'theme-options' %}
-  <style type="text/css">
-    {% assign hex2rgb_hex = settings.primary-button-background %}
-    {% include 'hex2rgb' %}
-    .add-to-cart-loader, .home-slideshow-loader, .product-slideshow-loader {
-      border-left:   3px solid rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .15);
-      border-right:  3px solid rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .15);
-      border-bottom: 3px solid rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .15);
-      border-top:    3px solid rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .8);
-    }
-    {% assign hex2rgb_hex = settings.primary-button-color %}
-    {% include 'hex2rgb' %}
-    .header-drawer h1, .header-drawer .navigation .primary ul {
-      border-color: {{settings.primary-button-color}};
-      border-color: rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .3);
-    }
-    {% assign hex2rgb_hex = settings.footer-accent-color %}
-    {% include 'hex2rgb' %}
-    .copyright, .payment-options {
-      color: rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .5);
-    }
-    .spread-the-word .footer-share-icon {
-      background: rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .7);
-    }
-    .spread-the-word .footer-share-icon:hover {
-      background: rgba({{ hex2rgb_r }}, {{ hex2rgb_g }}, {{ hex2rgb_b }}, .9);
-    }
-    {% if settings.custom-css != blank %}
-      {{ settings.custom-css }}
+    <div id="content_wrapper">
+      {% section 'header' %}
+
+      <div class="global-wrapper">
+        {% if settings.mobile_search_location == 'below-header' %}
+          {% render 'mobile-search-bar' %}
+        {% endif %}
+        {{ content_for_layout }}
+      </div>
+
+      {% render 'cart-shipping-calculator' %}
+
+      {% section 'footer' %}
+
+      <div id="search" class="animated">
+        <section class="section">
+          <div class="five-eighths columns medium-down--one-whole offset-by-three is-hidden-offset-mobile-only center">
+            <div data-autocomplete-{{ settings.enable_autocomplete }}>
+              <form action="{{ routes.search_url }}" class="search__form">
+                <input type="hidden" name="type" value="{{ settings.search_option }}" />
+                <div class="search__close">
+                  <span class="icon-close"></span>
+                </div>
+                <span class="search__submit icon-search"></span>
+                <input type="text" class="search__input" name="q" placeholder="{{ 'general.search.placeholder_with_shop_name' | t: shop_name: shop.name }}" value="{% if search and search.results.first.price %}{{ search.terms }}{% endif %}" autocapitalize="off" autocomplete="off" autocorrect="off" />
+              </form>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    {% if settings.size_chart != blank and template contains 'product' %}
+      {% render 'size-chart-popup' %}
     {% endif %}
-  </style>
-  <script type="text/javascript" src="//use.typekit.net/qbg6mqz.js"></script>
-  <script type="text/javascript">try {
-      Typekit.load();
-    } catch (e) {
-    }</script>
-  {% if template != "blog" and page_title != "About Synchro" %}
-  <!-- Start of besynchro Zendesk Widget script
-  <script>/*<![CDATA[*/window.zEmbed||function(e,t){var n,o,d,i,s,a=[],r=document.createElement("iframe");window.zEmbed=function(){a.push(arguments)},window.zE=window.zE||window.zEmbed,r.src="javascript:false",r.title="",r.role="presentation",(r.frameElement||r).style.cssText="display: none",d=document.getElementsByTagName("script"),d=d[d.length-1],d.parentNode.insertBefore(r,d),i=r.contentWindow,s=i.document;try{o=s}catch(e){n=document.domain,r.src='javascript:var d=document.open();d.domain="'+n+'";void(0);',o=s}o.open()._l=function(){var e=this.createElement("script");n&&(this.domain=n),e.id="js-iframe-async",e.src="https://assets.zendesk.com/embeddable_framework/main.js",this.t=+new Date,this.zendeskHost="besynchro.zendesk.com",this.zEQueue=a,this.body.appendChild(e)},o.write('<body onload="document._l();">'),o.close()}();
-  /*]]>*/</script>
-  End of besynchro Zendesk Widget script -->
-  {% endif %}
-  
- {% include 'talkable-partial' %}
-{% render 'hs-cart-drawer' %}
-</head>
-<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in{% endif %} template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} navigation-{{ settings.header-navigation-location }} {% if template == 'product.slideshow' %}template-product-slideshow{% endif %}" >
-  <!-- Do a JS redirect from the keto-cleanse product page to our custom landing page.
-       The custom LP URL is set up as the seo.unique_url for the keto-cleanse product
-       in Shopify so that crawler bots at least get the canonical URL right, and real users
-       are redirected by JS. -->
-  <script>
-    if(window.location.href.indexOf('/products/keto-cleanse') !== -1) {
-      window.location.replace("https://keto.besynchro.com/keto-cleanse-program/");
-    }
-    //document.addEventListener("DOMContentLoaded", function(event) {
-    //  if(window.location.href === "https://besynchro.com/products/keto-cleanse") {
-    //    window.location.replace("https://keto.besynchro.com/keto-cleanse-program/");
-    //  }
-    //});
-  </script>
 
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTLMZWH"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+    {% if settings.newsletter_popup %}
+      {% render 'newsletter-popup' %}
+    {% endif %}
 
-  <div id="content_wrapper">
-    {% include 'header' %}
-    <main class="main-content {% if template contains 'collection' and collection.image and settings.collection-show-featured-image %}{% unless template contains 'list-collections' %}collection-has-featured-image{% endunless %}{% endif %}" role="main">
-      {% unless template contains 'index' or fullBleed %}
-        {% unless template contains 'slideshow' and settings.product-slideshow-layout == 'full-width' %}
-          {% include 'breadcrumbs' %}
-        {% endunless %}
-      {% endunless %}
-      {{ content_for_layout }}
-    </main>
-    {% include 'footer' %}
-      <!-- Scripts -->
-    {{ 'jquery-1.10.0.min.js' | asset_url | script_tag }}
-    {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
-    {% if template contains 'cart' %}
-      {% if settings.show-shipping-calculator %}
-        {{ "https://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" | script_tag }}
-        {{ "/services/javascripts/countries.js" | script_tag }}
-        {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+    {% if settings.disqus_enabled %}
+      {% if template contains "blog" or template contains "article" or template contains "index" %}
+        <script id="dsq-count-scr" src="//{{ settings.disqus_shortname }}.disqus.com/count.js" async></script>
       {% endif %}
-      {{ 'jquery.cart.min.js' | asset_url | script_tag }}
     {% endif %}
-    {% if template contains 'customers' %}
-      {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
-      {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
-    {% endif %}
-    {% if settings.show-currency-switcher %}
-      {{ "//cdn.shopify.com/s/javascripts/currencies.js" | script_tag }}
-      {{ "jquery.currencies.js" | asset_url | script_tag }}
-    {% endif %}
-    {{ 'option_selection.js' | shopify_asset_url | script_tag }}
-    {{ 'plugins.js'  | asset_url | script_tag }}
-    {{ 'site.js'  | asset_url | script_tag }}
-    {{ 'app.js' | asset_url | script_tag }}
-    {% include 'subscription-theme-footer' %}
-  </div>
 
-
-<!--LinkedIn Insights Tag -->
-<script type="text/javascript"> _linkedin_data_partner_id = "316778"; </script><script type="text/javascript"> (function(){var s = document.getElementsByTagName("script")[0]; var b = document.createElement("script"); b.type = "text/javascript";b.async = true; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js"; s.parentNode.insertBefore(b, s);})(); </script> <noscript> <img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=316778&fmt=gif" /> </noscript>
-      <script>
- var sd = 'https://synchrolife.ositracker.com';
- var resource = document.createElement('script');
- resource.src = "https://synchrolife.ositracker.com/track.js";
- var script = document.getElementsByTagName('script')[0];
- script.parentNode.insertBefore(resource, script);
-</script>
-
-
-<!-- CRITEO START -->
-{% include 'criteo-tracking' %}
-<!-- CRITEO END -->
-
-{% if template contains 'product' %}
-  <!-- Global site tag (gtag.js) - AdWords: 864481593 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-864481593"></script>
-  <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-864481593'); </script>
-
-  <script>
-    gtag('event', 'page_view', {
-      'send_to': 'AW-864481593',
-      'ecomm_prodid': '{{ product.id }}'
-    });
-  </script>
-{% endif %}
-
-{% if template contains "blog" %}
-  <script src="{{ 'splide-slider.js' | asset_url }}"></script>
-  <script>
-    $(document).ready(function () {
-
-      // prevents the slider from being initialized on the tag pages
-      if ($('.splide').length === 0) return
-
-      const splide = new Splide(
-        '.splide',
-        {
-          autoWidth: true,
-          trimSpace: 'move',
-          padding: '40px',
-          gap: '40px',
-          pagination: false,
-          breakpoints: {
-            720: {
-              padding: '20px',
-              gap: '20px',
-            }
-          }
+    <script>
+      window.addEventListener('DOMContentLoaded', function() {
+        // Parallax plugin initialized if there is a parallax banner added to the page
+        if ($('.parallax-banner').length > 0) {
+          new universalParallax().init({
+            speed: Shopify.media_queries.tablet.matches ? 10 : 4
+          })
         }
-      )
+      });
+    </script>
 
-      const hiddenClassnames = {
-        previous: 'hide-previous-arrow',
-        next: 'hide-next-arrow'
-      }
-
-      // hide previous arrow on mount
-      splide.on('mounted', function () {
-        splide.root.classList.add(hiddenClassnames.previous)
-      })
-
-      splide.on('arrows:updated', function () {
-
-        // hide prev arrow on first slide
-        if (splide.index > 0) {
-          splide.root.classList.remove(hiddenClassnames.previous)
-        } else {
-          splide.root.classList.add(hiddenClassnames.previous)
-        }
-
-        // hide next arrow on last slide
-        if (splide.index === splide.length - 1) {
-          splide.root.classList.add(hiddenClassnames.next)
-        } else {
-          splide.root.classList.remove(hiddenClassnames.next)
-        }
-      })
-
-      splide.mount()
-    })
-  </script>
-{% endif %}
-
-{% render 'spurit_occ2_theme_snippet' %}
-{% render 'hs-cart-drawer-subscriptions' %}
-  {% include 'wisepops-generated' %}
-<!--Gorgias Chat Widget Start--><script id="gorgias-chat-widget-install">!function(_){_.GORGIAS_CHAT_APP_ID="4538",_.GORGIAS_CHAT_BASE_URL="us-east1-898b.production.gorgias.chat",_.GORGIAS_API_BASE_URL="config.gorgias.chat";var e=new XMLHttpRequest;e.open("GET","https://config.gorgias.chat/applications/4538",!0),e.onload=function(t){if(4===e.readyState)if(200===e.status){var n=JSON.parse(e.responseText);if(!n.application||!n.bundleVersion)throw new Error("Missing fields in the response body - https://config.gorgias.chat/applications/4538");if(_.GORGIAS_CHAT_APP=n.application,_.GORGIAS_CHAT_BUNDLE_VERSION=n.bundleVersion,n&&n.texts&&(_.GORGIAS_CHAT_TEXTS=n.texts),n&&n.sspTexts&&(_.GORGIAS_CHAT_SELF_SERVICE_PORTAL_TEXTS=n.sspTexts),!document.getElementById("gorgias-chat-container")){var o=document.createElement("div");o.id="gorgias-chat-container",document.body.appendChild(o);var r=document.createElement("script");r.setAttribute("defer",!0),r.src="https://storage.googleapis.com/gorgias-chat-production-client-builds/{bundleVersion}/static/js/main.js".replace("{bundleVersion}",n.bundleVersion),document.body.appendChild(r)}}else console.error("Failed request GET - https://config.gorgias.chat/applications/4538")},e.onerror=function(_){console.error(_)},e.send()}(window||{});</script><script id="gorgias-chat-shopify-install">!function(_){_.SHOPIFY_PERMANENT_DOMAIN="{{shop.permanent_domain}}",_.SHOPIFY_CUSTOMER_ID="{{customer.id}}",_.SHOPIFY_CUSTOMER_EMAIL="{{customer.email}}"}(window||{});</script><!--Gorgias Chat Widget End--></body>
-<!-- Warning: Do not remove. This is used for CartHook Checkout Replacement -->
-{% capture the_snippet_content %}{% include 'carthook-checkout' %}{% endcapture %} {% unless the_snippet_content contains "Liquid error" %} {% include 'carthook-checkout' %} {% endunless %}
-<!-- Warning: Do not remove. This is used for CartHook Checkout Replacement -->
-
+    {% render 'mobile-search' %}
+  </body>
 </html>
