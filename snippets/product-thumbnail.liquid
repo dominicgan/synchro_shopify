@@ -79,6 +79,15 @@
       </div>
 
     <div class="thumbnail__content thumbnail__content--{{ settings.collection_price_position }} thumbnail__content--vendor-{{ settings.display_vendor_collection }}">
+      <p class="product-list-item-vendor vendor meta">{{ product.vendor }}</p>
+      <h1 class="thumbnail__title"><a href="{{ product.url | within: collection }}">{{ product.type }}</a></h1>
+      {% if settings.display_vendor_collection %}
+      <div class="thumbnail__vendor">{{ product.vendor }}</div>
+      {% endif %}
+      <div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
+      
+      <p class="product-description">{{ product.description | strip_html | truncate: 90 }}<span class="product-description__learn-more">Learn more</span></p>
+      {% comment %}
       <span class="thumbnail__title">{{ product.title }}</span>
 
       {% if settings.display_vendor_collection %}
@@ -90,15 +99,18 @@
       {% if settings.enable_shopify_collection_badges %}
         <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
       {% endif %}
+      {% endcomment %}
 
       {% if collection_handles contains 'coming-soon' %}
         <span class="coming_soon">{{ 'collections.general.coming_soon' | t }}</span>
       {% else %}
         <span class="thumbnail__price {% if product.compare_at_price_max > product.price %}sale{% endif %}">
           {% if product.available %}
+            {% comment %}
             {% if product.price_varies and product.price_min > 0 %}
               <small><em>{{ 'products.general.from' | t }}</em></small>
             {% endif %}
+            {% endcomment %}
 
             {% if product.price_min > 0 %}
               <span class="money">{% render 'price-element', price: product.price_min %}</span>

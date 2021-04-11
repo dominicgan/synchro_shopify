@@ -27,11 +27,17 @@
     {%- assign collection_handles = product.collections | map: 'handle' -%}
     {%- assign variant = product.selected_or_first_available_variant -%}
 
+    {% comment %}
     <h1 class="product_name">{{ product.title }}</h1>
+    {% endcomment %}
+    <h1 class="product_name">{{ product.type }}</h1>
 
     {% if section.settings.display_vendor %}
       <p class="vendor">
+      {% comment %}
         <span>{{ product.vendor | link_to_vendor }}</span>
+      {% endcomment %}
+        <span>{{ product.vendor }}</span>
       </p>
     {% endif %}
 
@@ -120,14 +126,6 @@
       %}
     {% endunless %}
 
-    {% if section.settings.product_description_position == "bottom" %}
-      {% if product.description != blank %}
-        <div class="description">
-          {{ product.description | split: '<!-- split -->' | first }}
-        </div>
-      {% endif %}
-    {% endif %}
-
     {% if settings.enable_shopify_review_comments and settings.review_position == "top" %}
       <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
     {% endif %}
@@ -176,6 +174,18 @@
     </div>
   </div>
 </div>
+
+<!-- @dominic: Start – new product description -->
+<div class="one-whole columns">
+  {% if section.settings.product_description_position == "bottom" %}
+    {% if product.description != blank %}
+      <div class="product-description product-description--new">
+        {{ product.description | split: '<!-- split -->' | first }}
+      </div>
+    {% endif %}
+  {% endif %}
+</div>
+<!-- @dominic: End – new product description -->
 
 {% if product.description contains "<!-- split -->"  %}
   <div class="one-whole column">
