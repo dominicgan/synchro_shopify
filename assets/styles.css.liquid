@@ -5318,8 +5318,8 @@ div#disqus_thread li {
 }
 
 .sidebar__content-block {
-  margin-bottom: 12px;
-  border-bottom: 1px solid {{ settings.border_color }};
+  margin-bottom: 40px;
+  /* border-bottom: 1px solid {{ settings.border_color }}; */
 }
 .sidebar__content-block:last-child {
   border-bottom: none;
@@ -5348,7 +5348,7 @@ div#disqus_thread li {
 
 .sidebar--blog .sidebar__content,
 .sidebar--article .sidebar__content {
-  padding-right: 40px;
+  padding-right: 30px;
   /* border-left: 1px solid {{ settings.border_color }}; */
 }
 @media only screen and (max-width: 798px) {
@@ -13729,4 +13729,10 @@ body[class^=page-details] .footer {
   border-bottom: 2px solid #5da8a6;
   color: #447e7c !important;
   text-decoration: none !important;
+}
+
+.article .section {
+  max-width: 1400px;
+}
+
 }
