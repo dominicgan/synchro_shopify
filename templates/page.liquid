@@ -1,12 +1,14 @@
 <section class="section">
   <div class="container content main-wrapper">
     <div class="one-whole column page">
-      <h1 class="center">
+      <h1 class="page-title center">
         {{ page.title }}
       </h1>
       <div class="feature_divider"></div>
     </div>
     
-    {% render 'page-multi-column', content: page.content %}
+    <div class="page-content"> 
+      {% render 'page-multi-column', content: page.content %}
+    </div>
   </div>
 </section>
