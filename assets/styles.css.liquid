@@ -3969,7 +3969,6 @@ p.meta {
   position: relative;
   display: inline-block;
   margin-right: 15px;
-  font-size: smaller;
   color: {{ settings.was_price_color }};
 }
 .blog_meta span:after {
@@ -4050,7 +4049,7 @@ p.meta {
 .article_image {
   display: block;
   padding-bottom: 30px;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .article .image-element__wrap {
@@ -4103,6 +4102,16 @@ form.search input[type=text] {
   color: {{ settings.was_price_color }};
 }
 
+.blog_meta {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 .blog_meta,
 .blog_meta a {
   color: {{ settings.was_price_color }};
@@ -4110,6 +4119,11 @@ form.search input[type=text] {
 
 .blog_meta a:hover {
   color: {{ settings.link_hover_color }};
+}
+
+.blog_meta__left,
+.blog_meta__right {
+  margin-bottom: 15px;
 }
 
 .count {
@@ -5306,8 +5320,8 @@ div#disqus_thread li {
 
 .sidebar--blog .sidebar__content,
 .sidebar--article .sidebar__content {
-  padding-left: 20px;
-  border-left: 1px solid {{ settings.border_color }};
+  padding-right: 40px;
+  /* border-left: 1px solid {{ settings.border_color }}; */
 }
 @media only screen and (max-width: 798px) {
   .sidebar--blog .sidebar__content,
@@ -11181,10 +11195,10 @@ input {
 .socialButtons li a:hover {
   color: {{ settings.link_color }} !important;
 }
-.socialButtons li:nth-of-type(1) {
+/* .socialButtons li:nth-of-type(1) {
   position: relative;
   top: -8px;
-}
+} */
 
 @font-face {
   font-family: "ootsb";
@@ -13569,7 +13583,20 @@ body[class^=page-details] .footer {
 .page-content h3, 
 .page-content h4, 
 .page-content h5, 
-.page-content h6 {
+.page-content h6,
+.article-content > * > p,
+.article-content > * > ul,
+.article-content > * > ol,
+.article-content > * > dl,
+.article-content > * > blockquote,
+.article-content > * > table,
+.article-content > * > pre,
+.article-content > * > form,
+.article-content > * > h2,
+.article-content > * > h3, 
+.article-content > * > h4, 
+.article-content > * > h5, 
+.article-content > * > h6 {
   max-width: 640px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -13627,4 +13654,51 @@ body[class^=page-details] .footer {
 .page-title {
   margin: 0 0 90px;
   text-align: center;
+}
+
+.post-author {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.post-author__image {
+  display: block;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  overflow: hidden;
+  position: relative;  
+}
+
+.post-author__image img {
+  position: absolute;
+  height: auto;
+  width: 100%;
+  transform: translateX(-50%) translateY(-50%);
+  top: 50%;
+  left: 50%;
+
+}
+
+.post-author__name {
+  font-weight: 500;
+  margin-left: 15px;
+}
+
+.blog_meta .socialButtons {
+  margin-top: 0;
+}
+
+.article h1,
+.article h2,
+.article h3 {
+  text-align: left;
+}
+
+.article-content a,
+.article-content a:visited {
+  border-bottom: 2px solid #5da8a6;
+  color: #447e7c !important;
+  text-decoration: none !important;
 }

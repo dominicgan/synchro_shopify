@@ -4,7 +4,9 @@
   <ul class="socialButtons">
     {% capture title %}{% if context == 'article' %}{{ article.title | strip_html }}{% else %}{{ product.title | strip_html }}{% endif %}{% endcapture %}
     {% capture twitter_name %}{{ settings.twitter_link | split: 'twitter.com/' | last }}{% endcapture %}
+    {%- comment -%}
     <li><span>{{ 'layout.social_sharing.title' | t }}:</span></li>
+    {%- endcomment -%}
     <li><a href="https://twitter.com/intent/tweet?text={{ title | replace: '&','%26' }}&url={{ current_url }}{%- if twitter_name != blank -%}&via={{ twitter_name }}{%- endif -%}" class="icon-twitter" title="{{ 'layout.social_sharing.twitter_title' | t }}"></a></li>
     <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ current_url }}" class="icon-facebook" title="{{ 'layout.social_sharing.facebook_title' | t }}"></a></li>
     {% if context == 'article' %}
