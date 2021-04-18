@@ -57,6 +57,11 @@
   <div class="container {% if section.settings.banner_image == false %}content{% endif %} main-wrapper">
     {% paginate article.comments by 100 %}
       <div class="content-wrapper is-flex is-flex-wrap">
+        {% render 'blog-sidebar',
+                context: 'article',
+                blog_handle: blog.handle
+        %}
+
         <div class="has-sidebar-option sidebar-enabled--{{ sidebar }}">
           <div class="container">
             {% if section.settings.blog_breadcrumb %}
@@ -125,12 +130,14 @@
 
 
               {% if article.image and section.settings.banner_image == false %}
+              {% comment %}
                 <p>
                   {% render 'image-element',
                           image: article.image,
                           alt: article.image.alt
                   %}
                 </p>
+              {% endcomment %}
               {% endif %}
 
               <div class="one-whole column">
@@ -355,10 +362,6 @@
           {% endif %}
         </div>
 
-        {% render 'blog-sidebar',
-                context: 'article',
-                blog_handle: blog.handle
-        %}
       </div>
     {% endpaginate %}
   </div>
