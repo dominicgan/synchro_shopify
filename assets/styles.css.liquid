@@ -4481,13 +4481,19 @@ div#disqus_thread li {
 
 /* #Home page - Mailing list
 ================================================== */
+.mailing-list-signup > *,
+.mailing-list-signup > *:before,
+.mailing-list-signup > *:after {
+  box-sizing: border-box;
+}
+
 .mailing-list-signup {
   display: table;
   font-size: 20px;
-  max-width: $maxWidth;
+  max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  @include transition(transform 0.2s $easeOutQuad);
+  /*@include transition(transform 0.2s $easeOutQuad);*/
   padding: 60px 30px;
 }
 
@@ -4559,15 +4565,6 @@ div#disqus_thread li {
   padding: 40px 60px;
   vertical-align: middle;
   background: #F9F6F2;
-
-  @include breakpoint(m) {
-    padding: 30px;
-  }
-
-  @include breakpoint(s) {
-    display: block;
-    width: 100%;
-  }
 }
 
 @media only screen and (max-width: 798px) {
