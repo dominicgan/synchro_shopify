@@ -95,27 +95,48 @@
 
             <div class="one-whole column is-flex is-justify-space-between">
               {% if section.blog_author != blank or section.settings.blog_date != blank or section.settings.blog_comment_count != blank %}
-                <p class="blog_meta">
-                  {% if section.settings.blog_author != blank %}
-                    <span>{{ 'blogs.article.by_author' | t: author: article.author }}</span>
-                  {% endif %}
-
-                  {% if section.settings.blog_date != blank %}
-                    <span>{{ article.published_at | date: format: "month_day_year" }}</span>
-                  {% endif %}
-
-                  {% if section.settings.blog_comment_count != blank %}
-                    {% if settings.disqus_enabled %}
-                      <span>
-                        <a href="{{ article.url }}#disqus_thread" data-disqus-identifier="{{ article.id }}" class="disqus-comment-count">{{ 'blogs.counts.comments_with_count' | t: count: 0 }}</a>
+                <div class="blog_meta">
+                  
+                  <div class="blog_meta__left ">
+                    {% if section.settings.blog_author != blank %}
+                    {% assign author_img = article.author | handle | append:'.png' | asset_url %}
+                    <div class="post-author">
+                      <div class="post-author__image">
+                        <img src="{{author_img}}" alt="{{article.author}}">
+                      </div>
+                      <span class="post-author__name">
+                        <span>{{ 'blogs.article.by_author' | t: author: article.author }}</span>
                       </span>
-                    {% elsif article.comments_enabled? and article.comments_count > 0 %}
-                      <span>
-                        <a href="{{ article.url }}#comments">{{ 'blogs.counts.comments_with_count' | t: count: article.comments_count }}</a>
-                      </span>
+                    </div>
                     {% endif %}
-                  {% endif %}
-                </p>
+
+                    {% if section.settings.blog_date != blank %}
+                      <div class="post-publish-date">
+                        <span>{{ article.published_at | date: format: "month_day_year" }}</span>
+                      </div>
+                    {% endif %}
+
+                    {% if section.settings.blog_comment_count != blank %}
+                      {% if settings.disqus_enabled %}
+                      <div class="post-disqus-count">
+                        <span>
+                          <a href="{{ article.url }}#disqus_thread" data-disqus-identifier="{{ article.id }}" class="disqus-comment-count">{{ 'blogs.counts.comments_with_count' | t: count: 0 }}</a>
+                        </span>
+                      </div>
+                      {% elsif article.comments_enabled? and article.comments_count > 0 %}
+                      <div class="post-comment-count">
+                        <span>
+                          <a href="{{ article.url }}#comments">{{ 'blogs.counts.comments_with_count' | t: count: article.comments_count }}</a>
+                        </span>
+                      </div>
+                      {% endif %}
+                    {% endif %}
+                  </div>
+
+                  <div class="blog_meta__right ">
+                    {% render 'social-buttons', context: 'article' %}
+                  </div>
+                </div>
               {% endif %}
 
               {% if section.settings.blog_tags and sidebar == false %}
@@ -634,6 +655,22 @@
             "type": "richtext",
             "id": "newsletter_richtext",
             "label": "Text"
+          }
+        ]
+      },
+      {
+        "type": "image_ad",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Select a featured product"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Ad image"
           }
         ]
       },

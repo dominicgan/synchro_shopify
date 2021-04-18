@@ -107,7 +107,17 @@
                 <li><p>{{ 'homepage.onboarding.no_content' | t }}</p></li>
               {% endif %}
             </ul>
-
+          
+          {% elsif block.type == 'image_ad'  %}
+            <div class="sidebar-images-section mobile">
+              {% if block.settings.product != blank %}
+                <span class="sidebar-blog-image-1">
+                  <a href="{{ all_products[block.settings.product].url }}">
+                    <img src="{{ block.settings.image | img_url: '400x' }}" alt="{{ all_products[block.settings.product].title }}">
+                  </a>
+                </span>
+              {% endif %}
+            </div>
           {% elsif block.type == 'text' %}
             <h4 class="toggle"><span>+</span>{{ block.settings.title | escape }}</h4>
             <ul class="blog_list toggle_list content_block">
