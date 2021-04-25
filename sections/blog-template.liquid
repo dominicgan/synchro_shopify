@@ -73,11 +73,33 @@
   </div>
 {% endif %}
 
-<section class="section">
+<div class="current-header header-area-part blog-header-section-only">
+  <div class="main-header">
+    <div class="after-header">
+      <div class="after-header-inner">
+        <div class="second-logo">
+        <a href="/blogs/blog"><img src="{{'secondary-logo.png' | asset_url}}" alt="The Synchro Life"></a>
+        </div>
+        <div class="topicmenu">
+          <ul class="topicmenulinklist">
+            {% for link in linklists.topic-menu.links %}
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="blog__section">
   <div class="container content main-wrapper">
-    {% paginate blog.articles by section.settings.blog_posts_per_page %}
+    {% paginate blog.articles by 9999 %}
       {% unless section.settings.image %}
         <div class="one-whole column">
+          {%- comment -%}
           <h1 class="center">
             {% if current_tags %}
               <a href="/blogs/{{ blog.handle }}/tagged/{{ current_tags | handleize }}" title="{{ blog.title | escape }}">{{ current_tags }}</a>
@@ -86,6 +108,7 @@
             {% endif %}
           </h1>
           <div class="feature_divider"></div>
+          {%- endcomment -%}
         </div>
       {% endunless %}
 
@@ -141,6 +164,58 @@
     <div class="content-wrapper is-flex is-flex-wrap">
       <div class="has-sidebar-option sidebar-enabled--{{ sidebar }}">
         <div class="container">
+
+          <section id="slider"></section>
+          <section id="most-popular">
+              <h2 class="blog__section-header">Most Popular</h2>
+
+              {% assign tag = 'popular' %}
+              {% include 'blog-posts-by-tag-v2' %}
+
+              <div class="call-to-action blog__call-to-action">
+                <a href="/pages/all-articles">
+                  All Articles
+                </a>
+              </div>
+          </section>
+
+          {% assign containerClass = 'row justify-content-center' %}
+          {% assign itemClass = 'post col-lg-4 col-md-4 col-sm-6 col-xs-6' %}
+
+          <section id="lifestyle">
+              <h2 class="blog__section-header">Lifestyle</h2>
+
+              {% assign tag = 'lifestyle' %}
+              {% include 'blog-posts-by-tag-v2' %}
+          </section>
+
+          <section id="the-seven">
+              <h2 class="blog__section-header">The Seven</h2>
+
+              {% assign tag = 'the-seven' %}
+              {% include 'blog-posts-by-tag-v2' %}
+          </section>
+
+          <section id="nutrition">
+              <h2 class="blog__section-header">Nutrition</h2>
+
+              {% assign tag = 'nutrition' %}
+              {% include 'blog-posts-by-tag-v2' %}
+          </section>
+
+          <section id="recipes">
+              <h2 class="blog__section-header">Recipes</h2>
+
+              {% assign tag = 'recipes' %}
+              {% include 'blog-posts-by-tag-v2' %}
+          </section>
+
+
+
+
+
+
+{%- comment -%}
           {% for article in blog.articles %}
             {% if section.settings.blog_posts_per_row == 1 %}
               {% if article.image != blank %}
@@ -219,6 +294,7 @@
               {% endif %}
             </div>
           {% endfor %}
+{%- endcomment -%}
         </div>
       </div>
 

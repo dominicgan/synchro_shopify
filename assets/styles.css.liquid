@@ -457,7 +457,6 @@ h6,
 .collection_title,
 .headline,
 .subtitle p,
-.footer_menu a,
 .empty_cart,
 .promo-banner {
   font-family: {{ settings.headline__font.family }}, {{ settings.headline__font.fallback_families }};
@@ -1080,6 +1079,18 @@ div.sticky--active {
   text-align: center;
 }
 
+.current-header.header-area-part.blog-header-section-only {
+  margin-top: 165px;
+  background-color: #fafafa;
+}
+
+.blog-header-section-only ~ section.blog__section > .content {
+  padding-top: 0;
+}
+
+.blog-header-section-only.header-area-part .topicmenu {
+  padding-bottom: 50px;
+}
 
 .before-header .main-header {
   margin: 0 auto;
@@ -3957,8 +3968,42 @@ p.meta {
   margin-bottom: 0;
   line-height: 1.4em;
 }
+
 .blog h2 a {
   color: {{ settings.headline_color }};
+}
+
+.blog section {
+  width: 100%;
+}
+
+.blog .blog__section-header {
+  width: 100%;
+  text-align: center;
+	color: #000000;
+	letter-spacing: 0;
+	line-height: 45px;
+	margin-top: 0;
+	font-size: 35px;
+	margin-bottom: 50px;
+}
+
+.blog .content .container > section,
+.tag .content .container > section {
+  padding-top: 60px;
+	padding-bottom: 35px;
+	display: flex;
+	flex-direction: column;
+}
+
+.blog .content .container > section:nth-child(2n), 
+.tag .content .container > section:nth-child(2n) {
+	background-color: #FAFAFA;
+}
+
+.blog .content .container > section:nth-child(2), 
+.tag .content .container > section:nth-child(2) {
+	background-color: #F9F6F2;
 }
 
 .blog_list {
@@ -3983,6 +4028,7 @@ p.meta {
   background-color: #ced3d3;
   box-sizing: border-box;
 }
+
 .blog_meta span:last-child:after {
   background-color: transparent;
 }
@@ -3990,6 +4036,19 @@ p.meta {
 .tags span a {
   font-weight: bold;
   color: {{ settings.link_color }};
+}
+
+.blog__call-to-action {
+	border: 3px solid #000000;
+	border-radius: 6px;
+	background-color: #FFFFFF;
+	color: #000000;
+	font-size: 18px;
+	letter-spacing: 0;
+	line-height: 23px;
+	text-align: center;
+	padding: 13px 30px;
+	margin: 0 auto;
 }
 
 .blog_list li {
@@ -5389,6 +5448,13 @@ div#disqus_thread li {
   margin-bottom: 20px;
   color: {{ settings.headline_footer_text_color }};
 }
+
+@media only screen and (max-width: 480px) {
+  .footer .footer__title {
+    text-align: center;
+  }
+}
+
 .footer p {
   margin-bottom: 10px;
   font-size: {{ settings.footer_font_size | append: 'px' }};
