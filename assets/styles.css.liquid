@@ -5402,17 +5402,41 @@ div#disqus_thread li {
   color: {{ settings.sub_footer_link_color_hover }};
 }
 
+.footer__menus {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.footer__menus-item {
+  width: 15%;
+  padding-right: 30px;
+  margin-bottom: 60px;
+}
+
+@media only screen and (max-width: 480px) {
+  .footer__menus {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer__menus-item {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+
 .footer_menu {
   margin: 0;
   list-style: none;
 }
 .footer_menu li {
-  padding-right: 20px;
-  display: inline-block;
+  display: block;
 }
 .footer_menu li a {
   margin-bottom: 20px;
   color: {{ settings.sub_footer_link_color }};
+  font-size: 15px;
 }
 .footer_menu li a:hover {
   color: {{ settings.sub_footer_link_color_hover }};
@@ -5420,6 +5444,63 @@ div#disqus_thread li {
 .footer_menu li a.ss-icon {
   font-size: 55px;
 }
+
+@media only screen and (max-width: 798px) {
+  .footer_menu {
+    text-align: center;
+  }
+
+  .footer_menu li {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .footer_menu li {
+    display: inline;
+  }
+
+  .footer_menu li:not(:last-child):after {
+    content: ' / ';
+  }
+}
+
+.footer_menu.social-links a {
+  position: relative;
+}
+
+.footer_menu.social-links a span {
+  padding-left: 30px;
+}
+
+@media only screen and (max-width: 480px) {
+  .footer_menu.social-links a span {
+    padding-left: 20px;
+  }
+}
+
+.footer_menu.social-links a:before {
+  font-family: 'social-icons';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -7px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.footer_menu.social-links a[href*="linkedin"]:before { content: "j"; }
+.footer_menu.social-links a[href*="youtube"]:before { content: "r"; }
+.footer_menu.social-links a[href*="vimeo"]:before { content: "s"; }
+.footer_menu.social-links a[href*="flickr"]:before { content: "v"; }
+.footer_menu.social-links a[href*="instagram"]:before { content: "x"; }
+.footer_menu.social-links a[href*="tumblr"]:before { content: "z"; }
+.footer_menu.social-links a[href*="twitter"]:before { content: "a"; }
+.footer_menu.social-links a[href*="facebook"]:before { content: "b"; }
+.footer_menu.social-links a[href*="pinterest"]:before { content: "d"; }
 
 .footer__info {
   display: flex;
@@ -10958,10 +11039,6 @@ div.collection_title_tags {
     object-fit: contain;
   }
 
-  .footer_menu li {
-    display: block;
-  }
-
   .footer a.ss-icon {
     font-size: 38px;
     margin-right: 0px;
@@ -13537,10 +13614,24 @@ body[class^=page-details] .footer {
 
 @font-face {
   font-family: 'Single Product Webicons Regular';
-  src: url("//cdn.shopify.com/s/files/1/0155/0195/t/37/assets/singleproductwebicons-regular.eot?v=14885393002806873348");
-  src: url("//cdn.shopify.com/s/files/1/0155/0195/t/37/assets/singleproductwebicons-regular.eot?%23iefix&v=14885393002806873348") format("embedded-opentype"), url("//cdn.shopify.com/s/files/1/0155/0195/t/37/assets/singleproductwebicons-regular.woff?v=12140399248471580671") format("woff"), url("//cdn.shopify.com/s/files/1/0155/0195/t/37/assets/singleproductwebicons-regular.ttf?v=17196509208747953551") format("truetype"), url("//cdn.shopify.com/s/files/1/0155/0195/t/37/assets/singleproductwebicons-regular.svg%23singleproduct_web_iconsregular?5769") format("svg");
+  src: url("{{ singleproductwebicons-regular.eot | asset_url }}");
+  src: url("{{ 'singleproductwebicons-regular.eot?#iefix' | asset_url }}") format("embedded-opentype"),
+        url("{{ singleproductwebicons-regular.woff | asset_url }}") format("woff"), 
+          url("{{ singleproductwebicons-regular.ttf | asset_url }}") format("truetype"), 
+            url("{{ 'singleproductwebicons-regular.svg#singleproductwebicons' | asset_url }}") format("svg");
   font-weight: normal;
   font-style: normal; }
+
+@font-face {
+  font-family: 'social-icons';
+  src: url('{{ "socicon-webfont.eot" | asset_url }}');
+    src: url('{{ "socicon-webfont.eot?#iefix" | asset_url }}') format('embedded-opentype'),
+      url('{{ "socicon-webfont.woff" | asset_url }}') format('woff'),
+        url('{{ "socicon-webfont.ttf" | asset_url }}') format('truetype'),
+          url('{{ "socicon-webfont.svg#sociconregular" | asset_url }}') format('svg');
+            font-weight: normal;
+            font-style: normal;
+            }
 
 /* #Custom Styles
 ================================================== */

@@ -29,24 +29,11 @@
 <div class="footer">
   <section class="section">
     <div class="container">
-      {% if section.settings.footer_social_icons and social_icons == true or section.settings.footer_content_left != blank %}
-        <div class="three-sevenths columns medium-down--one-whole">
-          {% if section.settings.footer_social_icons and social_icons == true %}
-            <h6 class="footer__title">{{ 'layout.general.social' | t }}</h6>
-
-            <div class="js-social-icons">
-              {% render 'social-icons' %}
-            </div>
-          {% endif %}
-
-          {% if section.settings.footer_content_left != blank %}
-            {{ section.settings.footer_content_left }}
-          {% endif %}
-        </div>
-      {% endif %}
-
-      <div class="four-sevenths columns medium-down--one-whole {% unless section.settings.footer_social_icons and social_icons == true or section.settings.footer_content_left != blank %}offset-by-seven{% endunless %}">
+      <div class="one-whole columns {% unless section.settings.footer_social_icons and social_icons == true or section.settings.footer_content_left != blank %}offset-by-seven{% endunless %}">
+        <div class="footer__menus">
+        <div class="footer__menus-item">
         {% if section.settings.footer_linklist_1 != blank %}
+          <h6 class="footer__title">{{ linklists[section.settings.footer_linklist_1].title }}</h6>
           <ul class="footer_menu">
             {% for link in linklists[section.settings.footer_linklist_1].links %}
               <li>
@@ -67,6 +54,66 @@
             {% endfor %}
           </ul>
         {% endif %}
+        </div>
+
+        <div class="footer__menus-item">
+        {% if section.settings.footer_linklist_2 != blank %}
+          <h6 class="footer__title">{{ linklists[section.settings.footer_linklist_2].title }}</h6>
+          <ul class="footer_menu">
+            {% for link in linklists[section.settings.footer_linklist_2].links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+
+              {% for sub_link in link.links %}
+                <li>
+                  <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                </li>
+
+                {% for sub_sub_link in sub_link.links %}
+                  <li>
+                    <a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a>
+                  </li>
+                {% endfor %}
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+        </div>
+
+        <div class="footer__menus-item">
+        {% if section.settings.footer_linklist_3 != blank %}
+          <h6 class="footer__title">{{ linklists[section.settings.footer_linklist_3].title }}</h6>
+          <ul class="footer_menu">
+            {% for link in linklists[section.settings.footer_linklist_3].links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+
+              {% for sub_link in link.links %}
+                <li>
+                  <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                </li>
+
+                {% for sub_sub_link in sub_link.links %}
+                  <li>
+                    <a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a>
+                  </li>
+                {% endfor %}
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+        </div>
+
+        {% if section.settings.footer_social_icons and social_icons == true %}
+        <div class="footer__menus-item">
+          <h6 class="footer__title">{{ 'layout.general.social' | t }}</h6>
+
+          {% render 'social-links' %}
+        </div>
+        {% endif %}
+        </div>
 
         {% if section.settings.footer_newsletter %}
           {% if section.settings.richtext != blank %}
@@ -78,10 +125,6 @@
                   first_name: section.settings.display_first_name,
                   last_name: section.settings.display_last_name
           %}
-        {% endif %}
-
-        {% if section.settings.footer_content_right != blank %}
-          {{ section.settings.footer_content_right }}
         {% endif %}
 
         {{ section.settings.custom_html }}
@@ -108,6 +151,10 @@
             {% endfor %}
           </div>
         {% endif %}
+
+        {% if section.settings.footer_content != blank %}
+          {{ section.settings.footer_content }}
+        {% endif %}
       </div>
     </div>
   </section>
@@ -121,8 +168,20 @@
       {
         "type": "link_list",
         "id": "footer_linklist_1",
-        "label": "Menu",
+        "label": "Menu 1",
         "info": "This menu won't show drop-down items"
+      },
+      {
+      "type": "link_list",
+      "id": "footer_linklist_2",
+      "label": "Menu 2",
+      "info": "This menu won't show drop-down items"
+      },
+      {
+      "type": "link_list",
+      "id": "footer_linklist_3",
+      "label": "Menu 3",
+      "info": "This menu won't show drop-down items"
       },
       {
         "type": "checkbox",
@@ -158,13 +217,9 @@
       },
       {
         "type": "richtext",
-        "id": "footer_content_left",
-        "label": "Left column text"
-      },
-      {
-        "type": "richtext",
-        "id": "footer_content_right",
-        "label": "Right column text"
+        "id": "footer_content",
+        "label": "Footer text",
+        "info": "Displays below the payment methods."
       },
       {
         "type": "header",
