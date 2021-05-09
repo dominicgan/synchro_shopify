@@ -410,7 +410,6 @@
             "promo_text": "",
             "logo": "",
             "logo_home": "",
-            "logo_width": 205,
             "logo_top_padding": 5,
             "main_linklist": "main-menu",
             "dropdown_column_links": 10,
@@ -939,7 +938,6 @@
             "promo_text": "",
             "logo": "",
             "logo_home": "",
-            "logo_width": 205,
             "logo_top_padding": 5,
             "main_linklist": "main-menu",
             "dropdown_column_links": 10,
@@ -1468,7 +1466,6 @@
             "promo_text": "",
             "logo": "",
             "logo_home": "",
-            "logo_width": 205,
             "logo_top_padding": 5,
             "main_linklist": "main-menu",
             "dropdown_column_links": 10,
@@ -1994,7 +1991,6 @@
             "promo_text": "",
             "logo": "",
             "logo_home": "",
-            "logo_width": 205,
             "logo_top_padding": 5,
             "main_linklist": "main-menu",
             "dropdown_column_links": 10,
@@ -2136,12 +2132,12 @@
     "btn_color": "#353434",
     "btn_hover_color": "#474747",
     "btn_text_color": "#ffffff",
-    "sub_footer_border_color": "#1b1f23",
-    "headline_footer_text_color": "#7f8c8d",
-    "sub_footer_text_color": "#6b6b6b",
-    "sub_footer_link_color": "#363636",
-    "sub_footer_link_color_hover": "#7f8c8d",
-    "sub_footer_color": "#f8fafa",
+    "sub_footer_border_color": "#050d0e",
+    "headline_footer_text_color": "#ffffff",
+    "sub_footer_text_color": "#d0d0cc",
+    "sub_footer_link_color": "#d0d0cc",
+    "sub_footer_link_color_hover": "#8c8c8c",
+    "sub_footer_color": "#050d0e",
     "border_color": "#b8c6c6",
     "table_styles_enabled": true,
     "sale_banner_color": "#e32c2b",
@@ -2189,12 +2185,12 @@
     "align_height": false,
     "collection_height": 240,
     "collection_secondary_image": false,
-    "display_vendor_collection": false,
+    "display_vendor_collection": true,
     "sale_banner_enabled": true,
     "collection_swatches": false,
     "collection_price_position": "center",
     "mobile_products_per_row": "2",
-    "display_product_quantity": true,
+    "display_product_quantity": false,
     "limit_quantity": false,
     "display_inventory_left": false,
     "inventory_threshold": 10,
@@ -2207,7 +2203,7 @@
     "review_position": "bottom",
     "enable_shopify_collection_badges": false,
     "enable_shopify_product_badges": false,
-    "quick_shop_enabled": true,
+    "quick_shop_enabled": false,
     "quick_shop_style": "icon",
     "display_thumbnails": true,
     "gallery_arrows": true,
@@ -2493,28 +2489,38 @@
       "product-template": {
         "type": "product-template",
         "settings": {
-          "product_breadcrumb": true,
-          "display_tags": true,
-          "display_type": true,
+          "product_breadcrumb": false,
+          "display_thumbnails": true,
+          "gallery_arrows": true,
+          "activate_zoom": true,
+          "slideshow_speed": 0,
+          "slideshow_transition": "slide",
+          "thumbnail_position": "bottom-thumbnails",
+          "enable_thumbnail_slider": true,
+          "display_tags": false,
+          "display_type": false,
           "display_vendor": true,
-          "display_sku": true,
-          "display_social_buttons": true,
-          "display_collections": true,
-          "product_description_position": "top",
+          "display_sku": false,
+          "display_social_buttons": false,
+          "display_collections": false,
+          "product_description_position": "bottom",
+          "show_payment_button": false,
           "product_images_position": "left",
-          "set_product_height": false,
-          "product_height": 500
+          "set_product_height": true,
+          "product_height": 540,
+          "video_looping": false
         }
       },
       "footer": {
         "type": "footer",
         "settings": {
           "footer_linklist_1": "shop",
+          "footer_linklist_2": "about",
+          "footer_linklist_3": "read",
           "footer_social_icons": true,
           "show_locale_selector": true,
           "show_currency_selector": true,
-          "footer_content_left": "",
-          "footer_content_right": "",
+          "footer_content": "<p>The statements on this website have not been evaluated by the Food and Drug Administration.<br\/>These products are not intended to diagnose, treat, cure or prevent any disease.<br\/>*Free shipping on orders over $125 only valid in the USA. Gold Turmeric Elixir is not eligible (Gold Turmeric Capsules, however, ARE eligible)<\/p>",
           "footer_newsletter": false,
           "display_first_name": false,
           "display_last_name": false,
@@ -2528,9 +2534,9 @@
         "type": "header",
         "settings": {
           "fixed_header": true,
-          "content_top_padding": 120,
+          "content_top_padding": 215,
           "show_announcement": true,
-          "promo_home_page": true,
+          "promo_home_page": false,
           "promo_text": "Free Shipping on orders over $150*",
           "announcement_link": "shopify:\/\/collections\/shop",
           "announcement_bg_color": "#319e9e",
@@ -2541,7 +2547,7 @@
           "main_linklist": "main-menu",
           "dropdown_column_links": 10,
           "dropdown_position": "below_header",
-          "menu_alignment": "center",
+          "menu_alignment": "align_right",
           "menu_top_padding": 0,
           "search_enabled": true,
           "show_locale_selector": true,
@@ -2662,35 +2668,84 @@
           "testimonials_per_row": 3
         }
       },
-      "1616898338857d8f08": {
-        "type": "newsletter",
-        "settings": {
-          "wide_display": true,
-          "display_first_name": false,
-          "display_last_name": false,
-          "title": "Join Us And Get 10% Off Your Next Order*",
-          "subheading": "Our best stuff comes via email. Subscriber-only articles, videos and - of course - access to the subscriber-only sales.",
-          "newsletter_richtext": "",
-          "frontpage_text_align": "center",
-          "newsletter_background": "#f9f6f2",
-          "newsletter_text": "#4d4d4d"
-        }
-      },
       "article-template": {
         "type": "article-template",
+        "blocks": {
+          "6d563833-1794-42f7-863f-0608cdd97b69": {
+            "type": "newsletter",
+            "settings": {
+              "mailing-list-title": "Join Us And Get 10% Off Your Next Order*",
+              "mailing-list-blurb": "Our best stuff comes via email. Subscriber-only articles, videos and - of course - access to the subscriber-only sales.",
+              "mailing-list-footnote": "*Offer for new subscribers only. We'll send you your coupon via email."
+            }
+          },
+          "b40f6477-a56b-4b56-a526-8599d8504283": {
+            "type": "image_ad",
+            "settings": {
+              "product": "medical-grade-liposomal-turmeric-supplement-60ct-capsules",
+              "image": "shopify:\/\/shop_images\/blog-cap-ad-1_2x_66498d3e-f0f4-4165-93b9-627f4f1fa1d0.png"
+            }
+          }
+        },
+        "block_order": [
+          "6d563833-1794-42f7-863f-0608cdd97b69",
+          "b40f6477-a56b-4b56-a526-8599d8504283"
+        ],
         "settings": {
           "blog_breadcrumb": false,
           "blog_tags": false,
-          "blog_author": false,
-          "blog_date": true,
+          "blog_author": true,
+          "blog_date": false,
           "display_social_buttons": true,
           "blog_comment_count": true,
-          "banner_image": true,
+          "banner_image": false,
           "image_focal_point": "center center",
           "darken_image": false,
           "text_position": "center center",
-          "blog_additional_articles": true,
-          "read_more_link": true,
+          "blog_additional_articles": false,
+          "read_more_link": false,
+          "parallax_effect": false,
+          "parallax_image_height": 400,
+          "toggle": true
+        }
+      },
+      "product__sidebar": {
+        "type": "product__sidebar",
+        "settings": {
+          "toggle": false
+        }
+      },
+      "product-recommendations": {
+        "type": "product-recommendations",
+        "settings": {
+          "show_product_recommendations": true,
+          "product_recommendations_heading": "Related Products",
+          "show_divider": true,
+          "products_per_row": 4,
+          "recommended_products_limit": 4
+        }
+      },
+      "1618151057ac2a830c": {
+        "type": "mailing-list",
+        "settings": {
+          "mailing-list-title": "Join Us And Get 10% Off Your Next Order*",
+          "mailing-list-blurb": "Our best stuff comes via email. Subscriber-only articles, videos and - of course - access to the subscriber-only sales.",
+          "mailing-list-footnote": "*Offer for new subscribers only. We'll send you your coupon via email."
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "display_collection_header_title": false,
+          "collection_breadcrumb": true,
+          "collection_sort": false,
+          "collection_tags": false,
+          "featured_collection_image": false,
+          "image_focal_point": "center center",
+          "darken_image": false,
+          "text_position": "center center",
+          "products_per_row": 3,
+          "pagination_limit": 48,
           "parallax_effect": true,
           "parallax_image_height": 400,
           "toggle": false
@@ -2702,7 +2757,7 @@
       "1482978263392",
       "1482978288287",
       "16168980358ac1da2c",
-      "1616898338857d8f08"
+      "1618151057ac2a830c"
     ]
   }
 }
