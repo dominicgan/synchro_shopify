@@ -26,6 +26,28 @@
   {%- assign social_icons = true -%}
 {%- endif -%}
 
+
+{% if section.settings.footer_newsletter %}
+{%- comment -%}
+{% if section.settings.richtext != blank %}
+  {{ section.settings.richtext }}
+{% endif %}
+{%- endcomment -%}
+
+{% render 'mailing-list',
+    mailing_list_title: section.settings.mailing-list-title,
+    mailing_list_blurb: section.settings.mailing-list-blurb,
+    mailing_list_footnote: section.settings.mailing-list-footnote,
+%}
+{%- comment -%}
+{% render 'newsletter',
+context: 'footer'
+first_name: section.settings.display_first_name,
+last_name: section.settings.display_last_name
+%}
+{%- endcomment -%}
+{% endif %}
+
 <div class="footer">
   <section class="section">
     <div class="container">
@@ -114,18 +136,6 @@
         </div>
         {% endif %}
         </div>
-
-        {% if section.settings.footer_newsletter %}
-          {% if section.settings.richtext != blank %}
-            {{ section.settings.richtext }}
-          {% endif %}
-
-          {% render 'newsletter',
-                  context: 'footer'
-                  first_name: section.settings.display_first_name,
-                  last_name: section.settings.display_last_name
-          %}
-        {% endif %}
 
         {{ section.settings.custom_html }}
 
@@ -232,20 +242,19 @@
         "default": true
       },
       {
-        "type": "checkbox",
-        "id": "display_first_name",
-        "label": "Show first name"
+        "type": "text",
+        "id": "mailing-list-title",
+        "label": "Mailing list title"
       },
       {
-        "type": "checkbox",
-        "id": "display_last_name",
-        "label": "Show last name"
+        "type": "textarea",
+        "id": "mailing-list-blurb",
+        "label": "Mailing list blurb"
       },
       {
-        "type": "richtext",
-        "id": "richtext",
-        "label": "Text",
-        "default": "<p>Sign up to get the latest on sales, new releases and more…</p>"
+        "type": "textarea",
+        "id": "mailing-list-footnote",
+        "label": "Mailing list footnote"
       },
       {
         "type": "header",
