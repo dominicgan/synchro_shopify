@@ -3,6 +3,9 @@
 - Template section
 {% endcomment %}
 
+<link rel="stylesheet" href="https://use.typekit.net/rjy2euv.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+
 {% comment %} Check to see if sidebar should be enabled {% endcomment %}
 {% if section.blocks.size > 0 %}
   {%- assign sidebar = true -%}
@@ -94,6 +97,11 @@
   </div>
 </div>
 
+{% if current_tags.size > 0 %}
+  {% assign tag = current_tags.first %}
+  {% include 'for-blog-pages' %}
+{% endif %}
+
 <section class="blog__section">
   <div class="container content main-wrapper">
     {% paginate blog.articles by 9999 %}
@@ -165,136 +173,140 @@
       <div class="has-sidebar-option sidebar-enabled--{{ sidebar }}">
         <div class="container">
 
-          <section id="slider"></section>
-          <section id="most-popular">
+          {% unless current_tags %}
+            {% include 'blog-post-slider' %}
+            
+            <section id="most-popular">
               <h2 class="blog__section-header">Most Popular</h2>
-
+              
               {% assign tag = 'popular' %}
               {% include 'blog-posts-by-tag-v2' %}
-
+              
               <div class="call-to-action blog__call-to-action">
                 <a href="/pages/all-articles">
                   All Articles
                 </a>
               </div>
-          </section>
-
-          {% assign containerClass = 'row justify-content-center' %}
-          {% assign itemClass = 'post col-lg-4 col-md-4 col-sm-6 col-xs-6' %}
-
-          <section id="lifestyle">
+            </section>
+            
+            {% assign containerClass = 'row justify-content-center' %}
+            {% assign itemClass = 'post col-lg-4 col-md-4 col-sm-6 col-xs-6' %}
+            
+            <section id="lifestyle">
               <h2 class="blog__section-header">Lifestyle</h2>
 
               {% assign tag = 'lifestyle' %}
               {% include 'blog-posts-by-tag-v2' %}
-          </section>
-
-          <section id="the-seven">
+            </section>
+            
+            <section id="the-seven">
               <h2 class="blog__section-header">The Seven</h2>
-
+              
               {% assign tag = 'the-seven' %}
               {% include 'blog-posts-by-tag-v2' %}
-          </section>
-
-          <section id="nutrition">
+            </section>
+            
+            <section id="nutrition">
               <h2 class="blog__section-header">Nutrition</h2>
-
+              
               {% assign tag = 'nutrition' %}
               {% include 'blog-posts-by-tag-v2' %}
-          </section>
-
-          <section id="recipes">
+            </section>
+            
+            <section id="recipes">
               <h2 class="blog__section-header">Recipes</h2>
-
+              
               {% assign tag = 'recipes' %}
               {% include 'blog-posts-by-tag-v2' %}
-          </section>
+            </section>
+          {% else %}
+            
+            <section class="section section--blog-tag">
+              <div class="blog__section-container container">
+                {% for article in blog.articles %}
+                  {% if article.tags contains current_tags[0] or showAll %}
 
-
-
-
-
-
-{%- comment -%}
-          {% for article in blog.articles %}
-            {% if section.settings.blog_posts_per_row == 1 %}
-              {% if article.image != blank %}
-                <div class="one-whole column article_image">
-                  <a href="{{ article.url }}" title="{{ article.title | escape }}">
-                    {% render 'image-element',
-                            image: article.image,
-                            alt: article.image.alt
-                    %}
-                  </a>
-                </div>
-                <div class="one-whole column article">
-              {% else %}
-                <div class="one-whole column article">
-              {% endif %}
-            {% else %}
-              <div class="{% render 'column-width', value: section.settings.blog_posts_per_row %} column medium-down--one-whole article">
-                {% if article.image != blank %}
-                  <a href="{{ article.url }}" title="{{ article.title | escape }}">
-                    {% render 'image-element',
-                            image: article.image,
-                            alt: article.image.alt
-                    %}
-                  </a>
-                {% endif %}
-            {% endif %}
-
-              {% if section.settings.blog_tags %}
-                <div class="blog_meta tags">
-                  {% for tag in article.tags %}
-                    <span><a href="{{ shop.url }}/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}" title="{{ blog.title }} {{ 'blogs.general.tagged' | t }} {{ tag | escape }}">{{ tag }}</a></span>
-                  {% endfor %}
-                </div>
-              {% endif %}
-
-              <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
-
-              <p class="blog_meta">
-                {% if section.settings.blog_author %}
-                  <span>{{ 'blogs.article.by_author' | t: author: article.author }}</span>
-                {% endif %}
-
-                {% if section.settings.blog_date %}
-                  <span>{{ article.published_at | date: format: "month_day_year" }}</span>
-                {% endif %}
-
-                {% if section.settings.blog_comment_count %}
-                  {% if settings.disqus_enabled %}
-                    <span>
-                      <a href="{{ article.url }}#disqus_thread" data-disqus-identifier="{{ article.id }}" class="disqus-comment-count">{{ 'blogs.counts.comments_with_count' | t: count: 0 }}</a>
-                    </span>
-                  {% elsif article.comments_enabled? and article.comments_count > 0 %}
-                    <span>
-                      <a href="{{ article.url }}#comments">{{ 'blogs.counts.comments_with_count' | t: count: article.comments_count }}</a>
-                    </span>
+                  {% if section.settings.blog_posts_per_row == 1 %}
+                    {% if article.image != blank %}
+                      <div class="one-whole column article_image">
+                        <a href="{{ article.url }}" title="{{ article.title | escape }}">
+                          {% render 'image-element',
+                                  image: article.image,
+                                  alt: article.image.alt
+                          %}
+                        </a>
+                      </div>
+                      <div class="one-whole column article">
+                    {% else %}
+                      <div class="one-whole column article">
+                    {% endif %}
+                  {% else %}
+                    <div class="{% render 'column-width', value: section.settings.blog_posts_per_row %} column medium-down--one-whole article">
+                      {% if article.image != blank %}
+                        <a href="{{ article.url }}" title="{{ article.title | escape }}">
+                          {% render 'image-element',
+                                  image: article.image,
+                                  alt: article.image.alt
+                          %}
+                        </a>
+                      {% endif %}
                   {% endif %}
-                {% endif %}
-              </p>
 
-              {% if article.excerpt != blank %}
-                  {%- assign postexcerpt = article.excerpt | size -%}
-                  {% if postexcerpt > 100 %}
-                    {%- assign excerptlength = 'lg' -%}
-                  {% elsif postexcerpt <= 50 %}
-                    {%- assign excerptlength = 'sm' -%}
-                  {% endif %}
-                  <div class="excerpt excerpt-length--{{ excerptlength }} {{ postexcerpt }}">
-                    {{ article.excerpt }}
-                    <span class="truncation-fade"></span>
+                    {% if section.settings.blog_tags %}
+                      <div class="blog_meta tags">
+                        {% for tag in article.tags %}
+                          <span><a href="{{ shop.url }}/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}" title="{{ blog.title }} {{ 'blogs.general.tagged' | t }} {{ tag | escape }}">{{ tag }}</a></span>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+
+                    <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+
+                    <p class="blog_meta">
+                      {% if section.settings.blog_author %}
+                        <span>{{ 'blogs.article.by_author' | t: author: article.author }}</span>
+                      {% endif %}
+
+                      {% if section.settings.blog_date %}
+                        <span>{{ article.published_at | date: format: "month_day_year" }}</span>
+                      {% endif %}
+
+                      {% if section.settings.blog_comment_count %}
+                        {% if settings.disqus_enabled %}
+                          <span>
+                            <a href="{{ article.url }}#disqus_thread" data-disqus-identifier="{{ article.id }}" class="disqus-comment-count">{{ 'blogs.counts.comments_with_count' | t: count: 0 }}</a>
+                          </span>
+                        {% elsif article.comments_enabled? and article.comments_count > 0 %}
+                          <span>
+                            <a href="{{ article.url }}#comments">{{ 'blogs.counts.comments_with_count' | t: count: article.comments_count }}</a>
+                          </span>
+                        {% endif %}
+                      {% endif %}
+                    </p>
+
+                    {% if article.excerpt != blank %}
+                        {%- assign postexcerpt = article.excerpt | size -%}
+                        {% if postexcerpt > 100 %}
+                          {%- assign excerptlength = 'lg' -%}
+                        {% elsif postexcerpt <= 50 %}
+                          {%- assign excerptlength = 'sm' -%}
+                        {% endif %}
+                        <div class="excerpt excerpt-length--{{ excerptlength }} {{ postexcerpt }}">
+                          {{ article.excerpt }}
+                          <span class="truncation-fade"></span>
+                        </div>
+                    {% endif %}
+                    {% if section.settings.read_more_link %}
+                      <p>
+                        <a href="{{ article.url }}" title="{{ article.title | escape }}">{{ 'blogs.general.continue_reading_html' | t }} <span class="icon-arrow-right"></span></a>
+                      </p>
+                    {% endif %}
                   </div>
-              {% endif %}
-              {% if section.settings.read_more_link %}
-                <p>
-                  <a href="{{ article.url }}" title="{{ article.title | escape }}">{{ 'blogs.general.continue_reading_html' | t }} <span class="icon-arrow-right"></span></a>
-                </p>
-              {% endif %}
-            </div>
-          {% endfor %}
-{%- endcomment -%}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </section>
+          {% endunless %}
         </div>
       </div>
 
@@ -350,6 +362,61 @@
     }
   {% endif %}
 </style>
+
+
+<script src="{{ 'splide-slider.js' | asset_url }}"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    // prevents the slider from being initialized on the tag pages
+    if ($('.splide').length === 0) return;
+
+    const splide = new Splide(
+      '.splide',
+      {
+        autoWidth: true,
+        trimSpace: 'move',
+        padding: '40px',
+        gap: '40px',
+        pagination: false,
+        breakpoints: {
+          720: {
+            padding: '20px',
+            gap: '20px',
+          }
+        }
+      }
+    )
+
+    const hiddenClassnames = {
+      previous: 'hide-previous-arrow',
+      next: 'hide-next-arrow'
+    }
+
+    // hide previous arrow on mount
+    splide.on('mounted', function () {
+      splide.root.classList.add(hiddenClassnames.previous)
+    })
+
+    splide.on('arrows:updated', function () {
+
+      // hide prev arrow on first slide
+      if (splide.index > 0) {
+        splide.root.classList.remove(hiddenClassnames.previous)
+      } else {
+        splide.root.classList.add(hiddenClassnames.previous)
+      }
+
+      // hide next arrow on last slide
+      if (splide.index === splide.length - 1) {
+        splide.root.classList.add(hiddenClassnames.next)
+      } else {
+        splide.root.classList.remove(hiddenClassnames.next)
+      }
+    })
+
+    splide.mount()
+  });
+</script>
 
 {% schema %}
 
@@ -558,6 +625,150 @@
       "id": "toggle",
       "label": "Toggle sidebar content",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Feature posts on topic pages"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_body_feature_image",
+      "label": "Enable BODY feature image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "body_feature_image",
+      "label": "BODY feature image",
+      "info": "1600 x 1000px recommended"
+    },
+    {
+      "type": "text",
+      "id": "body_feature_title",
+      "label": "BODY feature title",
+      "default": "Body"
+    },
+    {
+      "type": "url",
+      "id": "body_feature_link",
+      "label": "BODY feature link"
+    },
+    {
+      "type": "textarea",
+      "id": "body_feature_description",
+      "label": "BODY feature description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_brain_feature_image",
+      "label": "Enable BRAIN feature image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "brain_feature_image",
+      "label": "BRAIN Feature Image",
+      "info": "1600 x 1000px recommended"
+    },
+    {
+      "type": "text",
+      "id": "brain_feature_title",
+      "label": "BRAIN feature title",
+      "default": "Brain"
+    },
+    {
+      "type": "url",
+      "id": "brain_feature_link",
+      "label": "BRAIN feature link"
+    },
+    {
+      "type": "textarea",
+      "id": "brain_feature_description",
+      "label": "BRAIN feature description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_nutrition_feature_image",
+      "label": "Enable NUTRITION feature image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "nutrition_feature_image",
+      "label": "NUTRITION feature image",
+      "info": "1600 x 1000px recommended"
+    },
+    {
+      "type": "text",
+      "id": "nutrition_feature_title",
+      "label": "NUTRITION feature title",
+      "default": "Nutrition"
+    },
+    {
+      "type": "url",
+      "id": "nutrition_feature_link",
+      "label": "NUTRITION feature link"
+    },
+    {
+      "type": "textarea",
+      "id": "nutrition_feature_description",
+      "label": "NUTRITION feature description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_keto_feature_image",
+      "label": "Enable KETO feature image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "keto_feature_image",
+      "label": "KETO feature image",
+      "info": "1600 x 1000px recommended"
+    },
+    {
+      "type": "text",
+      "id": "keto_feature_title",
+      "label": "KETO feature title",
+      "default": "Keto"
+    },
+    {
+      "type": "url",
+      "id": "keto_feature_link",
+      "label": "KETO feature link"
+    },
+    {
+      "type": "textarea",
+      "id": "keto_feature_description",
+      "label": "KETO feature description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_recipes_feature_image",
+      "label": "Enable RECIPES feature image",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "recipes_feature_image",
+      "label": "RECIPES feature image",
+      "info": "1600 x 1000px recommended"
+    },
+    {
+      "type": "text",
+      "id": "recipes_feature_title",
+      "label": "RECIPES feature title",
+      "default": "Recipes"
+    },
+    {
+      "type": "url",
+      "id": "recipes_feature_link",
+      "label": "RECIPES feature link"
+    },
+    {
+      "type": "textarea",
+      "id": "recipes_feature_description",
+      "label": "RECIPES feature description"
     }
   ],
   "blocks": [

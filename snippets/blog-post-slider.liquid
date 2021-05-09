@@ -1,0 +1,60 @@
+<section class="blog-post-slider" id="posts-slider">
+    <div class="static-image-left">
+        <img class="desktop-only" src="{{ 'blog-seven-desktop.jpg' | asset_url }}" />
+        <img class="mobile-only" src="{{ 'blog-seven-mobile.jpg' | asset_url }}" />
+    </div>
+
+    <div class="posts splide">
+        <div class="splide__arrows">
+            <button class="splide__arrow splide__arrow--prev">
+            {{ 'blog_slider_arrow.svg' | asset_url | img_tag }}
+            </button>
+            <button class="splide__arrow splide__arrow--next">
+            {{ 'blog_slider_arrow.svg' | asset_url | img_tag }}
+            </button>
+        </div>
+
+        {% comment %}
+        define each article as a string [title];[url] in a ,& separated string lol
+        {% endcomment %}
+        {% assign seven_posts = "
+            [THE SEVEN] 1. Identify + Remove Dietary Allergens and Toxins;https://besynchro.com/blogs/blog/the-seven-principles-of-nutrition-for-a-life-in-sync-1-identify-remove-dietary-allergens-and-toxins,&
+            [THE SEVEN] 2. Low-Carbohydrate, Metabolic-Flexibility Diet;https://besynchro.com/blogs/blog/the-seven-principles-of-nutrition-for-a-life-in-sync-2-low-carbohydrate-metabolic-flexibility-diet,&
+            [THE SEVEN] 3. How to Drink Water... Intelligently;https://besynchro.com/blogs/blog/the-seven-principles-of-nutrition-for-a-life-in-sync-3-how-to-drink-water-intelligently,&
+            [THE SEVEN] 4. Reducing The Cognitive Overhead Of Eating Well (i.e. Staple Meals);https://besynchro.com/blogs/blog/the-seven-principles-of-nutrition-for-a-life-in-sync-4-reducing-the-cognitive-overhead-of-eating-well-i-e-staple-meals,&
+            [THE SEVEN] 5. Take Care of Your (100 Trillion) Gut Bacteria;https://besynchro.com/blogs/blog/the-seven-principles-of-nutrition-for-a-life-in-sync-5-take-care-of-your-gut-flora,&
+            [THE SEVEN] 6. Eating Nothing (i.e. Time-Restricted Eating);https://besynchro.com/blogs/blog/the-seven-principles-of-nutrition-for-a-life-in-sync-6-eating-nothing-i-e-time-restricted-eating,&
+            [THE SEVEN] 7. The Truly Essential Supplements;https://besynchro.com/blogs/blog/the-seven-7-the-truly-essential-supplements
+            " | split: ',&'
+        %}
+
+        <div class="splide__track">
+            <ul class="splide__list">
+
+            {% for seven_post in seven_posts %}
+
+                {% assign i = i | plus: 1 | default: 0 %}
+                {% assign current_post = seven_post | split: ';' %}
+                {% assign post_title = current_post[0] %}
+                {% assign post_url = current_post[1] %}
+                {% assign img_filename = 'the-seven-blog-' | append: i | append: '-header.jpg' %}
+
+                <div class="splide__slide">
+                <a href="{{ post_url }}">
+                    <div class="post">
+                    {{ img_filename | asset_url | img_tag }}
+
+                    <div class="post-inner">
+                        <h3>{{ post_title }}</h3>
+                        <a class="read-more" href="{{ post_url }}"><span>Read more</span></a>
+                    </div>
+                    </div>
+                </a>
+                </div>
+
+            {% endfor %}
+
+            </ul>
+        </div>
+</div>
+</section>
