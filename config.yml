@@ -4,5 +4,5 @@ development:
   store: synchro-dev.myshopify.com
 production:
   password: af05443728f05f70e94d9b92b2d9d9a3
-  theme_id: "176806409"
+  theme_id: "120284348487"
   store: synchro.myshopify.com
