@@ -80,91 +80,36 @@
     </script>
 
     <script src="{{ 'app.js' | asset_url }}" defer></script>
+    <script src="{{ 'site-v2.js' | asset_url }}" defer></script>
+
+
+    <!-- yotpo plugin -->
+    {%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
+		{%- assign time_now = 'now' | date: '%s' %}
+		{%- assign yotpo_live_time = shop.metafields.yotpo.yotpo_live | date: '%s' %}
+		{%- assign diffSeconds = time_now | minus: yotpo_live_time %}
+		{%- if yotpo_offload_content == 'yes' and diffSeconds < 86400 -%}
+			{{ 'yotpo-full-css.css' | asset_url | stylesheet_tag }}
+		{%- endif -%}
+
+    <script defer>
+			(function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/syWV3O0DUgkkpDvutwXXSyHW0ZHmfejdusotXyXD/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+		</script>
+
+    <!--Gorgias Chat Widget Start-->
+    <script id="gorgias-chat-widget-install" defer>!function(_){_.GORGIAS_CHAT_APP_ID="4538",_.GORGIAS_CHAT_BASE_URL="us-east1-898b.production.gorgias.chat",_.GORGIAS_API_BASE_URL="config.gorgias.chat";var e=new XMLHttpRequest;e.open("GET","https://config.gorgias.chat/applications/4538",!0),e.onload=function(t){if(4===e.readyState)if(200===e.status){var n=JSON.parse(e.responseText);if(!n.application||!n.bundleVersion)throw new Error("Missing fields in the response body - https://config.gorgias.chat/applications/4538");if(_.GORGIAS_CHAT_APP=n.application,_.GORGIAS_CHAT_BUNDLE_VERSION=n.bundleVersion,n&&n.texts&&(_.GORGIAS_CHAT_TEXTS=n.texts),n&&n.sspTexts&&(_.GORGIAS_CHAT_SELF_SERVICE_PORTAL_TEXTS=n.sspTexts),!document.getElementById("gorgias-chat-container")){var o=document.createElement("div");o.id="gorgias-chat-container",document.body.appendChild(o);var r=document.createElement("script");r.setAttribute("defer",!0),r.src="https://storage.googleapis.com/gorgias-chat-production-client-builds/{bundleVersion}/static/js/main.js".replace("{bundleVersion}",n.bundleVersion),document.body.appendChild(r)}}else console.error("Failed request GET - https://config.gorgias.chat/applications/4538")},e.onerror=function(_){console.error(_)},e.send()}(window||{});</script><script id="gorgias-chat-shopify-install">!function(_){_.SHOPIFY_PERMANENT_DOMAIN="{{shop.permanent_domain}}",_.SHOPIFY_CUSTOMER_ID="{{customer.id}}",_.SHOPIFY_CUSTOMER_EMAIL="{{customer.email}}"}(window||{});</script>
+    <!--Gorgias Chat Widget End-->
+
+    <!-- HS Cart -->
+		{% render 'hs-cart-drawer' %}
+
+		<!-- Klaviyo Code -->
+		<script defer src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=PqjFfD"></script>
+		<!-- End Klaviyo Code -->
 
     {{ content_for_header }}
 
-    <noscript>
-      <style>
-
-        .slides > li:first-child { display: block; }
-        .image__fallback {
-          width: 100vw;
-          display: block !important;
-          max-width: 100vw !important;
-          margin-bottom: 0;
-        }
-
-        .no-js-only {
-          display: inherit !important;
-        }
-
-        .icon-cart.cart-button {
-          display: none;
-        }
-
-        .lazyload,
-        .cart_page_image img {
-          opacity: 1;
-          -webkit-filter: blur(0);
-          filter: blur(0);
-        }
-
-        .banner__text .container {
-          background-color: transparent;
-        }
-
-        .animate_right,
-        .animate_left,
-        .animate_up,
-        .animate_down {
-          opacity: 1;
-        }
-
-        .flexslider .slides>li {
-          display: block;
-        }
-
-        .product_section .product_form {
-          opacity: 1;
-        }
-
-        .multi_select,
-        form .select {
-          display: block !important;
-        }
-
-        .swatch-options {
-          display: none;
-        }
-
-        .parallax__wrap .banner__text {
-          position: absolute;
-          margin-left: auto;
-          margin-right: auto;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          top: 0;
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-align: center;
-          -ms-flex-align: center;
-          align-items: center;
-          -webkit-box-pack: center;
-          -ms-flex-pack: center;
-          justify-content: center;
-        }
-
-        .parallax__wrap .image__fallback {
-          max-height: 1000px;
-          -o-object-fit: cover;
-          object-fit: cover;
-        }
-
-      </style>
-    </noscript>
-
+    {% render 'noscript-styles' %}
   </head>
 
   {% if template contains "index" %}
@@ -246,5 +191,7 @@
     </script>
 
     {% render 'mobile-search' %}
+
+		{% render 'hs-cart-drawer-subscriptions' %}
   </body>
 </html>
