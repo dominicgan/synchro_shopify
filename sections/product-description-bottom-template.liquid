@@ -68,6 +68,8 @@
         </a>
     {% endif %}
 
+    <div class="yotpo bottomLine" data-product-id="{{ item.id }}"></div>
+    
     {% if collection_handles contains 'coming-soon' %}
       <p class="modal_price">{{ 'collections.general.coming_soon' | t }}</p>
     {% else %}

@@ -81,6 +81,19 @@
 
     <script src="{{ 'app.js' | asset_url }}" defer></script>
 
+    <!-- yotpo plugin -->
+    {%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
+		{%- assign time_now = 'now' | date: '%s' %}
+		{%- assign yotpo_live_time = shop.metafields.yotpo.yotpo_live | date: '%s' %}
+		{%- assign diffSeconds = time_now | minus: yotpo_live_time %}
+		{%- if yotpo_offload_content == 'yes' and diffSeconds < 86400 -%}
+			{{ 'yotpo-full-css.css' | asset_url | stylesheet_tag }}
+		{%- endif -%}
+
+    <script defer>
+			(function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/syWV3O0DUgkkpDvutwXXSyHW0ZHmfejdusotXyXD/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+		</script>
+
     {{ content_for_header }}
 
     <noscript>
