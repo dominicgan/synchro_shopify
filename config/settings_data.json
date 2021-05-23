@@ -2249,7 +2249,7 @@
     "email_link": "",
     "disqus_enabled": false,
     "disqus_shortname": "",
-    "currency_format": "money_with_currency_format",
+    "currency_format": "money_format",
     "search_option": "product",
     "favicon": "",
     "enable_mobile_parallax": false,
@@ -2522,9 +2522,9 @@
           "show_currency_selector": true,
           "footer_content": "<p>The statements on this website have not been evaluated by the Food and Drug Administration.<br\/>These products are not intended to diagnose, treat, cure or prevent any disease.<br\/>*Free shipping on orders over $125 only valid in the USA. Gold Turmeric Elixir is not eligible (Gold Turmeric Capsules, however, ARE eligible)<\/p>",
           "footer_newsletter": false,
-          "display_first_name": false,
-          "display_last_name": false,
-          "richtext": "<p>Sign up to get the latest on sales, new releases and more…<\/p>",
+          "mailing-list-title": "",
+          "mailing-list-blurb": "",
+          "mailing-list-footnote": "",
           "copyright_text": "All rights reserved.",
           "display_payment_methods": true,
           "custom_html": ""
@@ -2541,10 +2541,10 @@
           "announcement_link": "shopify:\/\/collections\/shop",
           "announcement_bg_color": "#319e9e",
           "announcement_text_color": "#ffffff",
-          "logo": "shopify:\/\/shop_images\/logo.png",
+          "logo": "shopify:\/\/shop_images\/logo_ce55312f-0db3-4262-b68c-602e6e0194b9.png",
           "logo_height": 20,
           "logo_top_padding": 5,
-          "main_linklist": "main-menu",
+          "main_linklist": "main-menu-2",
           "dropdown_column_links": 10,
           "dropdown_position": "below_header",
           "menu_alignment": "align_right",
@@ -2592,6 +2592,7 @@
               "title": "",
               "subtitle": "",
               "button_label": "",
+              "link": "shopify:\/\/collections\/shop",
               "text_position": "center center"
             }
           },
@@ -2603,6 +2604,7 @@
               "title": "",
               "subtitle": "",
               "button_label": "",
+              "link": "https:\/\/besynchro.com\/blogs\/blog\/tagged\/recipes",
               "text_position": "center center"
             }
           },
@@ -2614,6 +2616,7 @@
               "title": "",
               "subtitle": "",
               "button_label": "",
+              "link": "https:\/\/besynchro.com\/blogs\/blog\/tagged\/the-seven",
               "text_position": "center center"
             }
           }
@@ -2635,7 +2638,6 @@
           "16168980358ac1da2c-0": {
             "type": "quote",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-testimonial-1-avatar.jpg",
               "testimonial": "<p>I have been taking Synchro Gold for the last 6 months, and I take it everyday. I sleep through the night, climb any mountain, run challenging courses. Today, I feel stronger than ever.<\/p>",
               "name": "Susan Riggio - Gold Liposomal Turmeric customer"
             }
@@ -2643,7 +2645,6 @@
           "16168980358ac1da2c-1": {
             "type": "quote",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-testimonial-2-avatar.jpg",
               "testimonial": "<p>“I love the sustained energy I feel. Genesis is not JUST a vegan protein - it is an entire meal replacement powerfood shake.”<\/p>",
               "name": "MaryAnn Elizebeth - Genesis customer"
             }
@@ -2651,7 +2652,6 @@
           "16168980358ac1da2c-2": {
             "type": "quote",
             "settings": {
-              "image": "shopify:\/\/shop_images\/home-testimonial-3-avatar.jpg",
               "testimonial": "<p>“Love this product. I&#x27;ve used it for a year and a half. Feel awesome, helped with joint pain and not one migraine! It’s really nice to find a company with high quality products with efficacy. Thanks!”<\/p>",
               "name": "Connie Graber - Gold Liposomal Turmeric customer"
             }
@@ -2683,7 +2683,7 @@
             "type": "image_ad",
             "settings": {
               "product": "medical-grade-liposomal-turmeric-supplement-60ct-capsules",
-              "image": "shopify:\/\/shop_images\/blog-cap-ad-1_2x_66498d3e-f0f4-4165-93b9-627f4f1fa1d0.png"
+              "image": "shopify:\/\/shop_images\/blog-cap-ad-1_2x_6e1de619-6c4c-4a8c-8c5b-cd53c07f7a73.png"
             }
           }
         },
@@ -2737,7 +2737,7 @@
         "type": "collection-template",
         "settings": {
           "display_collection_header_title": false,
-          "collection_breadcrumb": true,
+          "collection_breadcrumb": false,
           "collection_sort": false,
           "collection_tags": false,
           "featured_collection_image": false,
@@ -2749,6 +2749,47 @@
           "parallax_effect": true,
           "parallax_image_height": 400,
           "toggle": false
+        }
+      },
+      "blog-template": {
+        "type": "blog-template",
+        "settings": {
+          "blog_breadcrumb": false,
+          "blog_tags": false,
+          "blog_author": false,
+          "blog_date": true,
+          "blog_comment_count": false,
+          "read_more_link": true,
+          "blog_posts_per_row": 3,
+          "blog_posts_per_page": 12,
+          "image_focal_point": "center center",
+          "darken_image": false,
+          "image_blog_headline": "My blog",
+          "image_blog_subtitle": "<p>This is a subheading for your blog page<\/p>",
+          "text_position": "center center",
+          "parallax_effect": true,
+          "parallax_image_height": 400,
+          "toggle": false,
+          "show_body_feature_image": true,
+          "body_feature_image": "shopify:\/\/shop_images\/body-optimization-image.png",
+          "body_feature_title": "Body",
+          "body_feature_description": "",
+          "show_brain_feature_image": true,
+          "brain_feature_image": "shopify:\/\/shop_images\/brain-enhancement-image.png",
+          "brain_feature_title": "Brain",
+          "brain_feature_description": "",
+          "show_nutrition_feature_image": true,
+          "nutrition_feature_image": "shopify:\/\/shop_images\/nutrition-image.png",
+          "nutrition_feature_title": "Nutrition",
+          "nutrition_feature_description": "",
+          "show_keto_feature_image": true,
+          "keto_feature_image": "shopify:\/\/shop_images\/keto-image.png",
+          "keto_feature_title": "Keto",
+          "keto_feature_description": "",
+          "show_recipes_feature_image": true,
+          "recipes_feature_image": "shopify:\/\/shop_images\/recipes-image.png",
+          "recipes_feature_title": "Recipes",
+          "recipes_feature_description": ""
         }
       }
     },
