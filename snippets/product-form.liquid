@@ -31,7 +31,7 @@
           data-variant-inventory='[{%- for v in product.variants -%}{"id":{{v.id}},"inventory_quantity":{{v.inventory_quantity}},"inventory_management":"{{v.inventory_management}}","inventory_policy":"{{v.inventory_policy}}"}{% if forloop.last == false %},{% endif %}{%- endfor -%}]'
         {% endif %}
         data-product-id="{{ product.id }}">
-  {% form 'product', product, id: "product-form" %}
+  {% form 'product', product, id: "product-form", data-productid: product.id %}
 
     {% if product.available %}
       {% if settings.display_inventory_left %}
@@ -83,6 +83,8 @@
         {% endfor %}
       </div>
     {% endif %}
+
+    {% render "subscription-product" %}
 
     <div class="purchase-details smart-payment-button--{{ show_payment_button }}">
       {% if settings.display_product_quantity and product.available %}
