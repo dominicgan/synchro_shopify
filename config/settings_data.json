@@ -2491,7 +2491,7 @@
         "settings": {
           "product_breadcrumb": false,
           "display_thumbnails": true,
-          "gallery_arrows": true,
+          "gallery_arrows": false,
           "activate_zoom": true,
           "slideshow_speed": 0,
           "slideshow_transition": "slide",
@@ -2533,7 +2533,7 @@
       "header": {
         "type": "header",
         "settings": {
-          "fixed_header": true,
+          "fixed_header": false,
           "content_top_padding": 215,
           "show_announcement": true,
           "promo_home_page": false,
@@ -2638,6 +2638,7 @@
           "16168980358ac1da2c-0": {
             "type": "quote",
             "settings": {
+              "image": "shopify:\/\/shop_images\/testi-susan-riggo.jpg",
               "testimonial": "<p>I have been taking Synchro Gold for the last 6 months, and I take it everyday. I sleep through the night, climb any mountain, run challenging courses. Today, I feel stronger than ever.<\/p>",
               "name": "Susan Riggio - Gold Liposomal Turmeric customer"
             }
@@ -2645,6 +2646,7 @@
           "16168980358ac1da2c-1": {
             "type": "quote",
             "settings": {
+              "image": "shopify:\/\/shop_images\/testi-maryann-elizebeth.jpg",
               "testimonial": "<p>“I love the sustained energy I feel. Genesis is not JUST a vegan protein - it is an entire meal replacement powerfood shake.”<\/p>",
               "name": "MaryAnn Elizebeth - Genesis customer"
             }
@@ -2652,7 +2654,8 @@
           "16168980358ac1da2c-2": {
             "type": "quote",
             "settings": {
-              "testimonial": "<p>“Love this product. I&#x27;ve used it for a year and a half. Feel awesome, helped with joint pain and not one migraine! It’s really nice to find a company with high quality products with efficacy. Thanks!”<\/p>",
+              "image": "shopify:\/\/shop_images\/testi-connie-grabber.jpg",
+              "testimonial": "<p>“Love this product. I've used it for a year and a half. Feel awesome, helped with joint pain and not one migraine! It’s really nice to find a company with high quality products with efficacy. Thanks!”<\/p>",
               "name": "Connie Graber - Gold Liposomal Turmeric customer"
             }
           }
@@ -2683,7 +2686,7 @@
             "type": "image_ad",
             "settings": {
               "product": "medical-grade-liposomal-turmeric-supplement-60ct-capsules",
-              "image": "shopify:\/\/shop_images\/blog-cap-ad-1_2x_6e1de619-6c4c-4a8c-8c5b-cd53c07f7a73.png"
+              "image": "shopify:\/\/shop_images\/blog-cap-ad-1_2x_66498d3e-f0f4-4165-93b9-627f4f1fa1d0.png"
             }
           }
         },
@@ -2723,14 +2726,6 @@
           "show_divider": true,
           "products_per_row": 4,
           "recommended_products_limit": 4
-        }
-      },
-      "1618151057ac2a830c": {
-        "type": "mailing-list",
-        "settings": {
-          "mailing-list-title": "Join Us And Get 10% Off Your Next Order*",
-          "mailing-list-blurb": "Our best stuff comes via email. Subscriber-only articles, videos and - of course - access to the subscriber-only sales.",
-          "mailing-list-footnote": "*Offer for new subscribers only. We'll send you your coupon via email."
         }
       },
       "collection-template": {
@@ -2797,8 +2792,7 @@
       "16168977434f7afee0",
       "1482978263392",
       "1482978288287",
-      "16168980358ac1da2c",
-      "1618151057ac2a830c"
+      "16168980358ac1da2c"
     ]
   }
 }
