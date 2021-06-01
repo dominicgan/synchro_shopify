@@ -2752,7 +2752,7 @@
           "blog_breadcrumb": false,
           "blog_tags": false,
           "blog_author": false,
-          "blog_date": true,
+          "blog_date": false,
           "blog_comment_count": false,
           "read_more_link": true,
           "blog_posts_per_row": 3,
