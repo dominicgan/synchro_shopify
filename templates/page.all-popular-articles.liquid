@@ -1,7 +1,28 @@
-<div id="blog">
-  <section>
-    {% assign containerClass = 'row justify-content-center' %}
-    {% assign itemClass = 'post col-md-4 col-sm-6' %}
+<div class="all-popular-articles">
+  <div class="current-header header-area-part blog-header-section-only">
+    <div class="main-header">
+      <div class="after-header">
+        <div class="after-header-inner">
+          <div class="second-logo">
+          <a href="/blogs/blog"><img src="{{'secondary-logo.png' | asset_url}}" alt="The Synchro Life"></a>
+          </div>
+          <div class="topicmenu">
+            <ul class="topicmenulinklist">
+              {% for link in linklists.topic-menu.links %}
+              <li>
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    {% assign containerClass = 'container' %}
+    {% assign itemClass = 'post one-third columns medium-down--one-whole' %}
     {% assign showPagination = true %}
     {% assign showAll = true %}
     {% assign tag = 'popular' %}
