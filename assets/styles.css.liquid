@@ -4112,7 +4112,7 @@ p.meta {
 .article_image {
   display: block;
   padding-bottom: 30px;
-  /* text-align: center; */
+  text-align: center;
 }
 
 .article .image-element__wrap {
@@ -4797,6 +4797,7 @@ div#disqus_thread li {
   -ms-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
+  font-size: 20px;
 }
 
 /* #Blog posts
@@ -13889,7 +13890,7 @@ body[class^=page-details] .footer {
 .article h1,
 .article h2,
 .article h3 {
-  text-align: left;
+  text-align: center;
 }
 
 .article-content a,
@@ -14079,6 +14080,11 @@ body[class^=page-details] .footer {
 	 line-height: 26px;
 	 width: 100%;
 }
+
+.blog-post-slider .posts .post .post-inner .read-more {
+  align-self: flex-start;
+}
+  
  @media screen and (min-width: 481px) {
 	 .blog-post-slider .posts {
 		 padding: 40px 0;
@@ -14203,6 +14209,14 @@ label.rc_label,
   color: #4d4d4d;
 }
 
+.read-more {
+	color: #448e7c;
+	border-bottom: 1px solid #448e7c;
+	font-weight: 600;
+	letter-spacing: 0.4px;
+  line-height: 1.2;
+}
+
 .all-popular-articles .post .image {
   height: 270px;
 	background-size: cover;
@@ -14223,13 +14237,6 @@ label.rc_label,
 
 .all-popular-articles .post .post-inner p {
   color: #666;
-}
-
-.all-popular-articles .post .read-more {
-	color: #448e7c;
-	border-bottom: 1px solid #448e7c;
-	font-weight: 600;
-	letter-spacing: 0.4px;
 }
 
 .all-popular-articles .pagination,

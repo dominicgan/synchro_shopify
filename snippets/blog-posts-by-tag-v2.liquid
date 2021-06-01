@@ -67,6 +67,8 @@
             {% endif %}
           </p>
 
+          <p class="blog_description">{{ article.excerpt_or_content | strip_html | truncate: 150 }}</p>
+
           {% if article.excerpt != blank %}
               {%- assign postexcerpt = article.excerpt | size -%}
               {% if postexcerpt > 100 %}
@@ -81,7 +83,7 @@
           {% endif %}
           {% if section.settings.read_more_link %}
             <p>
-              <a href="{{ article.url }}" title="{{ article.title | escape }}">{{ 'blogs.general.continue_reading_html' | t }} <span class="icon-arrow-right"></span></a>
+              <a class="read-more" href="{{ article.url }}" title="{{ article.title | escape }}">{{ 'blogs.general.continue_reading_html' | t }}</span></a>
             </p>
           {% endif %}
         </div>
