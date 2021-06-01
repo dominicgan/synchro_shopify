@@ -1,0 +1,29 @@
+{% comment %} Flickity Product Gallery Thumbnails {% endcomment %}
+{% if display_thumbnails == true %}
+  {% if thumbnail_position != 'no-thumbnails' and product.media.size > 1 %}
+    <div class="product-gallery__thumbnails
+                product-gallery__thumbnails--{{ thumbnail_position }}
+                is-slide-nav--{{ enable_thumbnail_slider }}">
+
+      {% capture video_badge %}
+        <div class="media-badge"><svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 25H25V1H1V25Z" fill="white"/><path class="media-badge__outline" d="M0.5 25V25.5H1H25H25.5V25V1V0.5H25H1H0.5V1V25Z" stroke="black" stroke-opacity="0.05"/><path fill-rule="evenodd" clip-rule="evenodd" d="M8.19995 5.8V20.2L19.3999 12.5858L8.19995 5.8Z" fill="#3A3A3A" fill-opacity="0.6"/></svg></div>
+      {% endcapture %}
+      {% capture model_badge %}
+        <div class="media-badge"><svg viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 25H25V1H1V25Z" fill="white"/><path class="media-badge__outline" d="M0.5 25V25.5H1H25H25.5V25V1V0.5H25H1H0.5V1V25Z" stroke="black" stroke-opacity="0.05"/><g opacity="0.6"><path fill-rule="evenodd" clip-rule="evenodd" d="M13 6L19.0622 9.5V16.5L13 20L6.93782 16.5V9.5L13 6Z" stroke="#3A3A3A" stroke-width="1.5"/><path fill-rule="evenodd" clip-rule="evenodd" d="M13 20V12.6024C13.6225 12.2002 13.6225 12.2002 13.6225 12.2002L19 9V16.4082L13 20Z" fill="#3A3A3A"/></g></svg></div>
+      {% endcapture %}
+
+      {% for media in product.media %}
+        <div class="product-gallery__thumbnail" tabindex="0">
+          <img src="{{ media | img_url: '300x' }}" alt="{{ media.alt | escape }}">
+
+          {% comment %} Add media badge depending on media type {% endcomment %}
+          {% if media.media_type contains 'video' %}
+            {{ video_badge }}
+          {% elsif media.media_type contains 'model' %}
+            {{ model_badge }}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endif %}

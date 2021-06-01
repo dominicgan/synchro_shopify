@@ -16,168 +16,217 @@
     data-thumbnails-position="{{ section.settings.thumbnail_position }}"
     data-thumbnails-slider-enabled="{{ section.settings.enable_thumbnail_slider }}"
     data-activate-zoom="{{ section.settings.activate_zoom }}">
-  <div class="three-fifths columns medium-down--one-whole">
-    {% render 'product-images',
-            video_looping: section.settings.video_looping,
-            set_product_height: section.settings.set_product_height
-    %}
-  </div>
 
-  <div class="two-fifths columns medium-down--one-whole">
-    {%- assign collection_handles = product.collections | map: 'handle' -%}
-    {%- assign variant = product.selected_or_first_available_variant -%}
+  {% comment %} @dominic: new product image wrapper {% endcomment %}
+  {% comment %}
+  Required value for when product media enabled
+  video_looping: <boolean>
 
-    {% comment %}
-    <h1 class="product_name">{{ product.title }}</h1>
-    {% endcomment %}
-    <h1 class="product_name">{{ product.type }}</h1>
+  Optional
+  ---------
+  set_product_height: <boolean>
+  quickshop: <boolean>
+  {% endcomment %}
 
-    {% if section.settings.display_vendor %}
-      <p class="vendor">
-      {% comment %}
-        <span>{{ product.vendor | link_to_vendor }}</span>
-      {% endcomment %}
-        <span>{{ product.vendor }}</span>
-      </p>
-    {% endif %}
+  {% comment %} If within quickshop, reference theme settings instead {% endcomment %}
+  {% if quickshop %}
+    {%- assign display_thumbnails = settings.display_thumbnails -%}
+    {%- assign thumbnail_position = settings.thumbnail_position -%}
+    {%- assign enable_thumbnail_slider = settings.enable_thumbnail_slider -%}
+    {%- assign gallery_arrows = settings.gallery_arrows -%}
+    {%- assign slideshow_transition = settings.slideshow_transition -%}
+  {% else %}
+    {%- assign display_thumbnails = section.settings.display_thumbnails -%}
+    {%- assign thumbnail_position = section.settings.thumbnail_position -%}
+    {%- assign enable_thumbnail_slider = section.settings.enable_thumbnail_slider -%}
+    {%- assign gallery_arrows = section.settings.gallery_arrows -%}
+    {%- assign slideshow_transition = section.settings.slideshow_transition -%}
+  {% endif %}
 
-    {% if variant.sku != blank and section.settings.display_sku %}
-      <p class="sku">
-        <span>{{ variant.sku }}</span>
-      </p>
-    {% endif %}
+  {%- assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image -%}
 
-    {% if settings.enable_shopify_product_badges %}
-      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-    {% endif %}
+  <div class="product-gallery product-{{ product.id }}-gallery
+      {% if product-images == blank %}product_slider{% endif %}
+      {% if set_product_height != blank %}product-height-set{% endif %}
+      product-gallery__thumbnails--{{ display_thumbnails }}
+      product-gallery--{{ thumbnail_position }}
+      product-gallery--media-amount-{{ product.media.size }}
+      display-arrows--{{ gallery_arrows }}
+      slideshow-transition--{{ slideshow_transition }}">
 
-    {% if settings.enable_shopify_product_badges %}
-      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-    {% endif %}
-
-    {%- assign product_tags = product.tags | join: ' ' -%}
-    {% if product_tags contains 'meta-size-chart-' %}
-      {% for tag in product.tags %}
-        {% if tag contains 'meta-size-chart-' %}
-          <a
-            href="javascript:;"
-            class="size_chart"
-            data-fancybox
-            data-src="#size-chart-{{ product.id }}">
-            {{ 'products.product.size_chart' | t }} <span class="icon-right-arrow"></span>
-          </a>
-          {% render 'size-chart-popup', product: product %}
-        {% endif %}
-      {% endfor %}
-    {% elsif settings.size_chart != blank %}
-      <a
-        href="javascript:;"
-        data-fancybox
-        data-src="#size-chart-{{ product.id }}"
-        class="size_chart">{{ 'products.product.size_chart' | t }} <span class="icon-right-arrow"></span>
-        </a>
-    {% endif %}
-
-    <div class="yotpo bottomLine" data-product-id="{{ item.id }}"></div>
-
-    {% if collection_handles contains 'coming-soon' %}
-      <p class="modal_price">{{ 'collections.general.coming_soon' | t }}</p>
-    {% else %}
-      <p class="modal_price {% if variant.available == false %}modal_price--sold-out{% endif %}">
-        <span content="{{ variant.price | money_without_currency | remove: "," }}" class="{% if variant.compare_at_price > variant.price %}sale{% endif %}">
-          <span class="current_price">
-            {% if variant.price > 0 %}
-              <span class="money">
-                {% render 'price-element', price: variant.price %}
-              </span>
-            {% else %}
-              {{ settings.free_price_text }}
-            {% endif %}
-          </span>
-        </span>
-
-        <span class="was_price">
-          {% if variant.price < variant.compare_at_price and variant.available %}
-            <span class="money">
-              {% render 'price-element', price: variant.compare_at_price %}
-            </span>
-          {% endif %}
-        </span>
-
-        <span class="sold_out">{% if variant.available == false %}&ndash; {{ 'products.product.sold_out' | t }}{% endif %}</span>
-      </p>
-
-      {% if settings.notify_me_form %}
-        {% render 'product-notify-me', product: product %}
-      {% endif %}
-    {% endif %}
-
-    {% if section.settings.product_description_position == "top" %}
-      {% if product.description != blank %}
-        <div class="description">
-          {{ product.description | split: '<!-- split -->' | first }}
-        </div>
-      {% endif %}
-    {% endif %}
-
-    {% unless collection_handles contains 'coming-soon' %}
-      {% render 'product-form',
-              product: product,
-              context: 'product',
-              collection_handles: collection_handles
+    <div class="three-fifths columns medium-down--one-whole product__image-container">
+      {% render 'product-images-main',
+              video_looping: section.settings.video_looping,
+              set_product_height: section.settings.set_product_height
       %}
-    {% endunless %}
-
-    {% if settings.enable_shopify_review_comments and settings.review_position == "top" %}
-      <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
-    {% endif %}
-
-    {% if section.settings.display_collections or section.settings.display_tags or section.settings.display_type %}
-      <hr />
-    {% endif %}
-
-    <div class="meta">
-      {% render 'social-buttons', context: 'product' %}
-
-      {% if section.settings.display_collections %}
-        <p>
-          <span class="label">{{ 'products.product.collections' | t }}:</span>
-
-          <span>
-            {% for col in product.collections %}
-              <a href="{{ col.url }}" title="{{ col.title }}">{{ col.title }}</a>{% unless forloop.last %},{% endunless %}
-            {% endfor %}
-          </span>
-        </p>
-      {% endif %}
-
-      {% if section.settings.display_tags %}
-        <p>
-          {% for tag in product.tags %}
-            {% if forloop.first %}
-              <span class="label">{{ 'products.product.tags' | t }}:</span>
-            {% endif %}
-
-            {% unless tag contains 'meta-' %}
-              <span>
-                <a href="{{ routes.collections_url }}/{% if collection %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handle }}" title="{{ 'products.product.products_tagged' | t: tag: tag }}">{{ tag }}</a>{% unless forloop.last %},{% endunless %}
-              </span>
-            {% endunless %}
-          {% endfor %}
-        </p>
-      {% endif %}
-
-      {% if section.settings.display_type %}
-        <p>
-          <span class="label">{{ 'products.product.product_types' | t }}:</span>
-          <span>{{ product.type | link_to_type }}</span>
-        </p>
-      {% endif %}
     </div>
+
+    <div class="two-fifths columns medium-down--one-whole product__description-container">
+      {%- assign collection_handles = product.collections | map: 'handle' -%}
+      {%- assign variant = product.selected_or_first_available_variant -%}
+
+      {% comment %}
+      <h1 class="product_name">{{ product.title }}</h1>
+      {% endcomment %}
+      <h1 class="product_name">{{ product.type }}</h1>
+
+      {% if section.settings.display_vendor %}
+        <p class="vendor">
+        {% comment %}
+          <span>{{ product.vendor | link_to_vendor }}</span>
+        {% endcomment %}
+          <span>{{ product.vendor }}</span>
+        </p>
+      {% endif %}
+
+      {% if variant.sku != blank and section.settings.display_sku %}
+        <p class="sku">
+          <span>{{ variant.sku }}</span>
+        </p>
+      {% endif %}
+
+      {% if settings.enable_shopify_product_badges %}
+        <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+      {% endif %}
+
+      {% if settings.enable_shopify_product_badges %}
+        <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+      {% endif %}
+
+      {%- assign product_tags = product.tags | join: ' ' -%}
+      {% if product_tags contains 'meta-size-chart-' %}
+        {% for tag in product.tags %}
+          {% if tag contains 'meta-size-chart-' %}
+            <a
+              href="javascript:;"
+              class="size_chart"
+              data-fancybox
+              data-src="#size-chart-{{ product.id }}">
+              {{ 'products.product.size_chart' | t }} <span class="icon-right-arrow"></span>
+            </a>
+            {% render 'size-chart-popup', product: product %}
+          {% endif %}
+        {% endfor %}
+      {% elsif settings.size_chart != blank %}
+        <a
+          href="javascript:;"
+          data-fancybox
+          data-src="#size-chart-{{ product.id }}"
+          class="size_chart">{{ 'products.product.size_chart' | t }} <span class="icon-right-arrow"></span>
+          </a>
+      {% endif %}
+
+      <div class="yotpo bottomLine" data-product-id="{{ item.id }}"></div>
+
+      {% if collection_handles contains 'coming-soon' %}
+        <p class="modal_price">{{ 'collections.general.coming_soon' | t }}</p>
+      {% else %}
+        <p class="modal_price {% if variant.available == false %}modal_price--sold-out{% endif %}">
+          <span content="{{ variant.price | money_without_currency | remove: "," }}" class="{% if variant.compare_at_price > variant.price %}sale{% endif %}">
+            <span class="current_price">
+              {% if variant.price > 0 %}
+                <span class="money">
+                  {% render 'price-element', price: variant.price %}
+                </span>
+              {% else %}
+                {{ settings.free_price_text }}
+              {% endif %}
+            </span>
+          </span>
+
+          <span class="was_price">
+            {% if variant.price < variant.compare_at_price and variant.available %}
+              <span class="money">
+                {% render 'price-element', price: variant.compare_at_price %}
+              </span>
+            {% endif %}
+          </span>
+
+          <span class="sold_out">{% if variant.available == false %}&ndash; {{ 'products.product.sold_out' | t }}{% endif %}</span>
+        </p>
+
+        {% if settings.notify_me_form %}
+          {% render 'product-notify-me', product: product %}
+        {% endif %}
+      {% endif %}
+
+      {% if section.settings.product_description_position == "top" %}
+        {% if product.description != blank %}
+          <div class="description">
+            {{ product.description | split: '<!-- split -->' | first }}
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {% unless collection_handles contains 'coming-soon' %}
+        {% render 'product-form',
+                product: product,
+                context: 'product',
+                collection_handles: collection_handles
+        %}
+      {% endunless %}
+
+      {% if settings.enable_shopify_review_comments and settings.review_position == "top" %}
+        <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+      {% endif %}
+
+      {% if section.settings.display_collections or section.settings.display_tags or section.settings.display_type %}
+        <hr />
+      {% endif %}
+
+      <div class="meta">
+        {% render 'social-buttons', context: 'product' %}
+
+        {% if section.settings.display_collections %}
+          <p>
+            <span class="label">{{ 'products.product.collections' | t }}:</span>
+
+            <span>
+              {% for col in product.collections %}
+                <a href="{{ col.url }}" title="{{ col.title }}">{{ col.title }}</a>{% unless forloop.last %},{% endunless %}
+              {% endfor %}
+            </span>
+          </p>
+        {% endif %}
+
+        {% if section.settings.display_tags %}
+          <p>
+            {% for tag in product.tags %}
+              {% if forloop.first %}
+                <span class="label">{{ 'products.product.tags' | t }}:</span>
+              {% endif %}
+
+              {% unless tag contains 'meta-' %}
+                <span>
+                  <a href="{{ routes.collections_url }}/{% if collection %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handle }}" title="{{ 'products.product.products_tagged' | t: tag: tag }}">{{ tag }}</a>{% unless forloop.last %},{% endunless %}
+                </span>
+              {% endunless %}
+            {% endfor %}
+          </p>
+        {% endif %}
+
+        {% if section.settings.display_type %}
+          <p>
+            <span class="label">{{ 'products.product.product_types' | t }}:</span>
+            <span>{{ product.type | link_to_type }}</span>
+          </p>
+        {% endif %}
+      </div>
+    </div>
+
+    {% comment %} @dominic: new product thumbnails mobile {% endcomment %}
+    <div class="one-whole columns product__thumbnail-container">
+      {% render 'product-images-thumbnails',
+              display_thumbnails: display_thumbnails,
+              video_looping: section.settings.video_looping,
+              set_product_height: section.settings.set_product_height
+      %}
+    </div>
+
   </div>
 </div>
 
-<!-- @dominic: Start – new product description -->
+{% comment %} @dominic: Start – new product description {% endcomment %}
 <div class="one-whole columns">
   {% if section.settings.product_description_position == "bottom" %}
     {% if product.description != blank %}
@@ -187,7 +236,7 @@
     {% endif %}
   {% endif %}
 </div>
-<!-- @dominic: End – new product description -->
+{% comment %} @dominic: End – new product description {% endcomment %}
 
 {% if product.description contains "<!-- split -->"  %}
   <div class="one-whole column">

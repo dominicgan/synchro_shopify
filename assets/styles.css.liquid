@@ -6445,8 +6445,11 @@ https://flickity.metafizzy.co
 
 /* #Thumbnail Gallery Styles
 ================================================== */
+.product-gallery__thumbnails {
+  margin: 40px 0 0;
+}
 .product-gallery__thumbnails .product-gallery__thumbnail {
-  width: calc(25% - 10px);
+  width: calc(100% / 7 - 10px);
   margin: 0 5px;
 }
 .product-gallery__thumbnails .product-gallery__thumbnail img {
@@ -13751,8 +13754,8 @@ body[class^=page-details] .footer {
 }
 
 .product-gallery__thumbnails.product-gallery__thumbnails--bottom-thumbnails {
-  max-width: 1200px;
-  width: calc(95vw - 20px);
+  /* max-width: 1200px;
+  width: calc(95vw - 20px); */
 }
 
 /* general pages/blog content layout */
@@ -14158,4 +14161,22 @@ body[class^=page-details] .footer {
 
 .payment_methods {
   filter: grayscale(1);
+}
+
+.product-gallery {
+	flex: 1 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px) {
+  .product__image-container {
+    order: 0;
+  }
+  .product__description-container {
+    order: 2;
+  }
+  .product__thumbnail-container {
+    order: 1;
+  }
 }
