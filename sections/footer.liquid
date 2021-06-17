@@ -155,11 +155,21 @@ last_name: section.settings.display_last_name
         {% if section.settings.display_payment_methods %}
           <div class="payment_methods">
             {% for type in shop.enabled_payment_types %}
-              {{ type | payment_type_svg_tag: class:'payment-icon' }}
+              {% if 
+                type == 'american_express' or 
+                type == 'discover' or 
+                type == 'diners_club' or 
+                type == 'bitcoin' or 
+                type == 'master' or 
+                type == 'paypal' or 
+                type == 'visa' %}
+                <!-- {{ type }} -->
+                {{ type | payment_type_svg_tag: class:'payment-icon' }}
+              {% endif %}
             {% endfor %}
           </div>
         {% endif %}
-        
+
         <div class="footer__info">
           {% render 'localization-switcher',
                   additional_classes: 'footer-menu__disclosure',
@@ -171,7 +181,7 @@ last_name: section.settings.display_last_name
           <p class="credits">
             &copy; {{ "now" | date: "%Y" }} {{ shop.name | link_to: '/' }}.
             {{ section.settings.copyright_text | escape }}<br />
-            {{ powered_by_link }}
+            <!-- {{ powered_by_link }} -->
           </p>
         </div>
       </div>
