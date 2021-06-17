@@ -25,14 +25,14 @@
           {% endif %}
         {% else %}
           <div class="{% render 'column-width', value: section.settings.blog_posts_per_row %} column medium-down--one-whole article">
-            {% if article.image != blank %}
+            {%- comment -%}Get image from first image added in post content{%- endcomment -%}
+              {% assign backupImage = article.image.src %}
+              {% assign article_image = article.content | split: 'src="' %}
+              {% assign article_image = article_image[1] | split: '"' | first | default: backupImage %}
+
               <a href="{{ article.url }}" title="{{ article.title | escape }}">
-                {% render 'image-element',
-                        image: article.image,
-                        alt: article.image.alt
-                %}
+                <div class="article__cover-image" style='background-image: url("{{ article_image }}");'></div>
               </a>
-            {% endif %}
         {% endif %}
 
           {% if section.settings.blog_tags %}
@@ -45,7 +45,7 @@
 
           <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
 
-          <p class="blog_meta">
+          <p class="blog_meta">{% if section.settings.blog_author or section.settings.blog_date or section.settings.blog_comment_count %}
             {% if section.settings.blog_author %}
               <span>{{ 'blogs.article.by_author' | t: author: article.author }}</span>
             {% endif %}
@@ -65,7 +65,7 @@
                 </span>
               {% endif %}
             {% endif %}
-          </p>
+          {% endif %}</p>
 
           <p class="blog_description">{{ article.excerpt_or_content | strip_html | truncate: 150 }}</p>
 
@@ -82,9 +82,7 @@
               </div>
           {% endif %}
           {% if section.settings.read_more_link %}
-            <p>
-              <a class="read-more" href="{{ article.url }}" title="{{ article.title | escape }}">{{ 'blogs.general.continue_reading_html' | t }}</span></a>
-            </p>
+            <a class="read-more" href="{{ article.url }}" title="{{ article.title | escape }}">{{ 'blogs.general.continue_reading_html' | t }}</span></a>
           {% endif %}
         </div>
 
