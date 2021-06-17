@@ -139,6 +139,20 @@ last_name: section.settings.display_last_name
 
         {{ section.settings.custom_html }}
 
+        {% if section.settings.footer_content != blank %}
+          <div class="footer__contents">
+            {{ section.settings.footer_content }}
+          </div>
+        {% endif %}
+
+        {% if section.settings.display_payment_methods %}
+          <div class="payment_methods">
+            {% for type in shop.enabled_payment_types %}
+              {{ type | payment_type_svg_tag: class:'payment-icon' }}
+            {% endfor %}
+          </div>
+        {% endif %}
+        
         <div class="footer__info">
           {% render 'localization-switcher',
                   additional_classes: 'footer-menu__disclosure',
@@ -153,18 +167,6 @@ last_name: section.settings.display_last_name
             {{ powered_by_link }}
           </p>
         </div>
-
-        {% if section.settings.display_payment_methods %}
-          <div class="payment_methods">
-            {% for type in shop.enabled_payment_types %}
-              {{ type | payment_type_svg_tag: class:'payment-icon' }}
-            {% endfor %}
-          </div>
-        {% endif %}
-
-        {% if section.settings.footer_content != blank %}
-          {{ section.settings.footer_content }}
-        {% endif %}
       </div>
     </div>
   </section>
