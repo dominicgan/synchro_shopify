@@ -6,33 +6,24 @@
       <a href="{{ settings.newsletter_popup_link }}">
     {% endif %}
 
-    {% if settings.newsletter_popup_title != blank %}
-      <p class="headline">
-        {{ settings.newsletter_popup_title | escape }}
-      </p>
-    {% endif %}
-
     {% if settings.newsletter_popup_image %}
       <p>
         {{ settings.newsletter_popup_image | img_url: '580x', scale: 2 | img_tag: settings.newsletter_popup_image.alt, 'lazyload transition-in' }}
       </p>
     {% endif %}
 
-    {% if settings.newsletter_popup_text != blank %}
-      {{ settings.newsletter_popup_text }}
-    {% endif %}
+    <div class="newsletter__content">
+      {% if settings.newsletter_popup_text != blank %}
+        <div class="newsletter_popup__description">{{ settings.newsletter_popup_text }}</div>
+      {% endif %}
 
-    {% if settings.newsletter_popup_link != blank %}
-      </a>
-    {% endif %}
+      <div class="klaviyo-form-VfpQK4"></div>
 
-    {% if settings.newsletter_popup_form %}
-      {% render 'newsletter',
-              context: 'modal',
-              first_name: settings.display_first_name,
-              last_name: settings.display_last_name
-       %}
-    {% endif %}
+      {% if settings.newsletter_popup_subtext != blank %}
+      <div class="newsletter_popup__subtext">{{ settings.newsletter_popup_subtext }}</div>
+      {% endif %}
+    </div>
+
     </span>
   </div>
 </div>

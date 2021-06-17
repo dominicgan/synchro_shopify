@@ -1195,11 +1195,6 @@
         "default": false
       },
       {
-        "type": "text",
-        "id": "newsletter_popup_title",
-        "label": "Heading"
-      },
-      {
         "type": "image_picker",
         "id": "newsletter_popup_image",
         "label": "Image",
@@ -1208,12 +1203,12 @@
       {
         "type": "richtext",
         "id": "newsletter_popup_text",
-        "label": "Text"
+        "label": "Description"
       },
       {
-        "type": "url",
-        "id": "newsletter_popup_link",
-        "label": "Link"
+        "type": "richtext",
+        "id": "newsletter_popup_subtext",
+        "label": "Subtext"
       },
       {
         "type": "range",
@@ -1270,28 +1265,6 @@
         "step": 20,
         "default": 600,
         "unit": "px"
-      },
-      {
-        "type": "header",
-        "content": "Newsletter"
-      },
-      {
-        "type": "checkbox",
-        "id": "newsletter_popup_form",
-        "label": "Show newsletter form",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "display_first_name",
-        "label": "Show first name",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "display_last_name",
-        "label": "Show last name",
-        "default": false
       }
     ]
   },
