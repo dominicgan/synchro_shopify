@@ -1303,7 +1303,7 @@ select.currencies {
   position: relative;
   display: block;
   letter-spacing: {{ settings.nav_letter_spacing | append: 'px' }};
-  padding: 10px 4px 10px 4px;
+  padding: 10px 12px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -3971,6 +3971,8 @@ p.meta {
 
 .blog h2 a {
   color: {{ settings.headline_color }};
+  line-height: 29px;
+  letter-spacing: normal;
 }
 
 .blog section {
@@ -4015,6 +4017,7 @@ p.meta {
   display: inline-block;
   margin-right: 15px;
   color: {{ settings.was_price_color }};
+
 }
 .blog_meta span:after {
   content: "";
@@ -4033,6 +4036,11 @@ p.meta {
   background-color: transparent;
 }
 
+.blog_meta:empty {
+  margin-top: 9px;
+  margin-bottom: 9px;
+}
+
 .tags span a {
   font-weight: bold;
   color: {{ settings.link_color }};
@@ -4042,8 +4050,6 @@ p.meta {
 	border: 3px solid #000000;
 	border-radius: 6px;
 	background-color: #FFFFFF;
-	color: #000000;
-	font-size: 18px;
 	letter-spacing: 0;
 	line-height: 23px;
 	text-align: center;
@@ -4052,7 +4058,9 @@ p.meta {
 }
 
 .blog__call-to-action a {
+	font-size: 18px;
 	color: #000000;
+  font-weight: 600;
 }
 
 .blog_list li {
@@ -4571,7 +4579,7 @@ div#disqus_thread li {
   margin: 0 auto;
   text-align: center;
   /*@include transition(transform 0.2s $easeOutQuad);*/
-  padding: 60px 10px;
+  padding: 60px 30px;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -4659,8 +4667,9 @@ div#disqus_thread li {
 
 .mailing-list-signup .mailing-list-form .mailing-list-blurb {
   margin: 0 0 30px;
-  font-weight: 600;
+  font-weight: 500;
   color: #4D4D4D;
+  line-height: 32.5px;
 }
 
 .mailing-list-signup .mailing-list-form button {
@@ -4797,7 +4806,8 @@ div#disqus_thread li {
   -ms-hyphens: auto;
   -webkit-hyphens: auto;
   hyphens: auto;
-  font-size: 20px;
+  text-align: center;
+  margin-top: 15px;
 }
 
 /* #Blog posts
@@ -4936,7 +4946,6 @@ div#disqus_thread li {
   padding-bottom: 6px;
   color: {{ settings.shop_home_page_content_text_color }};
 }
-
 .logo-bar {
   text-align: center;
   margin-bottom: 20px;
@@ -5482,7 +5491,7 @@ div#disqus_thread li {
 .footer__menus-item {
   width: 15%;
   padding-right: 30px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
 @media only screen and (max-width: 480px) {
@@ -5613,7 +5622,8 @@ div#disqus_thread li {
 .payment_methods {
   margin: 4px 0 6px 0;
   filter: alpha(opacity=80);
-  opacity: 0.9;
+  filter: grayscale(1.0);
+  opacity: 0.4;
 }
 .payment_methods svg {
   width: 48px;
@@ -6450,11 +6460,8 @@ https://flickity.metafizzy.co
 
 /* #Thumbnail Gallery Styles
 ================================================== */
-.product-gallery__thumbnails {
-  margin: 40px 0 0;
-}
 .product-gallery__thumbnails .product-gallery__thumbnail {
-  width: calc(100% / 7 - 10px);
+  width: calc(25% - 10px);
   margin: 0 5px;
 }
 .product-gallery__thumbnails .product-gallery__thumbnail img {
@@ -13739,7 +13746,7 @@ body[class^=page-details] .footer {
 
 .top-header .icon-cart span {
   position: relative;
-  top: 11px;
+  top: 8px;
   font-size: 12px;
   font-weight: 600;
   font-family: 'futura-pt', {{ settings.regular__font.family }}, {{ settings.regular__font.fallback_families }};
@@ -13759,8 +13766,8 @@ body[class^=page-details] .footer {
 }
 
 .product-gallery__thumbnails.product-gallery__thumbnails--bottom-thumbnails {
-  /* max-width: 1200px;
-  width: calc(95vw - 20px); */
+  max-width: 1200px;
+  width: calc(95vw - 20px);
 }
 
 /* general pages/blog content layout */
@@ -13890,7 +13897,7 @@ body[class^=page-details] .footer {
 .article h1,
 .article h2,
 .article h3 {
-  text-align: center;
+  text-align: left;
 }
 
 .article-content a,
@@ -14226,6 +14233,14 @@ label.rc_label,
 .all-popular-articles .post .post-inner {
   margin: 30px 0 40px;
   text-align: center;
+/* Blog listing article image */
+.article__cover-image {
+  width: 100%;
+  padding-bottom: 75%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin-bottom: 15px;
 }
 
 .all-popular-articles .post .post-inner h3 {
@@ -14233,10 +14248,23 @@ label.rc_label,
 	letter-spacing: 0;
 	line-height: 29px;
 	margin-top: 0;
+.article .blog_description {
+  color: #666;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 27px;
+  font-weight: 500;
 }
 
 .all-popular-articles .post .post-inner p {
   color: #666;
+.article .read-more {
+  border-bottom: 1px solid #448e7c;
+  color: #447e7c;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: 23px;
+  font-weight: 500;
 }
 
 .all-popular-articles .pagination,
@@ -14247,6 +14275,11 @@ label.rc_label,
 	width: 100%;
 	max-width: 100%;
 	overflow: hidden;
+/* footer */
+.footer__contents {
+  margin-bottom: 30px;
+  color: #d0d0cc;
+  opacity: 0.5;
 }
 
 .all-popular-articles .pagination a,
@@ -14263,9 +14296,14 @@ label.rc_label,
 	text-align: center;
 	display: block;
 	padding: 13px 30px;
+.footer__contents p {
+  margin-bottom: 15px;
 }
 
 .all-popular-articles a.disabled,
 #tag a.disabled {
 	opacity: .5;
+.footer__info {
+  color: #d0d0cc;
+  opacity: 0.5;
 }
