@@ -153,7 +153,7 @@ last_name: section.settings.display_last_name
         {% endif %}
 
         {% if section.settings.display_payment_methods %}
-          <div class="payment_methods">
+          <div class="payment_methods payment-options">
             {% for type in shop.enabled_payment_types %}
               {% if 
                 type == 'american_express' or 
@@ -163,9 +163,27 @@ last_name: section.settings.display_last_name
                 type == 'master' or 
                 type == 'paypal' or 
                 type == 'visa' %}
-                <!-- {{ type }} -->
+                {%- comment -%}
                 {{ type | payment_type_svg_tag: class:'payment-icon' }}
+                {%- endcomment -%}
               {% endif %}
+              <!-- {{ type }} -->
+
+                
+              {% if type == 'diners_club' %}      <span class="diners-club">&#58131;</span>       {% endif %}
+              {% if type == 'maestro' %}          <span class="maestro">&#58130;</span>           {% endif %}
+              {% if type == 'interac' %}          <span class="interac">&#58119;</span>           {% endif %}
+              {% if type == 'visa' %}             <span class="visa">&#58113;</span>              {% endif %}
+              {% if type == 'master' %}       <span class="mastercard">&#58114;</span>        {% endif %}
+              {% if type == 'discover' %}         <span class="discover">&#58117;</span>          {% endif %}
+              {% if type == 'dk' %}               <span class="dk">&#58128;</span>                {% endif %}
+              {% if type == 'american_express' %} <span class="american-express">&#58115;</span>  {% endif %}
+              {% if type == 'google-wallet' %}    <span class="google-wallet">&#58121;</span>     {% endif %}
+              {% if type == 'paypal' %}           <span class="paypal">&#58116;</span>            {% endif %}
+              {% if type == 'jcb' %}              <span class="jcb">&#58129;</span>               {% endif %}
+              {% if type == 'cirrus' %}           <span class="cirrus">&#58120;</span>            {% endif %}
+              {% if type == 'stripe' %}           <span class="stripe">&#58118;</span>            {% endif %}
+              {% if type == 'bitcoin' %}         <span class="bitcoin">&#58132;</span>           {% endif %}
             {% endfor %}
           </div>
         {% endif %}
