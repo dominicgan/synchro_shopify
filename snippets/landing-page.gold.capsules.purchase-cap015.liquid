@@ -1,0 +1,67 @@
+<a class="anchor" name="purchase"></a>
+<section class="purchase-4">
+  <div class="purchase-4__content" data-fb-property="Synchro-Gold-Capsules">
+    <img class="purchase-4__image option-1" src="{{ 'gold-cap-1a.jpg' | asset_url }}'" alt="Gold Capsule 1 Bottle">
+    <img class="purchase-4__image option-2" src="{{ 'gold-cap-2a.jpg' | asset_url }}'" alt="Gold Capsule 2 Bottles">
+    <img class="purchase-4__image option-3 selected" src="{{ 'gold-cap-3a.jpg' | asset_url }}'" alt="Gold Capsule 3 Bottles">
+    <div class="purchase-4__details">
+      <div class="purchase-4__reviews">
+        <div class="yotpo bottomLine" data-appkey="syWV3O0DUgkkpDvutwXXSyHW0ZHmfejdusotXyXD" data-domain="{{shop.permanent_domain | escape }}" data-product-id="3748309640" data-product-models="{{ product.id }}" data-name="Synchro Gold"
+          data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}" data-description="{{ product.description | escape }}"
+          data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+        </div>
+      </div>
+      <div class="purchase-4__option option-1">
+        <h4 class="purchase-4__quantity">1 Bottle — 30 Day Supply</h4>
+        <p class="purchase-4__price">$39.99</p>
+      </div>
+      <div class="purchase-4__option option-2">
+        <h4 class="purchase-4__quantity">2 Bottles — 60 Day Supply</h4>
+        <p class="purchase-4__popular">Most Popular</p>
+        <p class="purchase-4__offer-5">5% off</p>
+        <p class="purchase-4__price"><span>$79.98</span>$75.99</p>
+      </div>
+      <div class="purchase-4__option option-3 selected">
+        <h4 class="purchase-4__quantity">3 Bottles — 90 Day Supply</h4>
+        <p class="purchase-4__savings">Most Savings</p>
+        <p class="purchase-4__offer-10">10% off</p>
+        <p class="purchase-4__price"><span>$119.97</span>$107.99</p>
+      </div>
+      <div class="purchase-4__options">
+        <p class="purchase-4__options-title">More purchase options:</p>
+        <div class="purchase-4__option-item option-1">
+          <img class="purchase-4__option-image" src="{{ 'gold-cap-floating-purchase-1.png' | asset_url }}'" alt="Gold Capsule 1 Bottle">
+          <div class="purchase-4__option-details">
+            <div class="purchase-4__option-quantity">1 Bottle</div>
+            <div class="purchase-4__option-price">$39.99</div>
+          </div>
+        </div>
+        <div class="purchase-4__option-item option-2">
+          <img class="purchase-4__option-image" src="{{ 'gold-cap-floating-purchase-2.png' | asset_url }}'" alt="Gold Capsule 2 Bottles">
+          <div class="purchase-4__option-details">
+            <div class="purchase-4__option-quantity">2 Bottles</div>
+            <div class="purchase-4__option-price">$75.99</div>
+          </div>
+        </div>
+        <div class="purchase-4__option-item option-3 selected">
+          <img class="purchase-4__option-image" src="{{ 'gold-cap-floating-purchase-3.png' | asset_url }}'" alt="Gold Capsule 3 Bottles">
+          <div class="purchase-4__option-details">
+            <div class="purchase-4__option-quantity">3 Bottles</div>
+            <div class="purchase-4__option-price">$107.99</div>
+          </div>
+        </div>
+      </div>
+      <a href="https://besynchro.com/a/secure/checkout/YOJmpEAtwAJWI4cr9gm8?variant_id=31843505766471">
+        <div class="purchase-4__buy a--cta option-1" onclick="pintrk('track', 'addtocart');">Buy</div>
+      </a>
+      <a href="https://besynchro.com/a/secure/checkout/ke5DOWa6G1Kc0iQxr0Nc?variant_id=31843505799239">
+        <div class="purchase-4__buy a--cta option-2" onclick="pintrk('track', 'addtocart');">Buy</div>
+      </a>
+      <a href="https://besynchro.com/a/secure/checkout/dE6fMZTVigzPGMPlgnG6?variant_id=31843505832007">
+        <div class="purchase-4__buy a--cta option-3 selected" onclick="pintrk('track', 'addtocart');">Buy</div>
+      </a>
+      <img class="purchase-4__fast-shipping" src="{{ 'fast-shipping.png' | asset_url }}'" alt="Fast Shipping. Secure Data. Easy Returns.">
+      <img class="purchase-4__fast-shipping-mobile" src="{{ 'fast-shipping-mobile.png' | asset_url }}'" alt="Fast Shipping. Secure Data. Easy Returns.">
+    </div>
+  </div>
+</section>

@@ -23,20 +23,27 @@ export default class LPEffects extends EventsBase {
       'click .how-it-works__icon': 'toggleHowItWorks',
       'click .toggle-single-view': 'toggleSingleView', // Only ONE element is visible at one time. Use this toggle event for this element globally.
       'click .toggle-multiple-view': 'toggleMultipleView', // MULTIPLE element are visible at one time. Use this toggle event for this element globally.
-      'click .purchase-2__options': 'goldCapsulePurchaseSwap',
+      'click .purchase-4__option-item': 'goldCapsulePurchaseSwap',
     }
   }
 
   goldCapsulePurchaseSwap(target) {
-    $('.purchase-2__options').each(function() { $(this).removeClass('selected') })
-    $(target).addClass('selected')
-    $("div[class*='option-'],p[class*='option-']").each(function() { $(this).removeClass('active') })
-    $("input[class*='option-']").each(function() { $(this).prop('checked', false) })
-    let targetClasses = $(target).attr('class').split(/\s+/)
+    // clear current selection on purchase chip
+    $('.purchase-4__option-item').removeClass('selected');
+    // select currently clicked purchase chip
+    $(target).addClass('selected');
+    // clear all current selected image, description & button
+    $("img[class*='option-'], div[class*='option-']").each(function() {
+        $(this).removeClass('selected');
+    });
+    // get modifier class from target purchase chip (ie. 'option-1')
+    let targetClasses = $(target).attr('class').split(/\s+/);
+    // find all selected chip related items and add 'selected' to them
     $.each(targetClasses, function(index, item) {
-      if(item.includes('option-')) {
-        $(`div[class*='${item}'],p[class*='${item}']`).each(function() { $(this).addClass('active') })
-        $(`input[class*='${item}']`).prop('checked', true)
+      if(new RegExp(/option-\d/gi).test(item)) {
+        $(`img[class*='${item}'],div[class*='${item}']`).each(function() {
+            $(this).addClass('selected')
+        });
       }
     })
   }
