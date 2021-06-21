@@ -1,12 +1,18 @@
-<div class="instructions__pseudo"></div>
-<div class="instructions__header-desktop">
-	<a href="https://besynchro.com/pages/reviews"><img src="//cdn.shopify.com/s/files/1/0155/0195/files/Header_1c_Desktop-min.png?v=1581699773" alt="" class="slider-image"></a>
-</div>
-<div class="instructions__header-mobile">
-	<a href="https://besynchro.com/pages/reviews"><img src="//cdn.shopify.com/s/files/1/0155/0195/files/Header_1c_Mobile-min.png?v=1581699772" alt="" class="slider-image"></a>
-</div>
+{{ 'custom.scss' | asset_url | stylesheet_tag }}
 
-<div class="rte">
-	<h1 class="page-title">{{ page.title }}</h1>
-	{{ page.content }}
+<div class="main-content">
+
+	<div class="instructions__pseudo"></div>
+	<div class="instructions__header-desktop">
+		<a href="https://besynchro.com/pages/reviews"><img src="//cdn.shopify.com/s/files/1/0155/0195/files/Header_1c_Desktop-min.png?v=1581699773" alt="" class="slider-image"></a>
+	</div>
+	<div class="instructions__header-mobile">
+		<a href="https://besynchro.com/pages/reviews"><img src="//cdn.shopify.com/s/files/1/0155/0195/files/Header_1c_Mobile-min.png?v=1581699772" alt="" class="slider-image"></a>
+	</div>
+	
+	<div class="rte">
+		<h1 class="page-title">{{ page.title }}</h1>
+		{{ page.content }}
+	</div>
+	
 </div>

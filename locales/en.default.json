@@ -3,6 +3,14 @@
     "month_day_year": "%B %d, %Y"
   },
   "general": {
+    "general": {
+      "name": "Name",
+      "name_placeholder": "Your name",
+      "email": "Email",
+      "email_placeholder": "your@email.com",
+      "message": "Message",
+      "submit": "Submit"
+    },
     "meta": {
       "tagged_html": "Tagged \"{{ tags }}\"",
       "page": "Page {{ page_number }}"

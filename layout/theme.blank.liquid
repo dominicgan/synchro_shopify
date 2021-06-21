@@ -78,8 +78,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   {{ content_for_header }}
   {% include 'social-meta' %}
   <!-- Theme CSS -->
-  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
-  {{ 'custom.scss.css' | asset_url | stylesheet_tag }}
+    {{ 'styles.css' | asset_url | stylesheet_tag }}
+    {{ 'custom.scss.css' | asset_url | stylesheet_tag }}
 
   <!-- Blog CSS -->
   {% if template contains "blog" or page.template_suffix contains "popular-articles" %}
