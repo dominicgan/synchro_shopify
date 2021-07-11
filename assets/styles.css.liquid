@@ -1135,11 +1135,17 @@ div.sticky--active {
 
 .before-header .main-header {
   margin: 0 auto;
-  padding: 0 30px;
   max-width: 1200px;
   position: relative;
   z-index: 3;
   box-sizing: border-box;
+  width: 95%;
+}
+
+@media only screen and (max-width: 798px) {
+  .before-header .main-header {
+    width: 100%;
+  }
 }
 
 .before-main-header {
