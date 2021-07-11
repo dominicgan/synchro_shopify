@@ -635,6 +635,10 @@ p {
   max-width: 100%;
 }
 
+img {
+  max-width: 100%;
+}
+
 p img {
   margin: 0;
 }
@@ -1090,12 +1094,29 @@ div.sticky--active {
   background-color: #fafafa;
 }
 
+@media only screen and (max-width: 480px) {
+  .current-header.header-area-part.blog-header-section-only {
+    margin-top: 0;
+  }
+}
+
 .blog-header-section-only ~ section.blog__section > .content {
   padding-top: 0;
 }
 
 .blog-header-section-only.header-area-part .topicmenu {
   padding-bottom: 50px;
+}
+
+@media only screen and (max-width: 480px) {
+  .blog-header-section-only.header-area-part .topicmenu {
+    padding-bottom: 40px;
+  }
+}
+
+.topicmenu,
+.topicmenu * {
+  box-sizing: border-box;
 }
 
 .before-header .main-header {
@@ -14034,12 +14055,14 @@ body[class^=page-details] .footer {
 
 /* blog post header */
 .after-header .after-header-inner .second-logo {
-  margin-top: 12px;
-  margin-bottom: 10px; }
+  /* margin-top: 12px; */
+  margin-bottom: 10px; 
+}
 
 .after-header .after-header-inner .second-logo {
-  margin-top: 30px;
-  margin-bottom: 5px; }
+  /* margin-top: 30px; */
+  margin-bottom: 5px; 
+}
 
 .after-header .after-header-inner .second-logo a {
   display: block;
@@ -14054,7 +14077,16 @@ body[class^=page-details] .footer {
   width: 100%; }
 
 .header-area-part .topicmenu ul {
-  margin-top: 0; }
+  margin-top: 0; 
+  margin-left: 0;
+  padding: 0 20px; 
+}
+
+@media only screen and (max-width: 480px) {
+  .header-area-part .topicmenu ul {
+    margin-bottom: -8px;
+  }
+}
 
 .header-area-part .topicmenu ul li {
   background: rgba(0, 0, 0, 0) url({{ "blue-icon.png" | asset_url }}) no-repeat scroll left center;
@@ -14114,7 +14146,14 @@ body[class^=page-details] .footer {
   margin-top: -20px;
 }
 
- .blog-post-slider .static-image-left {
+  @media only screen and (max-width: 480px) {
+  .blog .content .container > section.blog-post-slider {
+    flex-direction: column;
+    margin-top: -8px;
+  }
+}
+
+.blog-post-slider .static-image-left {
 	 line-height: 0;
 }
  @media only screen and (min-width: 481px) {
@@ -14353,7 +14392,7 @@ label.rc_label,
 .read-more {
 	color: #448e7c;
 	border-bottom: 1px solid #448e7c;
-	font-weight: 600;
+	font-weight: 500;
 	letter-spacing: 0.4px;
   line-height: 1.2;
 }
