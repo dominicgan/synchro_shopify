@@ -24,7 +24,7 @@
             <div class="one-whole column article">
           {% endif %}
         {% else %}
-          <div class="{% render 'column-width', value: section.settings.blog_posts_per_row %} column medium-down--one-whole article">
+          <div class="{% render 'column-width', value: section.settings.blog_posts_per_row %} {% if tag == 'popular'%}column medium-down--one-whole{% else %}column medium-down--one-half{% endif %} article">
             {%- comment -%}Get image from first image added in post content{%- endcomment -%}
             {% assign backupImage = article.image.src %}
             {% assign article_image = article.content | split: 'src="' %}

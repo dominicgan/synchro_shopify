@@ -1090,13 +1090,17 @@ div.sticky--active {
 }
 
 .current-header.header-area-part.blog-header-section-only {
-  margin-top: 165px;
+  /* margin-top: 165px; */
   background-color: #fafafa;
 }
 
+.current-header.header-area-part.blog-header-section-only .after-header {
+  padding-top: 165px;
+}
+
 @media only screen and (max-width: 480px) {
-  .current-header.header-area-part.blog-header-section-only {
-    margin-top: 0;
+  .current-header.header-area-part.blog-header-section-only .after-header {
+    padding-top: 0;
   }
 }
 
@@ -4071,10 +4075,6 @@ p.meta {
   letter-spacing: normal;
 }
 
-.blog section {
-  width: 100%;
-}
-
 .blog .blog__section-header {
   width: 100%;
   text-align: center;
@@ -4094,6 +4094,24 @@ p.meta {
 	flex-direction: column;
 }
 
+@media only screen and (max-width: 480px) {
+  .blog .content .container > section,
+  .tag .content .container > section {
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 25px;
+    padding-top: 30px;
+  }
+
+  #most-popular {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .blog .blog__section-header {
+    margin-bottom: 20px;
+  }
+}
 .blog .content .container > section:nth-child(2n), 
 .tag .content .container > section:nth-child(2n) {
 	background-color: #FAFAFA;
@@ -4135,6 +4153,12 @@ p.meta {
 .blog_meta:empty {
   margin-top: 9px;
   margin-bottom: 9px;
+}
+
+@media only screen and (max-width: 480px) {
+  .blog_meta:empty {
+    display: none;
+  }
 }
 
 .tags span a {
@@ -14433,6 +14457,12 @@ label.rc_label,
   font-weight: 500;
 }
 
+@media only screen and (max-width: 480px) {
+  .article .blog_description {
+    display: none;
+  }
+}
+
 .all-popular-articles .post .post-inner p {
   color: #666;
 }
@@ -14505,6 +14535,7 @@ label.rc_label,
 .newsletter-popup__content .newsletter__content {
   max-width: 500px;
   margin: 0 auto;
+  padding: 0 15px;
 }
 
 .newsletter_popup .fancybox-close {
@@ -14964,5 +14995,12 @@ input[type="submit"] {
 
   .shopify-section--blog-posts .shopify-section--contrast {
     padding-bottom: 10px;
+  }
+
+  #lifestyle .article:nth-child(n+3),
+  #the-seven .article:nth-child(n+3),
+  #nutrition .article:nth-child(n+3),
+  #recipes .article:nth-child(n+3) {
+    display: none;
   }
 }
