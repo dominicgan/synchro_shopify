@@ -215,104 +215,6 @@
               {% endif %}
               {%- endcomment -%}
 
-              <div class="one-whole column">
-                <div class="container">
-                  <div id="comments" class="one-whole column"></div>
-                  {% if settings.disqus_enabled %}
-                    <div id="disqus_thread" class="one-whole column"></div>
-                    <script>
-                      var disqus_config = function () {
-                          this.page.url = "{{ canonical_url }}";
-                          this.page.identifier = "{{ article.id }}";
-                      };
-                      (function() {
-                          var d = document, s = d.createElement('script');
-                          s.src = '//{{ settings.disqus_shortname }}.disqus.com/embed.js';
-                          s.setAttribute('data-timestamp', +new Date());
-                          (d.head || d.body).appendChild(s);
-                      })();
-                    </script>
-                    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
-                  {% elsif blog.comments_enabled? %}
-                    {% if article.comments_count > 0 %}
-                      <div class="one-whole column">
-                        <h4>{{ 'blogs.comments.response_count' | t: count: article.comments.size }}</h4>
-                      </div>
-
-                      {% for comment in article.comments %}
-                        <div id="comment-{{ comment.id }}" class="comment one-whole column container">
-                          <div class="gravatar one-fifth column center" data-email="{{ comment.email }}">
-                            <img src="//1.gravatar.com/avatar/{{ comment.email | md5 }}?s=80&r=G" alt="{{ comment.author }}" />
-                          </div>
-                          <div class="comment-body four-fifths columns">
-                            <h6>{{ comment.author }}</h6>
-                            <p class="meta">
-                              <span class="label">{{ comment.created_at | date: format: "month_day_year" }}</span>
-                            </p>
-
-                            {{ comment.content }}
-                          </div>
-                        </div>
-                      {% endfor %}
-
-                    {% endif %}
-
-                    {% render 'pagination',
-                            sidebar: sidebar,
-                            paginate: paginate
-                    %}
-
-                    <div class="one-whole column">
-                      <div id="new-comment"></div>
-
-                      <h4>{{ 'blogs.comments.title' | t }}</h4>
-
-                      {% if blog.moderated? %}
-                        <p>
-                          <em>{{ 'blogs.comments.moderated' | t }}</em>
-                        </p>
-                      {% endif %}
-
-                      {% form article %}
-                        {% if form.posted_successfully? %}
-                          <div class="comment-form__success">
-                            {% if blog.moderated? %}
-                              <p class="comment-form__success-message">{{ 'blogs.comments.success_moderated' | t }}</p>
-                            {% else %}
-                              <p class="comment-form__success-message">{{ 'blogs.comments.success' | t }}</p>
-                            {% endif %}
-                          </div>
-                        {% endif %}
-
-                        {% if form.errors %}
-                          <div class="comment-form__error">
-                            <p class="comment-form__error-message">{{ 'general.forms.post_error' | t }}</p>
-                          </div>
-                        {% endif %}
-
-                        <div class="comment-form__name">
-                          <label for="comment_author">{{ 'blogs.comments.name' | t }} <span class="red">*</span></label>
-                          <input type="text" id="comment_author" name="comment[author]" value="{{ form.author }}" required="required" />
-                        </div>
-
-                        <div class="comment-form__email">
-                          <label for="comment_email">{{ 'blogs.comments.email' | t }} <span class="red">*</span></label>
-                          <input type="text" id="comment_email" name="comment[email]" value="{{ form.email }}" required="required" />
-                        </div>
-
-                        <div class="comment-form__body">
-                          <label for="comment_body">{{ 'blogs.comments.comment' | t }} <span class="red">*</span></label>
-                          <textarea id="comment_body" name="comment[body]" rows="5" required="required">{{ form.body }}</textarea>
-                        </div>
-
-                        <div class="comment-form__submit">
-                          <input type="submit" value="{{ 'blogs.comments.post' | t }}" id="comment-submit" class="action_button" />
-                        </div>
-                      {% endform %}
-                    </div>
-                  {% endif %}
-                </div>
-              </div>
           </div>
 
           {% if section.settings.blog_additional_articles and blog.articles_count > 1 %}
@@ -406,6 +308,104 @@
           {% endif %}
         </div>
 
+        <div class="one-whole column">
+          <div class="container">
+            <div id="comments" class="one-whole column"></div>
+            <div id="disqus_thread" class="one-whole column"></div>
+            {% if settings.disqus_enabled %}
+              <script>
+                var disqus_config = function () {
+                    this.page.url = "{{ canonical_url }}";
+                    this.page.identifier = "{{ article.id }}";
+                };
+                (function() {
+                    var d = document, s = d.createElement('script');
+                    s.src = '//{{ settings.disqus_shortname }}.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            {% elsif blog.comments_enabled? %}
+              {% if article.comments_count > 0 %}
+                <div class="one-whole column">
+                  <h4>{{ 'blogs.comments.response_count' | t: count: article.comments.size }}</h4>
+                </div>
+
+                {% for comment in article.comments %}
+                  <div id="comment-{{ comment.id }}" class="comment one-whole column container">
+                    <div class="gravatar one-fifth column center" data-email="{{ comment.email }}">
+                      <img src="//1.gravatar.com/avatar/{{ comment.email | md5 }}?s=80&r=G" alt="{{ comment.author }}" />
+                    </div>
+                    <div class="comment-body four-fifths columns">
+                      <h6>{{ comment.author }}</h6>
+                      <p class="meta">
+                        <span class="label">{{ comment.created_at | date: format: "month_day_year" }}</span>
+                      </p>
+
+                      {{ comment.content }}
+                    </div>
+                  </div>
+                {% endfor %}
+
+              {% endif %}
+
+              {% render 'pagination',
+                      sidebar: sidebar,
+                      paginate: paginate
+              %}
+
+              <div class="one-whole column">
+                <div id="new-comment"></div>
+
+                <h4>{{ 'blogs.comments.title' | t }}</h4>
+
+                {% if blog.moderated? %}
+                  <p>
+                    <em>{{ 'blogs.comments.moderated' | t }}</em>
+                  </p>
+                {% endif %}
+
+                {% form article %}
+                  {% if form.posted_successfully? %}
+                    <div class="comment-form__success">
+                      {% if blog.moderated? %}
+                        <p class="comment-form__success-message">{{ 'blogs.comments.success_moderated' | t }}</p>
+                      {% else %}
+                        <p class="comment-form__success-message">{{ 'blogs.comments.success' | t }}</p>
+                      {% endif %}
+                    </div>
+                  {% endif %}
+
+                  {% if form.errors %}
+                    <div class="comment-form__error">
+                      <p class="comment-form__error-message">{{ 'general.forms.post_error' | t }}</p>
+                    </div>
+                  {% endif %}
+
+                  <div class="comment-form__name">
+                    <label for="comment_author">{{ 'blogs.comments.name' | t }} <span class="red">*</span></label>
+                    <input type="text" id="comment_author" name="comment[author]" value="{{ form.author }}" required="required" />
+                  </div>
+
+                  <div class="comment-form__email">
+                    <label for="comment_email">{{ 'blogs.comments.email' | t }} <span class="red">*</span></label>
+                    <input type="text" id="comment_email" name="comment[email]" value="{{ form.email }}" required="required" />
+                  </div>
+
+                  <div class="comment-form__body">
+                    <label for="comment_body">{{ 'blogs.comments.comment' | t }} <span class="red">*</span></label>
+                    <textarea id="comment_body" name="comment[body]" rows="5" required="required">{{ form.body }}</textarea>
+                  </div>
+
+                  <div class="comment-form__submit">
+                    <input type="submit" value="{{ 'blogs.comments.post' | t }}" id="comment-submit" class="action_button" />
+                  </div>
+                {% endform %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
       </div>
     {% endpaginate %}
   </div>
