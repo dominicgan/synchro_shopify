@@ -151,12 +151,14 @@
     {% endstyle %}
   {% else %}
     {% style %}
-      #shopify-section-{{ section.id }} .sidebar {
-        width: 30%;
-      }
+      @media only screen and (min-width: 1024px) {
+        #shopify-section-{{ section.id }} .sidebar {
+          width: 30%;
+        }
 
-      #shopify-section-{{ section.id }} .has-sidebar-option {
-        width: 70%;
+        #shopify-section-{{ section.id }} .has-sidebar-option {
+          width: 70%;
+        }
       }
     {% endstyle %}
   {% endif %}

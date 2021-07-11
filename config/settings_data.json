@@ -2702,7 +2702,8 @@
           "b40f6477-a56b-4b56-a526-8599d8504283": {
             "type": "image_ad",
             "settings": {
-              "product": "medical-grade-liposomal-turmeric-supplement-60ct-capsules"
+              "product": "medical-grade-liposomal-turmeric-supplement-60ct-capsules",
+              "image": "shopify:\/\/shop_images\/blog-cap-ad-1_2x_ecea3c2b-b56f-4f95-a9cd-1240339d2c12.png"
             }
           }
         },
@@ -2784,22 +2785,27 @@
           "show_body_feature_image": true,
           "body_feature_image": "shopify:\/\/shop_images\/body-optimization-image.png",
           "body_feature_title": "Body",
+          "body_feature_link": "",
           "body_feature_description": "",
           "show_brain_feature_image": true,
           "brain_feature_image": "shopify:\/\/shop_images\/brain-enhancement-image.png",
           "brain_feature_title": "Brain",
+          "brain_feature_link": "",
           "brain_feature_description": "",
           "show_nutrition_feature_image": true,
           "nutrition_feature_image": "shopify:\/\/shop_images\/nutrition-image.png",
           "nutrition_feature_title": "Nutrition",
+          "nutrition_feature_link": "",
           "nutrition_feature_description": "",
           "show_keto_feature_image": true,
           "keto_feature_image": "shopify:\/\/shop_images\/keto-image.png",
           "keto_feature_title": "Keto",
+          "keto_feature_link": "",
           "keto_feature_description": "",
           "show_recipes_feature_image": true,
           "recipes_feature_image": "shopify:\/\/shop_images\/recipes-image.png",
           "recipes_feature_title": "Recipes",
+          "recipes_feature_link": "",
           "recipes_feature_description": ""
         }
       }
