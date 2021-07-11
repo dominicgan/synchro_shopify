@@ -26,13 +26,13 @@
         {% else %}
           <div class="{% render 'column-width', value: section.settings.blog_posts_per_row %} column medium-down--one-whole article">
             {%- comment -%}Get image from first image added in post content{%- endcomment -%}
-              {% assign backupImage = article.image.src %}
-              {% assign article_image = article.content | split: 'src="' %}
-              {% assign article_image = article_image[1] | split: '"' | first | default: backupImage %}
+            {% assign backupImage = article.image.src %}
+            {% assign article_image = article.content | split: 'src="' %}
+            {% assign article_image = article_image[1] | split: '"' | first | default: backupImage %}
 
-              <a href="{{ article.url }}" title="{{ article.title | escape }}">
-                <div class="article__cover-image" style='background-image: url("{{ article_image }}");'></div>
-              </a>
+            <a href="{{ article.url }}" title="{{ article.title | escape }}">
+              <div class="article__cover-image" style='background-image: url("{{ article_image }}");'></div>
+            </a>
         {% endif %}
 
           {% if section.settings.blog_tags %}
