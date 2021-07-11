@@ -5481,8 +5481,14 @@ div#disqus_thread li {
 }
 
 @media only screen and (max-width: 480px) {
+  .footer {
+    padding: 50px 24px;
+  }
+
   .footer .footer__title {
     text-align: center;
+    font-size: 14px;
+    font-weight: 700;
   }
 }
 
@@ -5490,6 +5496,12 @@ div#disqus_thread li {
   margin-bottom: 10px;
   font-size: {{ settings.footer_font_size | append: 'px' }};
   color: {{ settings.sub_footer_text_color }};
+}
+
+@media screen and (max-width: 480px) {
+  .footer p {
+    font-size: 16px;
+  }
 }
 .footer a {
   color: {{ settings.sub_footer_link_color }};
@@ -5520,6 +5532,7 @@ div#disqus_thread li {
   .footer__menus-item {
     width: 100%;
     padding-right: 0;
+    margin-bottom: 60px;
   }
 }
 
@@ -5535,6 +5548,13 @@ div#disqus_thread li {
   color: {{ settings.sub_footer_link_color }};
   font-size: 15px;
 }
+
+@media only screen and (max-width: 480px) {
+  .footer_menu li a {
+    font-size: 16px;
+  }
+}
+
 .footer_menu li a:hover {
   color: {{ settings.sub_footer_link_color_hover }};
 }
@@ -5610,6 +5630,13 @@ div#disqus_thread li {
   }
 }
 
+@media only screen and (max-width: 798px) {
+  .footer__info {
+    text-align: center;
+  }
+}
+
+
 .selectors-form__locale + .selectors-form__currency {
   margin-left: 10px;
 }
@@ -5641,6 +5668,13 @@ div#disqus_thread li {
   filter: alpha(opacity=80);
   filter: grayscale(1.0);
   opacity: 0.4;
+}
+@media screen and (max-width: 480px) {
+  .payment_methods {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 .payment_methods svg {
   width: 48px;
@@ -14303,7 +14337,12 @@ label.rc_label,
 .footer__contents {
   margin-bottom: 30px;
   color: #d0d0cc;
-  opacity: 0.5;
+  opacity: 0.7;
+}
+@media screen and (max-width: 480px) {
+  .footer__contents {
+    text-align: center;
+  }
 }
 
 .all-popular-articles .pagination a,
@@ -14637,7 +14676,7 @@ label.rc_label,
     float: none;
  }
 }
-.effective-altruism__footer-copy {
+p.effective-altruism__footer-copy {
   font-size: 16px;
   font-weight: 600;
   -webkit-font-smoothing: antialiased;
