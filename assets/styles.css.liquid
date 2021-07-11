@@ -1208,7 +1208,7 @@ body .mm-slideout .promo-banner {
 #header {
   display: none;
   background: {{ settings.header_bg_color }};
-  border-bottom: 1px solid {{ settings.border_color }};
+  /* border-bottom: 1px solid {{ settings.border_color }}; */
   color: {{ settings.nav_color }};
   font-size: 16px;
   font-weight: bold;
@@ -1218,7 +1218,7 @@ body .mm-slideout .promo-banner {
   padding: 0 50px;
   z-index: 5001;
   width: 100%;
-  opacity: 0.95;
+  opacity: 1;
   top: 0;
   box-sizing: border-box;
 }
@@ -1267,6 +1267,7 @@ div#header a span {
 #header a.icon-menu span {
   top: -5px;
   line-height: 1;
+  display: none;
 }
 #header a.icon-menu:before {
   margin-left: 38px;
@@ -11195,7 +11196,7 @@ div.collection_title_tags {
 
   #header a.mobile_logo img {
     max-width: 150px;
-    max-height: 30px;
+    max-height: 20px;
     object-fit: contain;
   }
 
