@@ -34,11 +34,13 @@
 {% endif %}
 {%- endcomment -%}
 
+{% unless template contains 'header-footer' %}
 {% render 'mailing-list',
     mailing_list_title: section.settings.mailing-list-title,
     mailing_list_blurb: section.settings.mailing-list-blurb,
     mailing_list_footnote: section.settings.mailing-list-footnote,
 %}
+{% endunless %}
 {%- comment -%}
 {% render 'newsletter',
 context: 'footer'
