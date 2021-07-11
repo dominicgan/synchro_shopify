@@ -2597,6 +2597,18 @@
               "text_position": "center center"
             }
           },
+          "6ec2649e-98e2-44d7-83ef-3a1f45f550bd": {
+            "type": "image",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/home-slide-ea.jpg",
+              "image_focal_point": "center center",
+              "title": "",
+              "subtitle": "",
+              "button_label": "",
+              "link": "shopify:\/\/pages\/10-for-global-health",
+              "text_position": "center center"
+            }
+          },
           "16168977434f7afee0-1": {
             "type": "image",
             "settings": {
@@ -2624,6 +2636,7 @@
         },
         "block_order": [
           "16168977434f7afee0-0",
+          "6ec2649e-98e2-44d7-83ef-3a1f45f550bd",
           "16168977434f7afee0-1",
           "10ea5eb6-99b1-46d2-a69b-d6064c3cc4aa"
         ],
