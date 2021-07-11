@@ -127,6 +127,9 @@
             <span class="sold_out">{{ 'products.product.sold_out' | t }}</span>
           {% endif %}
         </span>
+
+        <a href="{{ product.url | within: collection }}"><button class="product-list-cta">Shop</button></a>
+        
       {% endif %}
     </div>
   </a>

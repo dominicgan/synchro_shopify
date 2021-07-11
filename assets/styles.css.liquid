@@ -3481,6 +3481,7 @@ a.tag:hover,
 @media only screen and (max-width: 720px) {
   .thumbnail__title {
     font-size: 18px;
+    font-weight: 600;
     line-height: normal;
   }
 }
@@ -3610,6 +3611,28 @@ a.tag:hover,
   font-weight: bold;
   color: {{ settings.regular_color }};
   font-size: {{ settings.regular_font_size | plus: 1 | append: 'px' }};
+}
+
+.thumbnail .product-list-cta {
+  width: 100%;
+  background: #319E9E;
+  border-radius: 4px;
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+@media only screen and (min-width: 481px) {
+  .thumbnail .product-list-cta {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .thumbnail__price {
+    font-size: 22px;
+    font-weight: 600;
+  }
 }
 
 .thumbnail__border {
@@ -14876,10 +14899,20 @@ input[type="submit"] {
 }
 
 @media only screen and (max-width: 480px) {
+  .shopify-section--featured-collection {
+    margin-bottom: 60px;
+    padding: 0 10px !important;
+  }
+
   .shopify-section--featured-collection h2.title {
     margin-bottom: 40px;
     font-size: 30px;
     padding-top: 52px;
+  }
+
+  /* +2 to accommodate title and json */
+  .shopify-section--featured-collection .thumbnail:nth-child(n + 5) {
+    display: none;
   }
 
   .shopify-section--testimonials {
@@ -14888,10 +14921,5 @@ input[type="submit"] {
 
   .shopify-section--testimonials .section h2.title {
     margin-bottom: 60px;
-  }
-
-  /* +2 to accommodate title and json */
-  .shopify-section--featured-collection .thumbnail:nth-child(n + 5) {
-    display: none;
   }
 }
