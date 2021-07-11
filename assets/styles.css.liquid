@@ -529,7 +529,7 @@ h2.title.align_left {
 h1.product_name {
   text-align: left;
   font-size: 30px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: normal;
   margin: 0;
 }
@@ -3281,6 +3281,13 @@ div.section {
 
 div.product_section {
   margin-top: 0;
+  padding-top: 215px;
+}
+
+@media only screen and (max-width: 798px) {
+  div.product_section {
+    padding-top: 15px;
+  }
 }
 
 .richtext_content--featured_text {
@@ -15164,4 +15171,10 @@ div.content, .shopify-policy__container,
 
 .footer-mailinglist ~ .footer {
   margin-top: 0;
+}
+
+@media only screen and (min-width: 799px) {
+  .collections-content {
+    margin-top: 140px;    
+  }
 }
