@@ -500,13 +500,20 @@ h2.title a,
 .collection_title,
 h3.title {
   font-size: {{ settings.headline_font_size | append: 'px' }};
-  line-height: 1.8em;
+  line-height: 1.625;
   margin: 0 auto 15px;
   clear: both;
-  font-weight: {{ settings.headline__font.weight }};
+  font-weight: 700;
   padding-top: 4px;
   color: {{ settings.headline_color }};
   text-align: center;
+}
+
+@media only screen and (max-width: 720px) {
+  .section h2.title {
+    font-size: 30px;
+    line-height: normal;
+  }
 }
 
 h2.title.align_right {
@@ -14828,4 +14835,13 @@ input[type="submit"] {
  .page-header-footer__wrapper {
    margin-top: 165px;
  }
+}
+
+@media only screen and (max-width: 480px) {
+  .shopify-section--featured-collection h2.title {
+    margin-bottom: 40px;
+    font-size: 30px;
+    padding-top: 52px;
+  }
+
 }
