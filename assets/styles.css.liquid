@@ -1279,6 +1279,17 @@ div#header a span {
   display: flex;
 }
 
+@media screen and (min-width: 720px) {
+  .header .container .columns.nav {
+    margin-right: 0 !important;
+    flex-grow: 1;
+  }
+
+  .header__nav-item:last-child a {
+    padding-right: 0;
+  }
+}
+
 .nav ul {
   display: block;
   border: none;
