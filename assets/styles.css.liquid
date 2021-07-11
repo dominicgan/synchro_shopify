@@ -534,6 +534,13 @@ h1.product_name {
   margin: 0;
 }
 
+@media only screen and (max-width: 720px) {
+  h1.product_name {
+    font-weight: 500;
+  }
+}
+
+
 h1.article_title {
   margin-bottom: 5px;
   text-align: left;
@@ -2336,6 +2343,11 @@ button.shopify-payment-button__more-options:hover {
   align-items: flex-end;
   flex-wrap: wrap;
 }
+
+#rc_container ~ script ~ script ~ .purchase-details .purchase-details__buttons {
+  margin-top: 0;
+}
+
 @media only screen and (min-width: 1025px) {
   .purchase-details__buttons {
     flex: 1 0 70%;
@@ -3549,6 +3561,12 @@ a.tag:hover,
   text-align: center;
 }
 
+@media only screen and (max-width: 580px) {
+  .product-description.product-description--new {
+    padding-top: 0;
+  }
+}
+
 .product-description.product-description--new p {
   max-width: 800px;
   margin: 1rem auto;
@@ -3564,7 +3582,10 @@ a.tag:hover,
 
 @media only screen and (max-width: 719px) {
   .product-description.product-description--new .tabs {
-    width:100%
+    width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 
@@ -3582,6 +3603,8 @@ a.tag:hover,
   transition: all .3s;
   text-align: center;
   width: 100%;
+  box-sizing: border-box;
+  height: auto;
 }
 
 @media only screen and (max-width: 719px) {
@@ -3589,7 +3612,8 @@ a.tag:hover,
     font-size:16px;
     display: inline-block;
     padding: 8px 14px;
-    margin: 0 3px 10px
+    margin: 0 3px 10px;
+    width: auto;
   }
 }
 
@@ -3620,9 +3644,9 @@ a.tag:hover,
 }
 
 @media only screen and (max-width: 719px) {
-  .product-description {
+  /* .product-description {
     display: none; 
-  }
+  } */
 }
 
 .product-description span {
@@ -3993,7 +4017,7 @@ p.modal_price,
 .modal p.modal_price {
   font-size: 28px;
   margin: 10px 0 20px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* Add to cart button container */
@@ -6397,6 +6421,12 @@ html[xmlns] .slides {
 }
 
 @media only screen and (max-width: 480px) {
+  .product_slider {
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
   .product-gallery .product-gallery__main .product-gallery__image a,
 .product-gallery .product-gallery__main .product-gallery__image .video__container,
 .product-gallery .product-gallery__main .product-gallery__image .plyr--youtube {
@@ -6712,7 +6742,7 @@ https://flickity.metafizzy.co
 @media only screen and (max-width: 580px) {
   .product-gallery__thumbnails {
     padding-top: 0px;
-    margin-top: 60px;
+    margin-top: 40px;
   }
 }
 
@@ -9020,9 +9050,9 @@ button.disclosure__button:hover, button.disclosure__button[aria-current=true] {
 }
 @media only screen and (max-width: 480px) {
   .shopify-section {
-    width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -13891,6 +13921,13 @@ body[class^=page-details] .footer {
   font-weight: 600;
 }
 
+@media (max-width: 720px) {
+  .product_name ~ .vendor {
+    font-size: 13px;
+    margin: 10px 0;
+  }
+}
+
 .top-header .icon-cart {
   position: relative;
   display: block;
@@ -14373,6 +14410,10 @@ body[class^=page-details] .footer {
 	color: #4d4d4d;
 }
 
+.shopify-product-form .select label {
+  display: none;
+}
+
 .payment_methods {
   filter: grayscale(1);
 }
@@ -14392,7 +14433,21 @@ body[class^=page-details] .footer {
   }
   .product__thumbnail-container {
     order: 1;
+    margin-bottom: 20px;
   }
+}
+
+@media only screen and (max-width: 480px) {
+  .product__description-container .product_name,
+  .product__description-container .vendor,
+  .product__description-container .modal_price {
+    text-align: center;
+  }
+
+  .product__description-container .yotpo .pull-left {
+    float: none;
+    justify-content: center;
+}
 }
 
 div.rc_block__type {
@@ -14403,7 +14458,7 @@ label.rc_label,
 .rc_label__discount,
 .rc_price {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 18px;
   color: #7d7d7d;
 }
 
@@ -15003,4 +15058,36 @@ input[type="submit"] {
   #recipes .article:nth-child(n+3) {
     display: none;
   }
+
+  .shopify-section--product-template.has-sidebar-option {
+    padding: 0 15px;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .product-gallery .product-gallery__main .flickity-prev-next-button {
+    display: none;
+  }
+}
+
+.purchase-details__buttons .add_to_cart {
+  background: #319e9e;
+  font-weight: 500;
+  color: #fff;
+  -webkit-appearance: none;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  padding: 10px 0;
+  line-height: 40px;
+  border-radius: 4px;
+}
+
+.purchase-details__buttons .add_to_cart:after {
+  content: "\f217";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 800;
+  float: right;
+  border-left: 1px solid rgba(255,255,255,.3);
+  padding: 0 20px;
 }
