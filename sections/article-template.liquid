@@ -52,32 +52,32 @@
 {% else %}
   {%- assign sidebar = false -%}
 {% endif %}
-
-<section class="section">
-  <div class="container {% if section.settings.banner_image == false %}content{% endif %} main-wrapper">
     
-  <!-- Start - Blog header -->
-  <div class="blog-header header-area-part blog-header-section-only">
-    <div class="main-header">
-      <div class="after-header">
-        <div class="after-header-inner">
-          <div class="second-logo">
-              <a href="/blogs/blog"><img src="{{'secondary-logo.png' | asset_url}}" alt="The Synchro Life"></a>
-          </div>
-          <div class="topicmenu">
-            <ul class="topicmenulinklist">
-              {% for link in linklists.topic-menu.links %}
-              <li>
-                <a href="{{ link.url }}">{{ link.title }}</a>
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
+<!-- Start - Blog header -->
+<div class="blog-header header-area-part blog-header-section-only">
+  <div class="main-header">
+    <div class="after-header">
+      <div class="after-header-inner">
+        <div class="second-logo">
+            <a href="/blogs/blog"><img src="{{'secondary-logo.png' | asset_url}}" alt="The Synchro Life"></a>
+        </div>
+        <div class="topicmenu">
+          <ul class="topicmenulinklist">
+            {% for link in linklists.topic-menu.links %}
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
         </div>
       </div>
     </div>
   </div>
-  <!-- End - Blog header -->
+</div>
+<!-- End - Blog header -->
+
+<section class="section">
+  <div class="container {% if section.settings.banner_image == false %}content{% endif %} main-wrapper">
 
     {% paginate article.comments by 100 %}
       <div class="content-wrapper is-flex is-flex-wrap">
@@ -86,7 +86,7 @@
                 blog_handle: blog.handle
         %}
 
-        <div class="has-sidebar-option sidebar-enabled--{{ sidebar }}">
+        <div class="blog-content has-sidebar-option sidebar-enabled--{{ sidebar }}">
           <div class="container">
             {% if section.settings.blog_breadcrumb %}
               <div class="breadcrumb one-whole column">
