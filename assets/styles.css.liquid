@@ -4962,6 +4962,13 @@ div#disqus_thread li {
   box-sizing: border-box;
 }
 
+@media only screen and (max-width: 480px) {
+  .testimonial-block {
+    margin-bottom: 30px;
+    padding: 20px;
+  }
+}
+
 .testimonial-block__text {
   padding-top: 20px;
 }
@@ -4978,6 +4985,12 @@ div#disqus_thread li {
   font-weight: 500;
   /* @todo: shift color to settings */
   color: #4D4D4D;
+}
+
+@media only screen and (max-width: 480px) {
+  .testimonial-block__text p {
+    font-size: 18px;
+  }
 }
 
 .testimonial-dash {
@@ -11302,11 +11315,11 @@ div.collection_title_tags {
   }
 
   input[type=submit],
-input[type=reset],
-input[type=button],
-input.action_button[type=submit],
-input.action_button[type=button],
-.sign_up {
+  input[type=reset],
+  input[type=button],
+  input.action_button[type=submit],
+  input.action_button[type=button],
+  .sign_up {
     margin-left: 0;
     width: 100%;
   }
@@ -14183,6 +14196,12 @@ body[class^=page-details] .footer {
   text-align: center;
 }
 
+@media only screen and (max-width: 480px) {
+  .shopify-section--blog-posts .article {
+    padding: 0 20px;
+  }
+}
+
 .shopify-section--blog-posts .continue_reading {
   text-align: center;
 }
@@ -14857,4 +14876,11 @@ input[type="submit"] {
     padding-top: 52px;
   }
 
+  .shopify-section--testimonials {
+    padding: 20px !important;
+  }
+
+  .shopify-section--testimonials .section h2.title {
+    margin-bottom: 60px;
+  }
 }
