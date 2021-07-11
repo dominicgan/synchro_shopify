@@ -4729,9 +4729,17 @@ div#disqus_thread li {
   padding: 60px 30px;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 1280px) {
   .mailing-list-signup {
     padding-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .mailing-list-signup {
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
@@ -15121,4 +15129,10 @@ div.content, .shopify-policy__container,
 
 #disqus_thread {
   padding: 0 10px;
+}
+
+}
+
+.footer-mailinglist ~ .footer {
+  margin-top: 0;
 }
