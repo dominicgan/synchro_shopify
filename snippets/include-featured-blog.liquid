@@ -37,11 +37,13 @@
 
         <div class="{% render 'column-width', value: object.settings.home_page_articles %} column medium-down--one-whole article">
           {% if article.image %}
+            {%- comment -%}Get image from first image added in post content{%- endcomment -%}
+            {% assign backupImage = article.image.src %}
+            {% assign article_image = article.content | split: 'src="' %}
+            {% assign article_image = article_image[1] | split: '"' | first | default: backupImage %}
+
             <a href="{{ article.url }}" title="{{ article.title | escape }}">
-              {% render 'image-element',
-                      image: article.image,
-                      alt: article.image.alt
-              %}
+              <img src="{{ article_image }}" alt="{{ article.title | escape }}">
             </a>
           {% endif %}
 
