@@ -807,7 +807,7 @@ hr {
   border-width: 1px 0 0;
   clear: both;
   margin: 12px 0;
-  height: 0;
+  height: 2px;
 }
 
 .quote,
@@ -867,6 +867,7 @@ ul {
 
 ol {
   list-style: decimal;
+  list-style-position: inside;
 }
 
 ul, ol, ul.square, ul.circle, ul.disc {
@@ -4736,7 +4737,7 @@ div#disqus_thread li {
 .mailing-list-signup {
   display: table;
   font-size: 20px;
-  max-width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   text-align: center;
   /*@include transition(transform 0.2s $easeOutQuad);*/
@@ -14034,7 +14035,7 @@ body[class^=page-details] .footer {
 .article-content > * > h4, 
 .article-content > * > h5, 
 .article-content > * > h6 {
-  max-width: 640px;
+  max-width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
   width: 100%;
@@ -14122,7 +14123,7 @@ body[class^=page-details] .footer {
 
 .post-author__name {
   font-weight: 500;
-  margin-left: 15px;
+  margin-left: 12px;
 }
 
 .blog_meta .socialButtons {
@@ -14144,7 +14145,7 @@ body[class^=page-details] .footer {
 }
 
 .article .section {
-  max-width: 1400px;
+  max-width: 1200px;
 }
 
 /* blog post header */
@@ -15201,6 +15202,10 @@ div.content, .shopify-policy__container,
   .shopify-section--article-template .blog-header {
     padding-top: 0;
   }
+  
+  .shopify-section--article-template .container {
+    padding: 0 3px;
+  }
 }
 
 @media only screen and (max-width: 1023px) {
@@ -15274,6 +15279,9 @@ select.rc_select:focus {
   .shopify-section--testimonials .title,
   .shopify-section--blog-posts .title {
     margin-bottom: 40px;
-  }
-  
+  } 
+}
+
+.post-disqus-count {
+  display: none;
 }
