@@ -13736,8 +13736,9 @@ body[class^=page-details] .footer {
 .banner__text.text-align--center {
   text-align: center;
   justify-content: center;
-  /* @dominic: temp workaround */
-  min-width: 250px;
+  /* @dominic: this makes the whole banner clickable but breaks text layout in slider */
+  width: 100%;
+  height: 100%;
 }
 .banner__text.text-align--center .headline,
 .banner__text.text-align--center .subtitle {
