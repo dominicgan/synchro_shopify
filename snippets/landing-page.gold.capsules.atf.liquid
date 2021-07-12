@@ -1,43 +1,24 @@
 <section class="atf">
-  <div class="atf__hero-image-mobile">
-  </div>
-  <div class="atf__video">
-    <!-- Button to Open the Modal -->
-    <button id="susan-video" class="video-modal atf__video-btn" data-toggle="modal" data-video="https://www.youtube.com/embed/oTW970xE4Hw" data-target="#videoModal">Watch susan's<br>story</button>
-    <!-- Modal -->
-    <div class="modal fade in" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-body">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <!-- 16:9 aspect ratio -->
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+  <div class="atf__hero-image">
   </div>
   <div class="atf__copy">
     <div class="atf__content">
-      {% include 'landing-page.global.rating-stars-new' %}
       <h1 class="atf__header">Restore youth to your body.</h1>
-      <h2 class="atf__subheader">Balance inflammation and build a stronger, more protective immune system.</h2>
+      <h2 class="atf__subheader">Balance inflammation and restore joint health with medical grade nano-delivery turmeric.</h2>
       <div>
         <a role="button" href="#purchase">
-          <div class="a--cta">Get Gold</div>
+          <div class="a--cta">Buy Now</div>
         </a>
       </div>
+      <a role="button" href="#reviews">
+        {% include 'landing-page.global.rating-stars-new' %}
+      </a>
     </div>
   </div>
-  <div class="atf__hero-image">
-  </div>
-  <div class="atf__video-mobile">
+  <!-- <div class="atf__video-mobile">
     <div class="iframe-container">
-      <iframe src="https://www.youtube.com/embed/fbTlrY_FAhk?modestbranding=1&rel=0&cc_load_policy=1&theme=light&color=white" width="560" height="315" frameborder="0"></iframe>
+      <iframe data-src="https://www.youtube.com/embed/fbTlrY_FAhk?modestbranding=1&rel=0&cc_load_policy=1&theme=light&color=white" width="560" height="315" frameborder="0"></iframe>
     </div>
-  </div>
+  </div> -->
 </section>
