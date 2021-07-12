@@ -86,7 +86,7 @@
       {% endif %}
       <div class="yotpo bottomLine" data-product-id="{{ product.id }}"></div>
       
-      <p class="product-description">{{ product.description | strip_html | truncate: 90 }}<span class="product-description__learn-more">Learn more</span></p>
+      <p class="product-description">{{ product.description | strip_html | truncate: 90 }}<a class="product-description__learn-more" href="{{ product.url | within: collection }}">Learn more</a></p>
       {% comment %}
       <span class="thumbnail__title">{{ product.title }}</span>
 
