@@ -83,21 +83,24 @@
 <div id="header" class="mm-fixed-top Fixed mobile-header mobile-sticky-header--{{ section.settings.fixed_header }}" data-search-enabled="{{ section.settings.search_enabled }}">
   <a href="#nav" class="icon-menu" aria-haspopup="true" aria-label="{{ 'layout.general.menu' | t }}"><span>{{ 'layout.general.menu' | t }}</span></a>
   <a href="{{ shop.url }}" title="{{ shop.name }}" class="mobile_logo logo">
+    <img src="{{ "synchro-wordmark-dark.svg" | asset_url }}" alt="{{shop.name}}">
+    {%- comment -%}
     {% if section.settings.logo_mobile != blank %}
-      {% render 'image-element',
-              image: section.settings.logo_mobile,
-              alt: shop.name,
-              back_to_basics: true
-      %}
+    {% render 'image-element',
+    image: section.settings.logo_mobile,
+    alt: shop.name,
+    back_to_basics: true
+    %}
     {% elsif section.settings.logo != blank %}
-      {% render 'image-element',
-              image: section.settings.logo,
-              alt: shop.name,
-              back_to_basics: true
-      %}
+    {% render 'image-element',
+    image: section.settings.logo,
+    alt: shop.name,
+    back_to_basics: true
+    %}
     {% else %}
-      {{ shop.name }}
+    {{ shop.name }}
     {% endif %}
+    {%- endcomment -%}
   </a>
   <a href="#cart" class="icon-cart cart-button right"><span>{{ cart.item_count }}</span></a>
 </div>
