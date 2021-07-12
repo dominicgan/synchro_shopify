@@ -510,6 +510,16 @@ h3.title {
 }
 
 @media only screen and (max-width: 720px) {
+  h1,
+  .h1,
+  h1.home,
+  h2.title,
+  h2.title a,
+  .collection_title,
+  h3.title {
+    font-size: 34px;
+    font-weight: 600;
+  }
   .section h2.title {
     font-size: 30px;
     line-height: normal;
@@ -4134,6 +4144,7 @@ p.meta {
 	padding-bottom: 35px;
 	display: flex;
 	flex-direction: column;
+  width: 100%;
 }
 
 @media only screen and (max-width: 480px) {
@@ -11564,9 +11575,10 @@ table tr td {
   }
 
   h1,
-h1.home,
-.title a, h2 {
+  h1.home,
+  .title a, h2 {
     padding: 0;
+    line-height: 1;
   }
 }
 @media only screen and (min-device-width: 320px) and (max-device-width: 1024px) {
@@ -14095,6 +14107,12 @@ body[class^=page-details] .footer {
   text-align: center;
 }
 
+@media only screen and (max-width: 798px) {
+  .page-title {
+    margin-bottom: 40px;
+  }
+}
+
 /* blog post meta */
 .post-author {
   display: flex;
@@ -14245,6 +14263,7 @@ body[class^=page-details] .footer {
   flex-direction: row;
   padding: 0;
   margin-top: -20px;
+  max-width: 100%;
 }
 
   @media only screen and (max-width: 480px) {
@@ -15205,6 +15224,17 @@ div.content, .shopify-policy__container,
   
   .shopify-section--article-template .container {
     padding: 0 3px;
+  }
+
+  .shopify-policy__container,
+  .shopify-email-marketing-confirmation__container,
+  .section--static-page .content {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .page-content h2 {
+    font-weight: 400;
   }
 }
 
