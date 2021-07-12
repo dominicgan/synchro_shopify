@@ -111,6 +111,9 @@
     <!-- Stylesheets for Parallax 4.1.1 -->
     {{ 'styles.css' | asset_url | stylesheet_tag }}
 
+    <!-- Fontawesome icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
     {% if settings.favicon != nil %}
       <link rel="shortcut icon" type="image/x-icon" href="{{ settings.favicon | img_url: '180x180' }}">
       <link rel="apple-touch-icon" href="{{ settings.favicon | img_url: '180x180' }}"/>
