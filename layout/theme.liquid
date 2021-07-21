@@ -167,7 +167,10 @@
 		{% render 'hs-cart-drawer' %}
 
 		<!-- Klaviyo Code -->
+    {%- comment -%}
+    @dominic: klaviyo no longer needs to be loaded (included with theme)
 		<script defer src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=PqjFfD"></script>
+    {%- endcomment -%}
 		<!-- End Klaviyo Code -->
 
     {{ content_for_header }}

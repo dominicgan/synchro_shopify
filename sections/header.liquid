@@ -102,7 +102,8 @@
     {% endif %}
     {%- endcomment -%}
   </a>
-  <a href="#cart" class="icon-cart cart-button right"><span>{{ cart.item_count }}</span></a>
+  {%- comment -%}@dominic: add `cart-count` class for slide-cart js integration{%- endcomment -%}
+  <a href="#cart" class="icon-cart cart-button right"><span class="cart-count">{{ cart.item_count }}</span></a>
 </div>
 
 <div class="hidden">
