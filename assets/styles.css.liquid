@@ -13977,14 +13977,16 @@ body[class^=page-details] .footer {
   }
 }
 
-.top-header .icon-cart {
+.top-header .icon-cart,
+.mobile-header .icon-cart {
   position: relative;
   display: block;
   height: 100%;
   margin: 0;
 }
 
-.top-header .icon-cart:before {
+.top-header .icon-cart:before,
+.mobile-header .icon-cart:before {
   content: '';
   background-image: url({{ "icon-cart.svg" | asset_url }});
   width: 32px;
@@ -13996,12 +13998,20 @@ body[class^=page-details] .footer {
   transform: translateX(-50%) translateY(-50%);
 }
 
-.top-header .icon-cart span {
+.top-header .icon-cart span,
+.mobile-header .icon-cart span {
   position: relative;
   top: 8px;
   font-size: 12px;
   font-weight: 600;
   font-family: 'futura-pt', {{ settings.regular__font.family }}, {{ settings.regular__font.fallback_families }};
+}
+
+div#header.mobile-header .icon-cart span {
+  top: 0;
+  font-size: 12px;
+  font-weight: 600;
+  left: 2px;
 }
 
 .top-header ul.rightlist .cart {
