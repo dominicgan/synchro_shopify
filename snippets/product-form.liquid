@@ -93,6 +93,7 @@
           <input type="number" min="1" size="2" class="quantity" name="quantity" id="quantity" value="1" {% if settings.limit_quantity and variant.inventory_management != blank and variant.inventory_policy == "deny" %}max="{{ variant.inventory_quantity }}"{% endif %} />
         </div>
       {% endif %}
+
       <div class="purchase-details__buttons">
         {% if settings.cart_action == 'reload_page' %}
           <input type="hidden" name="return_to" value="back" />
@@ -102,8 +103,14 @@
 
         {% capture add_to_cart_label %}{% if collection_handles contains 'pre-order' %}{{ 'collections.general.pre_order' | t }}{% else %}{% if product.available %}{{ 'products.product.add_to_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}{% endif %}{% endcapture %}
 
-        <div class="atc-btn-container {% if product.available == false %}disabled{% endif %}">
-          <button type="{% if settings.cart_action == 'ajax' %} button {% else %} submit {% endif %}" name="add" class="{% if settings.cart_action == 'ajax' %} ajax-submit {% endif %} action_button add_to_cart {% if show_payment_button %} action_button--secondary {% endif %}" data-label={{ add_to_cart_label | json }}>
+        {%- comment -%}
+        @dominic:
+        - change button type when ajax from 'button' to 'submit' 
+        - remove `ajax-submit` class (disables theme included ajax cart)
+        - add `purchase` class to parent div to hook into slide-cart js
+        {%- endcomment -%}
+        <div class="purchase atc-btn-container {% if product.available == false %}disabled{% endif %}">
+          <button type="{% if settings.cart_action == 'ajax' %}submit{% else %}submit{% endif %}" name="add" class="{% if settings.cart_action == 'ajax' %} {%comment %} ajax-submit {% endcomment %} {% endif %} action_button add_to_cart {% if show_payment_button %} action_button--secondary {% endif %}" data-label={{ add_to_cart_label | json }}>
             <span class="text">
               {{ add_to_cart_label }}
             </span>
