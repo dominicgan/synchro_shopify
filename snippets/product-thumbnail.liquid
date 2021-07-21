@@ -1,6 +1,6 @@
 {%- assign collection_handles = product.collections | map: 'handle' -%}
 {%- assign featured_image = product.featured_media -%}
-{%- assign static_image = product.featured_media.preview_image -%}
+{%- assign static_image = product.images | last -%}
 {%- assign images = product.media -%}
 
 {% if product.featured_image.alt contains 'youtube' or product.featured_image.alt contains 'vimeo' %}
