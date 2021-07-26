@@ -503,7 +503,7 @@ h3.title {
   line-height: 1.625;
   margin: 0 auto 15px;
   clear: both;
-  font-weight: 700;
+  font-weight: 600;
   padding-top: 4px;
   color: {{ settings.headline_color }};
   text-align: center;
@@ -13997,7 +13997,6 @@ body[class^=page-details] .footer {
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-
 .top-header .icon-cart span,
 .mobile-header .icon-cart span {
   position: relative;
@@ -15230,6 +15229,20 @@ div.content, .shopify-policy__container,
   padding: 0 10px;
 }
 
+@media only screen and (min-width: 799px) {
+  .section--static-page .content {
+    padding-top: 215px;
+  }
+  
+  .section--static-page .page-title {
+    margin: 40px 0 90px;
+  }
+
+  .section--static-page .page-content > :not(img) {
+    max-width: 640px;
+  }
+}
+
 @media only screen and (max-width: 798px) {
   .shopify-section--article-template .blog-header {
     padding-top: 0;
@@ -15238,7 +15251,6 @@ div.content, .shopify-policy__container,
   .shopify-section--article-template .container {
     padding: 0 3px;
   }
-<<<<<<< HEAD
 
   .shopify-policy__container,
   .shopify-email-marketing-confirmation__container,
@@ -15250,8 +15262,6 @@ div.content, .shopify-policy__container,
   .page-content h2 {
     font-weight: 400;
   }
-=======
->>>>>>> aaf99e6b1316ab60d80a0505d3f8450f31c6fa6d
 }
 
 @media only screen and (max-width: 1023px) {
