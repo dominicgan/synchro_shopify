@@ -4904,6 +4904,8 @@ div#disqus_thread li {
 @media only screen and (max-width: 798px) {
   .contact_form {
     display: block;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 
@@ -4924,9 +4926,22 @@ div#disqus_thread li {
   display: inline-block;
 }
 
+.contact_content h2 {
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  line-height: 1.625;
+}
+
 .contact_content img {
   height: auto;
   max-width: 100%;
+}
+
+.contact_form h3 {
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 18px;
 }
 
 .contact_text_alignment--left .contact_content {
@@ -4943,25 +4958,38 @@ div#disqus_thread li {
 
 .contact-template_contact_form {
   width: 100%;
-  margin-bottom: 50px;
+  max-width: calc(640px + 20px);
+  margin: 0 auto 50px;
 }
 
 .contact_form.contact_text_position--center .contact_content {
   margin-bottom: 25px;
 }
 
-.contact__form-name {
+.contact_form_wrapper {
+  max-width: 640px;
+  margin: 30px auto 0;
+  padding-top: 30px;
+  border-top: 1px solid #e8eced;
+}
+
+.contact_form label {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/* .contact__form-name {
   margin-right: 20px;
 }
 @media only screen and (max-width: 480px) {
   .contact__form-name {
     margin-right: 0;
   }
-}
+} */
 
 .contact__form-name,
 .contact__form-email {
-  flex: 1 1 auto;
+  flex-basis: 100%;
 }
 
 .contact__form-message {
@@ -4975,6 +5003,19 @@ div#disqus_thread li {
 
 .contact__form-image {
   margin-bottom: 20px;
+}
+
+.contact_error {
+  background: rgba(255,30,30, 0.4);
+  padding: 15px;
+  border-radius: 4px;
+  flex-basis: 100%;
+  margin-bottom: 10px;
+}
+
+.contact_error ul {
+  list-style: disc inside;
+  margin-left: 0;
 }
 
 /* #Blog
@@ -6140,7 +6181,7 @@ div#disqus_thread li {
 #nav.mm-menu_theme-black {
   background-color: #000;
   border-color: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 1);
 }
 #nav.mm-menu_theme-black .mm-listview {
   border-color: rgba(255, 255, 255, 0.2);

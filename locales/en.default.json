@@ -189,11 +189,15 @@
   },
   "contact": {
     "form": {
+      "title": "Contact us",
       "name": "Name",
+      "name_placeholder": "Your name",
       "email": "Email",
+      "email_placeholder": "your@email.com",
       "phone": "Phone Number",
       "message": "Message",
-      "send": "Send",
+      "message_placeholder": "",
+      "send": "Submit",
       "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
     }
   },
