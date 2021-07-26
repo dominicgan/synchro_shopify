@@ -101,9 +101,20 @@
                       </div>
 
                       {% if block.settings.image != blank %}
-                        <div class="banner__image-wrapper">
+                      {%- comment -%}
+                      @dominic: todo: add more logic to check existence
+                      of mobile image
+                      {%- endcomment -%}
+                        <div class="banner__image-wrapper is-hidden-mobile-only">
                           {% render 'image-element',
                                   image: block.settings.image,
+                                  alt: block.settings.image.alt,
+                                  stretch_width: true
+                          %}
+                        </div>
+                        <div class="banner__image-wrapper is-hidden-desktop-only">
+                          {% render 'image-element',
+                                  image: block.settings.mobile_image,
                                   alt: block.settings.image.alt,
                                   stretch_width: true
                           %}
@@ -198,6 +209,12 @@
             "id": "image",
             "label": "Image",
             "info": "1600 x 1000px recommended"
+          },
+          {
+            "type": "image_picker",
+            "id": "mobile_image",
+            "label": "Mobile Image",
+            "info": "1500 x 1812px recommended"
           },
           {
             "type": "select",
