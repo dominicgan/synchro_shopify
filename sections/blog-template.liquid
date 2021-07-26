@@ -229,7 +229,7 @@
                   {% if section.settings.blog_posts_per_row == 1 %}
                     {% if article.image != blank %}
                       <div class="one-whole column article_image">
-                        <a href="{{ article.url }}" title="{{ article.title | escape }}">
+                        <a class="article_image__link" href="{{ article.url }}" title="{{ article.title | escape }}">
                           {% render 'image-element',
                                   image: article.image,
                                   alt: article.image.alt
@@ -242,14 +242,17 @@
                     {% endif %}
                   {% else %}
                     <div class="{% render 'column-width', value: section.settings.blog_posts_per_row %} column medium-down--one-whole article">
-                      {% if article.image != blank %}
-                        <a href="{{ article.url }}" title="{{ article.title | escape }}">
-                          {% render 'image-element',
-                                  image: article.image,
-                                  alt: article.image.alt
-                          %}
+                      {% if article.image %}
+                        {%- comment -%}Get image from first image added in post content{%- endcomment -%}
+                        {% assign backupImage = article.image.src %}
+                        {% assign article_image = article.content | split: 'src="' %}
+                        {% assign article_image = article_image[1] | split: '"' | first | default: backupImage %}
+
+                        <a class="article_image__link" href="{{ article.url }}" title="{{ article.title | escape }}">
+                          <img src="{{ article_image }}" alt="{{ article.title | escape }}">
                         </a>
                       {% endif %}
+
                   {% endif %}
 
                     {% if section.settings.blog_tags %}
@@ -262,43 +265,49 @@
 
                     <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
 
+                    {% if section.settings.blog_author or section.settings.blog_date or section.settings.blog_comment_count %}
                     <p class="blog_meta">
-                      {% if section.settings.blog_author %}
-                        <span>{{ 'blogs.article.by_author' | t: author: article.author }}</span>
-                      {% endif %}
-
-                      {% if section.settings.blog_date %}
-                        <span>{{ article.published_at | date: format: "month_day_year" }}</span>
-                      {% endif %}
-
-                      {% if section.settings.blog_comment_count %}
-                        {% if settings.disqus_enabled %}
-                          <span>
-                            <a href="{{ article.url }}#disqus_thread" data-disqus-identifier="{{ article.id }}" class="disqus-comment-count">{{ 'blogs.counts.comments_with_count' | t: count: 0 }}</a>
-                          </span>
-                        {% elsif article.comments_enabled? and article.comments_count > 0 %}
-                          <span>
-                            <a href="{{ article.url }}#comments">{{ 'blogs.counts.comments_with_count' | t: count: article.comments_count }}</a>
-                          </span>
+                        {% if section.settings.blog_author %}
+                          <span>{{ 'blogs.article.by_author' | t: author: article.author }}</span>
                         {% endif %}
+
+                        {% if section.settings.blog_date %}
+                          <span>{{ article.published_at | date: format: "month_day_year" }}</span>
+                        {% endif %}
+
+                        {% if section.settings.blog_comment_count %}
+                          {% if settings.disqus_enabled %}
+                            <span>
+                              <a href="{{ article.url }}#disqus_thread" data-disqus-identifier="{{ article.id }}" class="disqus-comment-count">{{ 'blogs.counts.comments_with_count' | t: count: 0 }}</a>
+                            </span>
+                          {% elsif article.comments_enabled? and article.comments_count > 0 %}
+                            <span>
+                              <a href="{{ article.url }}#comments">{{ 'blogs.counts.comments_with_count' | t: count: article.comments_count }}</a>
+                            </span>
+                          {% endif %}
+                        {% endif %}
+                      </p>
                       {% endif %}
-                    </p>
 
                     {% if article.excerpt != blank %}
-                        {%- assign postexcerpt = article.excerpt | size -%}
-                        {% if postexcerpt > 100 %}
-                          {%- assign excerptlength = 'lg' -%}
-                        {% elsif postexcerpt <= 50 %}
-                          {%- assign excerptlength = 'sm' -%}
-                        {% endif %}
-                        <div class="excerpt excerpt-length--{{ excerptlength }} {{ postexcerpt }}">
-                          {{ article.excerpt }}
-                          <span class="truncation-fade"></span>
-                        </div>
+                      {%- assign postexcerpt = article.excerpt | size -%}
+                      {% if postexcerpt > 100 %}
+                        {%- assign excerptlength = 'lg' -%}
+                      {% elsif postexcerpt <= 50 %}
+                        {%- assign excerptlength = 'sm' -%}
+                      {% endif %}
+                      <div class="excerpt excerpt-length--{{ excerptlength }} {{ postexcerpt }}">
+                        {{ article.excerpt }}
+                        <span class="truncation-fade"></span>
+                      </div>
+                    {% else %}
+                      <div class="excerpt excerpt-length--lg content-stripped">
+                        <p class="excerpt__content-stripped">{{ article.content | strip_html | truncatewords: 23 }}</p>
+                      </div>
                     {% endif %}
                     {% if section.settings.read_more_link %}
                       <p>
-                        <a href="{{ article.url }}" title="{{ article.title | escape }}">{{ 'blogs.general.continue_reading_html' | t }} <span class="icon-arrow-right"></span></a>
+                        <a class="read-more" href="{{ article.url }}" title="{{ article.title | escape }}">{{ 'blogs.general.continue_reading_html' | t }}</a>
                       </p>
                     {% endif %}
                   </div>
