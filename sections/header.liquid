@@ -107,55 +107,117 @@
 </div>
 
 <div class="hidden">
+  <div class="mobile_header_logo">
+    <img src="{{ "synchro-wordmark-light.svg" | asset_url }}" alt="{{shop.name}}">
+    <a href="/account" class="header-account-link account-link"><span class="icon"></span> My Account</a>
+  </div>
+</div>
+
+<div class="hidden">
   <div id="nav">
-    <ul>
-      {% for link in linklists[section.settings.main_linklist].links %}
-        {% if link.links == blank %}
-          <li {% if link.active %}class="Selected"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
-        {% else %}
-          <li {% if link.active %}class="Selected"{% endif %}>
-            {% if link.url == 'http://' or link.url == '' or link.url == '/' or link.url == 'https://' or link.url == '#' %}
-              <span>{{ link.title }}</span>
-            {% else %}
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            {% endif %}
-            <ul>
-              {% for sub_link in link.links %}
-                {% if sub_link.links == blank %}
-                  <li {% if sub_link.active %}class="Selected"{% endif %}><a href="{{ sub_link.url }}">{{ sub_link.title }}</a></li>
+    <ul class="mm-nolistview menu-container">
+      <div class="container menu-wrapper">
+        <div class="one-whole column menu-top-links">
+          <div class="container">
+            <div class="one-half column mobile-menu">
+              <h2>Shop</h2>
+              {% for link in linklists[section.settings.mobile_linklist_1].links %}
+                {% if link.links == blank %}
+                  <li {% if link.active %}class="Selected"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
                 {% else %}
-                <li {% if sub_link.active %}class="Selected"{% endif %}>
-                  {% if sub_link.url == 'http://' or sub_link.url == '' or sub_link.url == '/' or sub_link.url == 'https://' or sub_link.url == '#' %}
-                    <span>{{ sub_link.title }}</span>
-                  {% else %}
-                    <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
-                  {% endif %}
-                  <ul>
-                    {% for sub_sub_link in sub_link.links %}
-                      <li {% if sub_sub_link.active %}class="Selected"{% endif %}><a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a></li>
-                    {% endfor %}
-                  </ul>
-                </li>
+                  <li {% if link.active %}class="Selected"{% endif %}>
+                    {% if link.url == 'http://' or link.url == '' or link.url == '/' or link.url == 'https://' or link.url == '#' %}
+                      <span>{{ link.title }}</span>
+                    {% else %}
+                      <a href="{{ link.url }}">{{ link.title }}</a>
+                    {% endif %}
+                    <ul>
+                      {% for sub_link in link.links %}
+                        {% if sub_link.links == blank %}
+                          <li {% if sub_link.active %}class="Selected"{% endif %}><a href="{{ sub_link.url }}">{{ sub_link.title }}</a></li>
+                        {% else %}
+                        <li {% if sub_link.active %}class="Selected"{% endif %}>
+                          {% if sub_link.url == 'http://' or sub_link.url == '' or sub_link.url == '/' or sub_link.url == 'https://' or sub_link.url == '#' %}
+                            <span>{{ sub_link.title }}</span>
+                          {% else %}
+                            <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                          {% endif %}
+                          <ul>
+                            {% for sub_sub_link in sub_link.links %}
+                              <li {% if sub_sub_link.active %}class="Selected"{% endif %}><a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a></li>
+                            {% endfor %}
+                          </ul>
+                        </li>
+                        {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </li>
                 {% endif %}
               {% endfor %}
-            </ul>
-          </li>
-        {% endif %}
-      {% endfor %}
+            </div>
+            <div class="one-half column mobile-menu">
+              <h2>Articles</h2>
+              {% for link in linklists[section.settings.mobile_linklist_2].links %}
+              {% if link.links == blank %}
+              <li {% if link.active %}class="Selected"{% endif %}><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {% else %}
+              <li {% if link.active %}class="Selected"{% endif %}>
+                {% if link.url == 'http://' or link.url == '' or link.url == '/' or link.url == 'https://' or link.url == '#' %}
+                <span>{{ link.title }}</span>
+                {% else %}
+                <a href="{{ link.url }}">{{ link.title }}</a>
+                {% endif %}
+                <ul>
+                  {% for sub_link in link.links %}
+                  {% if sub_link.links == blank %}
+                  <li {% if sub_link.active %}class="Selected"{% endif %}><a href="{{ sub_link.url }}">{{ sub_link.title }}</a></li>
+                  {% else %}
+                  <li {% if sub_link.active %}class="Selected"{% endif %}>
+                    {% if sub_link.url == 'http://' or sub_link.url == '' or sub_link.url == '/' or sub_link.url == 'https://' or sub_link.url == '#' %}
+                    <span>{{ sub_link.title }}</span>
+                    {% else %}
+                    <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                    {% endif %}
+                    <ul>
+                      {% for sub_sub_link in sub_link.links %}
+                      <li {% if sub_sub_link.active %}class="Selected"{% endif %}><a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                  {% endif %}
+                  {% endfor %}
+                </ul>
+              </li>
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="one-whole column menu-bottom-widget">
+          {% include 'effective-altruism-widget', orientation: 'landscape' %}
+        </div>
+        {%- comment -%}
+        <div class="one-whole column">
+          <a href="/account" class="drawer-account-link account-link"><span class="icon"></span> My Account</a>
+        </div>
+        {%- endcomment -%}
+      </div>
+      {%- comment -%}
       {% if shop.customer_accounts_enabled %}
-        {% if customer %}
-          <li>
-            <a href="{{ routes.account_url }}" data-no-instant>{{ customer.name }}</a>
-          </li>
-          <li>
-            <a href="{{ routes.account_logout_url }}" id="customer_logout_link" data-no-instant>{{ 'layout.customer.log_out' | t }}</a>
-          </li>
-        {% else %}
-          <li>
-            <a href="{{ routes.account_login_url }}" id="customer_login_link" data-no-instant>{{ 'layout.customer.log_in' | t }}</a>
-          </li>
-        {% endif %}
+      {% if customer %}
+      <li>
+        <a href="{{ routes.account_url }}" data-no-instant>{{ customer.name }}</a>
+      </li>
+      <li>
+        <a href="{{ routes.account_logout_url }}" id="customer_logout_link" data-no-instant>{{ 'layout.customer.log_out' | t }}</a>
+      </li>
+      {% else %}
+      <li>
+        <a href="{{ routes.account_login_url }}" id="customer_login_link" data-no-instant>{{ 'layout.customer.log_in' | t }}</a>
+      </li>
       {% endif %}
+      {% endif %}
+      {%- endcomment -%}
 
       {% if currency_selector == true or locale_selector == true %}
         {% render 'localization-switcher-mobile',
@@ -165,7 +227,8 @@
         %}
       {% endif %}
 
-      <div class="social-links-container">
+      {%- comment -%}@dominic: hide social icons in mobile menu{%- endcomment -%}
+      <div class="social-links-container hidden">
         {% render 'social-icons' %}
       </div>
     </ul>
@@ -796,6 +859,18 @@
         "type": "link_list",
         "id": "main_linklist",
         "label": "Main menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "mobile_linklist_1",
+        "label": "Mobile menu #1",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "mobile_linklist_2",
+        "label": "Mobile menu #2",
         "default": "main-menu"
       },
       {
