@@ -83,7 +83,7 @@
 <div id="header" class="mm-fixed-top Fixed mobile-header mobile-sticky-header--{{ section.settings.fixed_header }}" data-search-enabled="{{ section.settings.search_enabled }}">
   <a href="#nav" class="icon-menu" aria-haspopup="true" aria-label="{{ 'layout.general.menu' | t }}"><span>{{ 'layout.general.menu' | t }}</span></a>
   <a href="{{ shop.url }}" title="{{ shop.name }}" class="mobile_logo logo">
-    <img src="{{ "synchro-wordmark-dark.svg" | asset_url }}" alt="{{shop.name}}">
+    <img src="{{ "synchro-wordmark-dark.svg" | asset_url }}" alt="{{shop.name}}" width="129" height="20">
     {%- comment -%}
     {% if section.settings.logo_mobile != blank %}
     {% render 'image-element',

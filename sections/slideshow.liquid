@@ -66,11 +66,11 @@
 
                       <div class="parallax" {% if block.settings.image != blank %}data-parallax-image="{{ block.settings.image | img_url: '2048x' }}"{% else %}style="background-image:url({{ 'placeholder.svg' | asset_url }})"{% endif %}>
                         <noscript>
-                          <img src="{{ block.settings.image | img_url: '2000x' }}" alt="{{ alt | escape }}" class="image__fallback">
+                          <img class="lazy2" data-src="{{ block.settings.image | img_url: '2000x' }}" alt="{{ alt | escape }}" class="image__fallback">
                         </noscript>
                       </div>
 
-                      <img alt class="mobile-placeholder-svg" src="data:image/svg+xml;utf8,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='{{ block.settings.image.width }}'%20height='{{ block.settings.image.height }}'></svg>"/>
+                      <img alt class="mobile-placeholder-svg lazy2" data-mobsrc="data:image/svg+xml;utf8,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='{{ block.settings.image.width }}'%20height='{{ block.settings.image.height }}'></svg>"/>
                     </div>
                   {% else %}
                     <div class="banner__wrap">
@@ -120,7 +120,7 @@
                           %}
                         </div>
                       {% else %}
-                        <img src="{{ 'placeholder.svg' | asset_url }}"/>
+                        <img class="lazy2" data-src="{{ 'placeholder.svg' | asset_url }}"/>
                       {% endif %}
                     </div>
                   {% endif %}

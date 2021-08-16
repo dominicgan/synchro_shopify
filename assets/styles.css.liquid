@@ -4785,7 +4785,7 @@ div#disqus_thread li {
 .mailing-list-signup .mailing-list-image {
   width: 50%;
   display: table-cell;
-  background: url({{ "opt-in-image.jpg" | asset_url }});
+  background: url({{ "opt-in-image.jpg" | asset_url | replace: '.jpg', '_600x600.jpg'}});
   background-size: cover;
   background-position: center center;
   padding: 60px;
@@ -14051,18 +14051,21 @@ body[class^=page-details] .footer {
   src: url("//cdn.shopify.com/s/files/1/0155/0195/t/37/assets/singleproductwebicons-regular.eot?v=14885393002806873348");
   src: url("//cdn.shopify.com/s/files/1/0155/0195/t/37/assets/singleproductwebicons-regular.eot?%23iefix&v=14885393002806873348") format("embedded-opentype"), url("//cdn.shopify.com/s/files/1/0155/0195/t/37/assets/singleproductwebicons-regular.woff?v=12140399248471580671") format("woff"), url("//cdn.shopify.com/s/files/1/0155/0195/t/37/assets/singleproductwebicons-regular.ttf?v=17196509208747953551") format("truetype"), url("//cdn.shopify.com/s/files/1/0155/0195/t/37/assets/singleproductwebicons-regular.svg%23singleproduct_web_iconsregular?9662") format("svg");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+  font-display: swap;
+}
 
 @font-face {
   font-family: 'social-icons';
   src: url('{{ "socicon-webfont.eot" | asset_url }}');
-    src: url('{{ "socicon-webfont.eot?#iefix" | asset_url }}') format('embedded-opentype'),
-      url('{{ "socicon-webfont.woff" | asset_url }}') format('woff'),
-        url('{{ "socicon-webfont.ttf" | asset_url }}') format('truetype'),
-          url('{{ "socicon-webfont.svg#sociconregular" | asset_url }}') format('svg');
-            font-weight: normal;
-            font-style: normal;
-            }
+  src: url('{{ "socicon-webfont.eot?#iefix" | asset_url }}') format('embedded-opentype'),
+       url('{{ "socicon-webfont.woff" | asset_url }}') format('woff'),
+       url('{{ "socicon-webfont.ttf" | asset_url }}') format('truetype'),
+       url('{{ "socicon-webfont.svg#sociconregular" | asset_url }}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* #Custom Styles
 ================================================== */
@@ -14302,6 +14305,7 @@ div#header.mobile-header .icon-cart span {
 .after-header .after-header-inner .second-logo a img {
   margin: 0 auto;
   display: block;
+  height: auto;
 }
 
 @media only screen and (max-width: 768px) {
@@ -15588,3 +15592,9 @@ margin-right: 10px;
   flex-grow: 1;
 }
 
+@media screen and (min-width: 798px) {
+  [class*="404"] div.content,
+  .customers-login div.content {
+    padding-top: 215px;    
+  }
+}

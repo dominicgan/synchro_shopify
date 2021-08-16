@@ -1,16 +1,16 @@
 <section class="blog-post-slider" id="posts-slider">
     <div class="static-image-left">
-        <img class="desktop-only" src="{{ 'blog-seven-desktop.jpg' | asset_url }}" />
-        <img class="mobile-only" src="{{ 'blog-seven-mobile.jpg' | asset_url }}" />
+        <img class="desktop-only" src="{{ 'blog-seven-desktop.jpg' | asset_url | replace: '.png', '_450x450.png' | replace: '.jpg', '_450x450.jpg' }}" width="433" height="437"/>
+        <img class="mobile-only" src="{{ 'blog-seven-mobile.jpg' | asset_url | replace: '.png', '_375x375.png' | replace: '.jpg', '_375x375.jpg' }}" width="375" height="169"/>
     </div>
 
     <div class="posts splide">
         <div class="splide__arrows">
             <button class="splide__arrow splide__arrow--prev">
-            {{ 'blog_slider_arrow.svg' | asset_url | img_tag }}
+            <img src="{{ 'blog_slider_arrow.svg' | asset_url }}" alt="previous arrow button" width="60" height="60">
             </button>
             <button class="splide__arrow splide__arrow--next">
-            {{ 'blog_slider_arrow.svg' | asset_url | img_tag }}
+            <img src="{{ 'blog_slider_arrow.svg' | asset_url }}" alt="next arrow button" width="60" height="60">
             </button>
         </div>
 
@@ -42,7 +42,7 @@
                 <div class="splide__slide">
                 <a href="{{ post_url }}">
                     <div class="post">
-                    {{ img_filename | asset_url | img_tag }}
+                    <img src="{{ img_filename | asset_url | replace: '.png', '_300x300.png' | replace: '.jpg', '_300x300.jpg' }}" alt="{{ post_title }}" width="300" height="199">
 
                     <div class="post-inner">
                         <h3>{{ post_title }}</h3>

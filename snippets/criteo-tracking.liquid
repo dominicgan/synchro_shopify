@@ -3,7 +3,6 @@
 {% unless template-type == 'cart' and cart.item_count < 1 %}
 {% assign id_prefix = "shopify_US" %}
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 (function(){
 
@@ -40,32 +39,35 @@ function isRelevantCartUpdate(settings) {
       );
 }
 
-$(document).ajaxSuccess(function(event, xhr, settings) {
-    if (isRelevantCartUpdate(settings)) {
-        $.getJSON("/cart.js", function(data) {
-            var basketData = [];
-            var item;
+window.addEventListener('DOMContentLoaded', function() {
+    $(document).ajaxSuccess(function(event, xhr, settings) {
+        if (isRelevantCartUpdate(settings)) {
+            $.getJSON("/cart.js", function(data) {
+                var basketData = [];
+                var item;
 
-            if (!data.items || !data.items.length)
-                return;
+                if (!data.items || !data.items.length)
+                    return;
 
-            for (var i = 0; i < data.items.length; i++) {
-                item = data.items[i];
+                for (var i = 0; i < data.items.length; i++) {
+                    item = data.items[i];
 
-                basketData.push({
-                    id: "{{ id_prefix }}_" + item.product_id + "_" + item.variant_id,
-                    price: priceFromCents(item.price),
-                    quantity: item.quantity
+                    basketData.push({
+                        id: "{{ id_prefix }}_" + item.product_id + "_" + item.variant_id,
+                        price: priceFromCents(item.price),
+                        quantity: item.quantity
+                    });
+                }
+
+                window.criteo_q.push({
+                    event: "viewBasket",
+                    product: basketData
                 });
-            }
-
-            window.criteo_q.push({
-                event: "viewBasket",
-                product: basketData
             });
-        });
-    }
+        }
+    });
 });
+    
 })();
 </script>
 {% endunless %}

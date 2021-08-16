@@ -81,7 +81,7 @@
     <div class="after-header">
       <div class="after-header-inner">
         <div class="second-logo">
-        <a href="/blogs/blog"><img src="{{'secondary-logo.png' | asset_url}}" alt="The Synchro Life"></a>
+        <a href="/blogs/blog"><img src="{{'secondary-logo.png' | asset_url}}" alt="The Synchro Life" width="600" height="121"></a>
         </div>
         <div class="topicmenu">
           <ul class="topicmenulinklist">
@@ -373,8 +373,8 @@
 </style>
 
 
-<script src="{{ 'splide-slider.js' | asset_url }}"></script>
-<script>
+<script defer src="{{ 'splide-slider.js' | asset_url }}"></script>
+<script defer>
   window.addEventListener('DOMContentLoaded', function() {
     // prevents the slider from being initialized on the tag pages
     if ($('.splide').length === 0) return;

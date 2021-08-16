@@ -42,8 +42,15 @@
             {% assign article_image = article.content | split: 'src="' %}
             {% assign article_image = article_image[1] | split: '"' | first | default: backupImage %}
 
+            {%- comment -%}
+            @dominic: weird conditional to capture images that are not sized correctly
+            {%- endcomment -%}
             <a href="{{ article.url }}" title="{{ article.title | escape }}">
-              <img src="{{ article_image }}" alt="{{ article.title | escape }}">
+              {% if article_image contains "1024x1024" %}
+                <img src="{{ article_image | replace: '1024x1024', '480x480' }}" alt="{{ article.title | escape }}" width="380" height="253">
+                {% else %}
+                <img src="{{ article_image | replace: '.png', '_480x480.png' | replace: '.jpg', '_480x480.jpg' }}" alt="{{ article.title | escape }}" width="380" height="253">
+              {% endif %}
             </a>
           {% endif %}
 
