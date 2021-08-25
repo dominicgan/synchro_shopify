@@ -52,8 +52,23 @@
         />
     </noscript>
     <!-- Fontawesome icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link
+        rel="preload"
+        href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        as="style"
+        crossorigin="anonymous"
+        onload="this.onload=null;this.rel='stylesheet'"
+        />
+    <noscript>
+        <link
+            href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+            rel="stylesheet"
+            type="text/css"
+            crossorigin="anonymous"
+        />
+    </noscript>
 
+    <!-- yotpo -->
     <script type="lazyload2">
         (function e() {
             var e = document.createElement("script");
@@ -162,7 +177,7 @@
 
     <!-- Klaviyo Code -->
     <script type="lazyload2"
-            src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=PqjFfD"></script>
+            data-src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=PqjFfD"></script>
     <!-- End Klaviyo Code -->
 
     <!-- Sentry error telemetry -->
@@ -223,7 +238,7 @@
                src="https://dc.ads.linkedin.com/collect/?pid=316778&fmt=gif"/></noscript>
 <!-- LinkedIn Insights Tag End-->
 
-{{ 'synchro.js' | asset_url | script_tag }}
+<script type="lazyload2" data-src="{{ 'synchro.js' | asset_url }}"></script>
 
 <!--Gorgias Chat Widget Start-->
 <script type="lazyload2" id="gorgias-chat-widget-install">!function(_){_.GORGIAS_CHAT_APP_ID="4538",_.GORGIAS_CHAT_BASE_URL="us-east1-898b.production.gorgias.chat",_.GORGIAS_API_BASE_URL="config.gorgias.chat";var e=new XMLHttpRequest;e.open("GET","https://config.gorgias.chat/applications/4538",!0),e.onload=function(t){if(4===e.readyState)if(200===e.status){var n=JSON.parse(e.responseText);if(!n.application||!n.bundleVersion)throw new Error("Missing fields in the response body - https://config.gorgias.chat/applications/4538");if(_.GORGIAS_CHAT_APP=n.application,_.GORGIAS_CHAT_BUNDLE_VERSION=n.bundleVersion,n&&n.texts&&(_.GORGIAS_CHAT_TEXTS=n.texts),n&&n.sspTexts&&(_.GORGIAS_CHAT_SELF_SERVICE_PORTAL_TEXTS=n.sspTexts),!document.getElementById("gorgias-chat-container")){var o=document.createElement("div");o.id="gorgias-chat-container",document.body.appendChild(o);var r=document.createElement("script");r.setAttribute("defer",!0),r.src="https://storage.googleapis.com/gorgias-chat-production-client-builds/{bundleVersion}/static/js/main.js".replace("{bundleVersion}",n.bundleVersion),document.body.appendChild(r)}}else console.error("Failed request GET - https://config.gorgias.chat/applications/4538")},e.onerror=function(_){console.error(_)},e.send()}(window||{});</script>

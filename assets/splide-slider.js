@@ -4077,15 +4077,17 @@
 
           var Elements = Components.Elements;
           var track = Elements.track;
-          Splide.on('touchstart mousedown', start, track).on('touchmove mousemove', move, track, {
-            passive: false
-          }).on('touchend touchcancel mouseleave mouseup dragend', end, track).on('mounted refresh', function () {
+          Splide
+          .on('touchstart mousedown', start, track, { passive: true })
+          .on('touchmove mousemove', move, track, { passive: true })
+          .on('touchend touchcancel mouseleave mouseup dragend', end, track, { passive: true })
+          .on('mounted refresh', function () {
             // Prevent dragging an image or anchor itself.
             each(Elements.list.querySelectorAll('img, a'), function (elm) {
               Splide.off('dragstart', elm).on('dragstart', function (e) {
                 e.preventDefault();
               }, elm, {
-                passive: false
+                passive: true
               });
             });
           }).on('mounted updated', function () {

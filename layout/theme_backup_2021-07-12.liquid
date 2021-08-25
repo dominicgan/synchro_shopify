@@ -48,7 +48,7 @@
 		{% endif %}
     
 		<!-- Google Tag Manager -->
-		<script type="lazyload2" async>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		<script async>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
       j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
@@ -65,7 +65,7 @@
       {% if product.metafields.seo.unique_url == blank %}
 
       <!--MB_OPC-->
-      <script type="lazyload2" async>
+      <script async>
       if(window.location.pathname=='/securecheckout'){
       document.title = 'Secure checkout';
       var css = 'body > :not(#cartLoader) {display:none !important}',head = document.head || document.getElementsByTagName('head')[0],style = document.createElement('style');
@@ -100,9 +100,7 @@
     <link rel="preload" href="{{ 'mmenu-styles.scss' | asset_url }}" as="style">
     <link rel="preload" href="{{ 'fancybox.css' | asset_url }}" as="style">
     <link rel="preload" href="{{ 'styles.css' | asset_url }}" as="style">
-    <!-- Preload third party fonts -->
-    <link rel="preload" href="//staticw2.yotpo.com/assets/yotpo-widget-font.woff?version=2021-08-03_15-38-05" as="font" type="font/woff" crossorigin>
-    <link rel="preload" href="//client-builds.production.gorgias.chat/dc70cb0f7299033b9da13060e902b0c69340a0f9/fonts/inter/Inter-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="{{ 'app.js' | asset_url }}" as="script">
 
     <!-- Stylesheet for mmenu plugin -->
     {{ 'mmenu-styles.scss' | asset_url | stylesheet_tag }}
@@ -112,6 +110,9 @@
 
     <!-- Stylesheets for Parallax 4.1.1 -->
     {{ 'styles.css' | asset_url | stylesheet_tag }}
+
+    <!-- Fontawesome icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
     {% if settings.favicon != nil %}
       <link rel="shortcut icon" type="image/x-icon" href="{{ settings.favicon | img_url: '180x180' }}">
@@ -126,29 +127,28 @@
 
 
     {% if template contains 'customer' %}
-      <script type="lazyload2" data-src="{{ 'shopify_common.js' | shopify_asset_url }}" defer></script>
-      <script type="lazyload2" data-src="{{ 'customer_area.js' | shopify_asset_url }}" defer></script>
+      <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer></script>
+      <script src="{{ 'customer_area.js' | shopify_asset_url }}" defer></script>
     {% endif %}
 
     {% if settings.show_shipping_calculator and shop.enabled_currencies.size > 1 %}
-      <script type="lazyload2" data-src="/services/javascripts/currencies.js" defer></script>
-      <script type="lazyload2" data-src="{{ 'currencies.js' | asset_url }}" defer></script>
+      <script type="text/javascript" src="/services/javascripts/currencies.js" defer></script>
+      <script src="{{ 'currencies.js' | asset_url }}" defer></script>
     {% endif %}
 
     <script>
       {% render 'js-variables' %}
     </script>
 
-    <script type="lazyload2" data-src="//use.typekit.net/qbg6mqz.js"></script>
-    <script defer src="{{ 'jquery-3.3.1.min.js' | asset_url }}"></script>
-    <script type="lazyload2" data-src="{{ 'app.js' | asset_url }}"></script>
-    <script>
+    <script defer src="//use.typekit.net/qbg6mqz.js"></script>
+    <script defer src="{{ 'app.js' | asset_url }}"></script>
+    <script defer>
 			try {
 				Typekit.load();
 			} catch (e) {
 			}
 		</script>
-    <script type="lazyload2" data-src="{{ 'site-v2.js' | asset_url }}"></script>
+    <script src="{{ 'site-v2.js' | asset_url }}" defer></script>
 
     <!-- yotpo plugin -->
     {%- assign yotpo_offload_content = shop.metafields.yotpo.yotpo_offload_content %}
@@ -159,34 +159,18 @@
 			{{ 'yotpo-full-css.css' | asset_url | stylesheet_tag }}
 		{%- endif -%}
 
-    <script type="lazyload2">
-      (function(w){
-          function fix(){
-            (function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.defer=true,e.src="//staticw2.yotpo.com/syWV3O0DUgkkpDvutwXXSyHW0ZHmfejdusotXyXD/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
-          }
-          w.addEventListener ? w.addEventListener("load", fix, false) : w.attachEvent("onload", fix);
-      })(window);
-      </script>
-
-    {%- comment -%}
-    <script type="lazyload2" defer>
-      (function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/syWV3O0DUgkkpDvutwXXSyHW0ZHmfejdusotXyXD/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+    <script defer>
+			(function e(){var e=document.createElement("script");e.type="text/javascript",e.async=true,e.src="//staticw2.yotpo.com/syWV3O0DUgkkpDvutwXXSyHW0ZHmfejdusotXyXD/widget.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
 		</script>
-    {%- endcomment -%}
+
+    <!-- HS Cart -->
+		{% render 'hs-cart-drawer' %}
 
 		<!-- Klaviyo Code -->
-    {%- comment -%}
-    @dominic: klaviyo no longer needs to be loaded (included with theme)
-		<script type="lazyload2" defer src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=PqjFfD"></script>
-    {%- endcomment -%}
+		<script defer src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=PqjFfD"></script>
 		<!-- End Klaviyo Code -->
 
-    {% if request.host == "synchro.myshopify.com" or template contains 'cart' or template contains 'checkout' %}
-			{{ content_for_header }}
-		{% else %}
-			{% capture content_for_header2 %}{{ content_for_header }}{% endcapture %}
-			{{ content_for_header2 | replace: ' defer="defer" ', ' type="no-load" ' | replace: " src=", " data-src=" | replace: "addEventListener('load',", "addEventListener('wnw_load'," | replace: "DOMContentLoaded", "" }}
-		{% endif %}
+    {{ content_for_header }}
 
     {% render 'noscript-styles' %}
   </head>
@@ -216,7 +200,7 @@
 		The custom LP URL is set up as the seo.unique_url for the keto-cleanse product
 		in Shopify so that crawler bots at least get the canonical URL right, and real users
 		are redirected by JS. -->
-		<script type="lazyload2">
+		<script>
 			if(window.location.href.indexOf('/products/keto-cleanse') !== -1) {
 				window.location.replace("https://keto.besynchro.com/keto-cleanse-program/");
 			}
@@ -268,15 +252,15 @@
 
     {% if settings.disqus_enabled %}
       {% if template contains "blog" or template contains "article" or template contains "index" %}
-        <script type="lazyload2" id="dsq-count-scr" src="//{{ settings.disqus_shortname }}.disqus.com/count.js" async defer></script>
+        <script id="dsq-count-scr" src="//{{ settings.disqus_shortname }}.disqus.com/count.js" async></script>
       {% endif %}
     {% endif %}
 
     <!--LinkedIn Insights Tag -->
-		<script type="lazyload2" async> _linkedin_data_partner_id = "316778"; </script>
-		<script type="lazyload2" async>(function(){var s = document.getElementsByTagName("script")[0]; var b = document.createElement("script"); b.type = "text/javascript";b.async = true; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js"; s.parentNode.insertBefore(b, s);})();</script>
+		<script async> _linkedin_data_partner_id = "316778"; </script>
+		<script async>(function(){var s = document.getElementsByTagName("script")[0]; var b = document.createElement("script"); b.type = "text/javascript";b.async = true; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js"; s.parentNode.insertBefore(b, s);})();</script>
 		<noscript><img height="1" width="1" style="display:none;" alt="" src="https://dc.ads.linkedin.com/collect/?pid=316778&fmt=gif"></noscript>
-		<script type="lazyload2" async>
+		<script async>
 			var sd = 'https://synchrolife.ositracker.com';
 			var resource = document.createElement('script');
 			resource.src = "https://synchrolife.ositracker.com/track.js";
@@ -289,9 +273,9 @@
 
 		{% if template contains 'product' %}
 		<!-- Global site tag (gtag.js) - AdWords: 864481593 -->
-		<script type="lazyload2" async data-src="https://www.googletagmanager.com/gtag/js?id=AW-864481593"></script>
-		<script type="lazyload2" async> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-864481593'); </script>
-		<script type="lazyload2" async>
+		<script async data-src="https://www.googletagmanager.com/gtag/js?id=AW-864481593"></script>
+		<script async> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-864481593'); </script>
+		<script async>
 			gtag('event', 'page_view', {
 				'send_to': 'AW-864481593',
 				'ecomm_prodid': '{{ product.id }}'
@@ -299,7 +283,7 @@
 		</script>
 		{% endif %}
 
-    <script type="lazyload2">
+    <script>
       window.addEventListener('DOMContentLoaded', function() {
         // Parallax plugin initialized if there is a parallax banner added to the page
         if ($('.parallax-banner').length > 0) {
@@ -310,39 +294,14 @@
       });
     </script>
 
-    {%- comment -%}
-    @dominic: loaded in wnw-optimization.js
-    <!-- Fontawesome icons -->
-    <link
-    rel="preload"
-    href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-    as="style"
-    crossorigin="anonymous"
-    onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-            href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-            rel="stylesheet"
-            type="text/css"
-            crossorigin="anonymous"
-            />
-          </noscript>
-    {%- endcomment -%}
-
     {% render 'mobile-search' %}
-    
-    <!-- HS Cart -->
-		{% render 'hs-cart-drawer' %}
 
 		{% render 'hs-cart-drawer-subscriptions' %}
     
     <!--Gorgias Chat Widget Start-->
-    <script type="lazyload2" id="gorgias-chat-widget-install">!function(_){_.GORGIAS_CHAT_APP_ID="4538",_.GORGIAS_CHAT_BASE_URL="us-east1-898b.production.gorgias.chat",_.GORGIAS_API_BASE_URL="config.gorgias.chat";var e=new XMLHttpRequest;e.open("GET","https://config.gorgias.chat/applications/4538",!0),e.onload=function(t){if(4===e.readyState)if(200===e.status){var n=JSON.parse(e.responseText);if(!n.application||!n.bundleVersion)throw new Error("Missing fields in the response body - https://config.gorgias.chat/applications/4538");if(_.GORGIAS_CHAT_APP=n.application,_.GORGIAS_CHAT_BUNDLE_VERSION=n.bundleVersion,n&&n.texts&&(_.GORGIAS_CHAT_TEXTS=n.texts),n&&n.sspTexts&&(_.GORGIAS_CHAT_SELF_SERVICE_PORTAL_TEXTS=n.sspTexts),!document.getElementById("gorgias-chat-container")){var o=document.createElement("div");o.id="gorgias-chat-container",document.body.appendChild(o);var r=document.createElement("script");r.setAttribute("defer",!0),r.src="https://storage.googleapis.com/gorgias-chat-production-client-builds/{bundleVersion}/static/js/main.js".replace("{bundleVersion}",n.bundleVersion),document.body.appendChild(r)}}else console.error("Failed request GET - https://config.gorgias.chat/applications/4538")},e.onerror=function(_){console.error(_)},e.send()}(window||{});</script>
-    <script type="lazyload2" id="gorgias-chat-shopify-install">!function(_){_.SHOPIFY_PERMANENT_DOMAIN="{{shop.permanent_domain}}",_.SHOPIFY_CUSTOMER_ID="{{customer.id}}",_.SHOPIFY_CUSTOMER_EMAIL="{{customer.email}}"}(window||{});</script>
+    <script id="gorgias-chat-widget-install" defer>!function(_){_.GORGIAS_CHAT_APP_ID="4538",_.GORGIAS_CHAT_BASE_URL="us-east1-898b.production.gorgias.chat",_.GORGIAS_API_BASE_URL="config.gorgias.chat";var e=new XMLHttpRequest;e.open("GET","https://config.gorgias.chat/applications/4538",!0),e.onload=function(t){if(4===e.readyState)if(200===e.status){var n=JSON.parse(e.responseText);if(!n.application||!n.bundleVersion)throw new Error("Missing fields in the response body - https://config.gorgias.chat/applications/4538");if(_.GORGIAS_CHAT_APP=n.application,_.GORGIAS_CHAT_BUNDLE_VERSION=n.bundleVersion,n&&n.texts&&(_.GORGIAS_CHAT_TEXTS=n.texts),n&&n.sspTexts&&(_.GORGIAS_CHAT_SELF_SERVICE_PORTAL_TEXTS=n.sspTexts),!document.getElementById("gorgias-chat-container")){var o=document.createElement("div");o.id="gorgias-chat-container",document.body.appendChild(o);var r=document.createElement("script");r.setAttribute("defer",!0),r.src="https://storage.googleapis.com/gorgias-chat-production-client-builds/{bundleVersion}/static/js/main.js".replace("{bundleVersion}",n.bundleVersion),document.body.appendChild(r)}}else console.error("Failed request GET - https://config.gorgias.chat/applications/4538")},e.onerror=function(_){console.error(_)},e.send()}(window||{});</script><script id="gorgias-chat-shopify-install">!function(_){_.SHOPIFY_PERMANENT_DOMAIN="{{shop.permanent_domain}}",_.SHOPIFY_CUSTOMER_ID="{{customer.id}}",_.SHOPIFY_CUSTOMER_EMAIL="{{customer.email}}"}(window||{});</script>
     <!--Gorgias Chat Widget End-->
 
-    {{ 'wnw-optimization.js'  | asset_url | script_tag }}
     
     <!-- Warning: Do not remove. This is used for CartHook Checkout Replacement -->
     {% capture the_snippet_content %}{% include 'carthook-checkout' %}{% endcapture %}

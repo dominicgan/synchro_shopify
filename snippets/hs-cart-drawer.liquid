@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
 {%- endcomment -%}
 {% render 'hs-cart-static-upsell' %}
-<script src="{{ 'hs-sl-upsell.js' | asset_url }}"></script>
-<script src="{{ 'hs-sl-rewards.js' | asset_url }}"></script>
-<script src="{{ 'hs-sl-integrations.js' | asset_url }}"></script>
-<script src="{{ 'hs-sl-cart.js' | asset_url }}"></script>
+<script type="lazyload2" data-src="{{ 'hs-sl-upsell.js' | asset_url }}"></script>
+<script type="lazyload2" data-src="{{ 'hs-sl-rewards.js' | asset_url }}"></script>
+<script type="lazyload2" data-src="{{ 'hs-sl-integrations.js' | asset_url }}"></script>
+<script type="lazyload2" data-src="{{ 'hs-sl-cart.js' | asset_url }}"></script>

@@ -153,7 +153,6 @@ function lazyLoadLink() {
 }
 
 function lazyLoadImg() {
-  console.log(lazyImages);
   lazyImages.forEach(function (imageObj) {
     (imageObj.src =
       windowWidth < 600
@@ -226,7 +225,6 @@ function lazyLoadCss2(cssUrl, elemId) {
 }
 
 function lazyLoadJS(scriptUrl) {
-  console.log("lazyLoadJS", scriptUrl);
   lazyLoadedJS &&
     (setTimeout(function () {
       lazyLoadJS(scriptUrl);
@@ -241,12 +239,12 @@ function lazyLoadJS(scriptUrl) {
 }
 
 function load_all_js() {
-  console.log("load_all_js");
   //   lazyLoadCss('https://cdn.shopify.com/s/files/1/0155/0195/t/37/assets/theme.scss.css?v=' + Date['now']()),
   //   lazyLoadCss(_0x466b48(0x216) + Date['now']()),
   //   lazyLoadCss('https://cdn.shopify.com/s/files/1/0155/0195/t/37/assets/mmenu.scss.css?v=' + Date['now']()),
   //   lazyLoadCss(_0x466b48(0x1d6)),
   //   lazyLoadCss('https://fonts.googleapis.com/css?family=Montserrat:400,700'),
+    lazyLoadCss('https://use.fontawesome.com/releases/v5.15.3/css/all.css'),
   window.location.href.indexOf("synchro.myshopify.com") > -1 ||
   window.location.href.indexOf("/cart") > -1 ||
   window.location.href.indexOf("/checkout") > -1

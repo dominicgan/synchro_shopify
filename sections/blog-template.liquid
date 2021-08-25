@@ -3,8 +3,27 @@
 - Template section
 {% endcomment %}
 
+{%- comment -%}
+@dominic: already loaded in main theme
 <link rel="stylesheet" href="https://use.typekit.net/rjy2euv.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+{%- endcomment -%}
+
+<!-- splide css -->
+<link
+rel="preload"
+href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css"
+as="style"
+crossorigin="anonymous"
+onload="this.onload=null;this.rel='stylesheet'"
+/>
+<noscript>
+<link
+    href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css"
+    rel="stylesheet"
+    type="text/css"
+    crossorigin="anonymous"
+/>
+</noscript>
 
 {% comment %} Check to see if sidebar should be enabled {% endcomment %}
 {% if section.blocks.size > 0 %}

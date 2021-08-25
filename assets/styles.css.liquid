@@ -4785,7 +4785,7 @@ div#disqus_thread li {
 .mailing-list-signup .mailing-list-image {
   width: 50%;
   display: table-cell;
-  background: url({{ "opt-in-image.jpg" | asset_url | replace: '.jpg', '_600x600.jpg'}});
+  background: url({{ "opt-in-image.jpg" | asset_img_url: '600x' }});
   background-size: cover;
   background-position: center center;
   padding: 60px;
